@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class User {
 
-    private int userid;
+    private Integer userid;
     private String login;
     private String haslo;
     private String adres;
@@ -107,7 +107,6 @@ public class User {
     }
 
     @Override
-
     public String toString() {
 
         return "User [userid=" + userid + ", imie=" + imie
