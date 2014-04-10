@@ -109,13 +109,13 @@ public class CarDao {
             while (rs.next()) {
 
                 Car car = new Car();
-                car.setID(rs.getInt("userid"));
+                car.setID(rs.getInt("id"));
                 car.setMarka(rs.getString("marka"));
                 car.setModel(rs.getString("model"));
                 car.setRocznik(rs.getInt("rocznik"));
                 car.setPrzebieg(rs.getInt("przebieg"));
                 car.setPojemnoscSilnika(rs.getString("pojemnosc_silnika"));
-                car.setCenaDoba(rs.getInt("cena_doba"));
+                //car.setCenaDoba(rs.getInt("cena_doba"));
               
                 cars.add(car);
             }

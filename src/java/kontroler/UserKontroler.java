@@ -33,6 +33,8 @@ public class UserKontroler extends HttpServlet {
     private static String INDEX = "/index.html";
     
     private static String ZALOGOWANY = "/Zalogowany.jsp";
+    
+    private static String OFERTA = "/Oferta.jsp";
 
     private UserDao dao;
 
@@ -96,25 +98,27 @@ public class UserKontroler extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         User user = new User();
+        
         RequestDispatcher view=request.getRequestDispatcher(INDEX);
 
         String SprawdzOferte=request.getParameter("Oferta");
         if(SprawdzOferte!=null && czyZalogowany)
         {
+            view = request.getRequestDispatcher(OFERTA);
             System.out.print("wcisnieta oferta");
-            SprawdzOferte=null;
+            
         }
         String Promocje=request.getParameter("Promocje");
         if(Promocje!=null && czyZalogowany)
         {
             System.out.print("wcisnieta Promocje");
-            Promocje=null;
+            
         }
         String Sprzedaz=request.getParameter("Sprzedaz");
           if(Sprzedaz!=null && czyZalogowany)
         {
             System.out.print("wcisnieto Sprzedaz");
-            Sprzedaz=null;
+          
         }
         
         String Rejestruj=request.getParameter("Rejestruj");
