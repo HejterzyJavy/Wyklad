@@ -130,6 +130,75 @@ public class CarDao {
         
        
        
+        public List<Car> getCarByBrand(String carBrand) {
+
+        List<Car> cars = new ArrayList<Car>();
+
+        try {
+
+            Statement statement = connection.createStatement();
+
+            ResultSet rs = statement.executeQuery("select * from samochod");
+
+            while (rs.next()) {
+
+                Car car = new Car();
+                car.setID(rs.getInt("id"));
+                car.setMarka(rs.getString("marka"));
+                car.setModel(rs.getString("model"));
+                car.setRocznik(rs.getInt("rocznik"));
+                car.setPrzebieg(rs.getInt("przebieg"));
+                car.setPojemnoscSilnika(rs.getString("pojemnosc_silnika"));
+                //car.setCenaDoba(rs.getInt("cena_doba"));
+                if(car.getMarka().equals(carBrand))
+                cars.add(car);
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+        return cars;
+    }
+       
+       
+        
+            public List<Car> getCarByYearInterval(Integer min,Integer max) {
+
+        List<Car> cars = new ArrayList<Car>();
+
+        try {
+
+            Statement statement = connection.createStatement();
+
+            ResultSet rs = statement.executeQuery("select * from samochod");
+
+            while (rs.next()) {
+
+                Car car = new Car();
+                car.setID(rs.getInt("id"));
+                car.setMarka(rs.getString("marka"));
+                car.setModel(rs.getString("model"));
+                car.setRocznik(rs.getInt("rocznik"));
+                car.setPrzebieg(rs.getInt("przebieg"));
+                car.setPojemnoscSilnika(rs.getString("pojemnosc_silnika"));
+                //car.setCenaDoba(rs.getInt("cena_doba"));
+                if(car.getRocznik()>=min && car.getRocznik()<=max)
+                cars.add(car);
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+        return cars;
+    }
+        
+        
+        
+       
        
           public Car getCarById(int carId) {
 
@@ -163,7 +232,6 @@ public class CarDao {
         }
 
         return car;
-
     } 
         
         

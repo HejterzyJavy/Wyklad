@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script type="text/javascript" src="skryptOferta.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Oferta</title>
     </head>
@@ -18,8 +19,15 @@
         <div align="center">
         <form align="center" action="CarKontroler" method="POST">
             <input type="submit" value="Wyswietl całą oferte" name="oferta">
-            <input type="submit" value="Wyswietl wybrana marke" name="marka">
-            <input type="submit" value="Wyswietl wybrany model" name="model">
+            
+            <div id="paczka">
+            <input id="usun" type="button" value="Wyswietl wybrana marke" onclick="dodaj_element('paczka');" />
+            </div>
+            
+            <div id="paczka2">
+            <input id="usun2" type="button" value="Wyswietl wybrany rocznik" onclick="dodaj_element2('paczka2');" />
+            </div>
+            
         </form>
         </div>
       
