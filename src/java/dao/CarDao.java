@@ -56,7 +56,7 @@ public class CarDao {
                     .prepareStatement("delete from users where id=?");
 
                 // Parameters start with 1  
-            preparedStatement.setInt(1, carId);
+             preparedStatement.setInt(1, carId);
 
             preparedStatement.executeUpdate();
 
@@ -99,7 +99,7 @@ public class CarDao {
        public List<Car> getAllCars() {
 
         List<Car> cars = new ArrayList<Car>();
-
+        //sdfsd
         try {
 
             Statement statement = connection.createStatement();
