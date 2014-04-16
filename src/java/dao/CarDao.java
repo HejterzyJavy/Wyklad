@@ -30,11 +30,31 @@ public class CarDao {
     }
     
         public void addCar(Car car) {   
+            Integer id=0;
         try {
 
+            
+                   try {
+
+            Statement statement = connection.createStatement();
+
+            ResultSet rs = statement.executeQuery("select * from samochod");
+            
+            while (rs.next()) {
+  
+                id=car.getId();
+               }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+            
+            id++;
             PreparedStatement preparedStatement = connection
                     .prepareStatement("insert into samochod(id,marka,model,rocznik,przebieg,pojemnosc_silnika) values (?, ?, ?, ?, ?, ?)");
-            preparedStatement.setString(1, car.getId().toString());
+            preparedStatement.setString(1, id.toString());
             preparedStatement.setString(2, car.getMarka());
             preparedStatement.setString(3, car.getModel());
             preparedStatement.setInt(4, car.getRocznik());

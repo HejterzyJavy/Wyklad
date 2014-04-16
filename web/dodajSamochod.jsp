@@ -13,14 +13,14 @@
     </head>
     <body>
         <div align="center">
-            <form align="center" action="CarKontroler" method="POST">
+            <form  action="CarKontroler" method="POST">
                 <div>
-                <h3>Wpisz marke samochodu: <input type="text"  name="firma"></h3>
+                <h3>marka samochodu: <input type="text"  name="firma"></h3>
                 
                 </div>
-                <h3>Wpisz model samochodu:  <input type="text" name="model"></h3>
+                <h3>model samochodu:  <input type="text" name="model"></h3>
                
-                <h3>Wpisz rok produkcji: <input type="text" name="rokProdukcji"></h3>
+                <h3>rok produkcji: <input type="text" name="rokProdukcji"></h3>
                 
                 <h3>Rodzaj paliwa:</h3>
                 <input type="radio" name="paliwo" value="olej napedowy">olej
@@ -32,13 +32,13 @@
                 <h3>Pojemnosc: <input type="text" name="pojemnosc"></h3>
                 
                 <h3>Skrzynia biegow:</h3>
-                <input type="radio" name="skrzynia" value="automatyczna">Male
-                <input type="radio" name="skrzynia" value="manualna">Female
+                <input type="radio" name="skrzynia" value="automatyczna">automatyczna
+                <input type="radio" name="skrzynia" value="manualna">manualna
                 
                 <h3>Typ Nadwozia: <input type="text" name="typNadwozia"></h3>
                 
                 <h3>Podaj sciezke do zdjecia: <input type="text" name="sciezka"></h3>
-                
+                <input type="submit" name="zatwierdzSamochod" value="zatwierdz">
             </form>
         
   

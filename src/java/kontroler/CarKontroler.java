@@ -76,7 +76,23 @@ public class CarKontroler extends HttpServlet {
         List<Car> cars = new ArrayList<Car>();
         RequestDispatcher view=request.getRequestDispatcher(OFERTA);
         
-      
+        String zatwierdzSamochod=request.getParameter("zatwierdzSamochod");
+          if(zatwierdzSamochod!=null)
+        {
+          car.setMarka(request.getParameter("firma"));
+          car.setModel(request.getParameter("model"));
+          car.setRocznik(Integer.parseInt(request.getParameter("rokProdukcji")));
+          String rodzajPaliwa=request.getParameter("paliwo");
+          String mocSilnika=request.getParameter("mocSilnika");
+          car.setPrzebieg(Integer.parseInt(request.getParameter("przebieg")));
+          car.setPojemnoscSilnika(request.getParameter("pojemnosc"));
+          String skrzynia=request.getParameter("skrzynia");
+          String typNadwozia=request.getParameter("typNadwozia");
+          String sciezka=request.getParameter("sciezka");
+          dao.addCar(car);
+        }
+        
+        
           String dodajSamochod=request.getParameter("dodaj");
         if(dodajSamochod!=null)
         {
