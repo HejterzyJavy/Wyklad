@@ -19,6 +19,7 @@
         <input type="submit" name="Oferta" value="Oferta">
         <input type="submit" name="Promocje" value="Promocje">
         <input type="submit" name="Sprzedaz" value="Sprzedaż">
+        
         </form>
         </div>
         

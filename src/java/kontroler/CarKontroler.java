@@ -40,6 +40,8 @@ public class CarKontroler extends HttpServlet {
     private static String ZALOGOWANY = "/Zalogowany.jsp";
     
     private static String OFERTA="/Oferta.jsp";
+    
+    private static String DODAWANIE="/dodajSamochod.jsp";
 
     private CarDao dao;
 
@@ -75,6 +77,13 @@ public class CarKontroler extends HttpServlet {
         RequestDispatcher view=request.getRequestDispatcher(OFERTA);
         
       
+          String dodajSamochod=request.getParameter("dodaj");
+        if(dodajSamochod!=null)
+        {
+          view=request.getRequestDispatcher(DODAWANIE);
+          view.forward(request, response); 
+        }
+        
         
         String wyswietlOferte=request.getParameter("oferta");
         if(wyswietlOferte!=null)
