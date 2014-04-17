@@ -79,17 +79,19 @@ public class CarKontroler extends HttpServlet {
         String zatwierdzSamochod=request.getParameter("zatwierdzSamochod");
           if(zatwierdzSamochod!=null)
         {
+            
           car.setMarka(request.getParameter("firma"));
           car.setModel(request.getParameter("model"));
           car.setRocznik(Integer.parseInt(request.getParameter("rokProdukcji")));
-          String rodzajPaliwa=request.getParameter("paliwo");
-          String mocSilnika=request.getParameter("mocSilnika");
+          car.setRodzajPaliwa(request.getParameter("paliwo"));
+          car.setMocSilnika(Integer.parseInt(request.getParameter("mocSilnika")));
           car.setPrzebieg(Integer.parseInt(request.getParameter("przebieg")));
           car.setPojemnoscSilnika(request.getParameter("pojemnosc"));
-          String skrzynia=request.getParameter("skrzynia");
-          String typNadwozia=request.getParameter("typNadwozia");
-          String sciezka=request.getParameter("sciezka");
+          car.setSkrzyniaBiegow(request.getParameter("skrzynia"));
+          car.setTypNadwozia(request.getParameter("typNadwozia"));
+          car.setSciezkaZdjecie(request.getParameter("sciezka"));
           dao.addCar(car);
+                    
         }
         
         
@@ -97,7 +99,7 @@ public class CarKontroler extends HttpServlet {
         if(dodajSamochod!=null)
         {
           view=request.getRequestDispatcher(DODAWANIE);
-          view.forward(request, response); 
+        //  view.forward(request, response); 
         }
         
         
@@ -105,13 +107,14 @@ public class CarKontroler extends HttpServlet {
         if(wyswietlOferte!=null)
         {
            cars=dao.getAllCars();
-           
+            request.setAttribute("Cars", cars);
         }
         String wyswietlMarke=request.getParameter("marka");
         if(wyswietlMarke!=null)
         {
            String marka=request.getParameter("pole");
            cars=dao.getCarByBrand(marka);
+            request.setAttribute("Cars", cars);
            
         }
         String wyswietlRok=request.getParameter("rocznik");
@@ -121,10 +124,11 @@ public class CarKontroler extends HttpServlet {
            Integer rokDo=Integer.parseInt(request.getParameter("rokDo")) ;
            
            cars=dao.getCarByYearInterval(rokOd, rokDo);
+            request.setAttribute("Cars", cars);
         }
         
         
-        request.setAttribute("Cars", cars);
+       
         view.forward(request, response);
 
     }

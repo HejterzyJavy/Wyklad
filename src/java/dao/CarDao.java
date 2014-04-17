@@ -30,18 +30,24 @@ public class CarDao {
     }
     
         public void addCar(Car car) {   
-            Integer id=0;
+            Integer id=getLastId();
         try {
  
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("insert into samochod(id,marka,model,rocznik,przebieg,pojemnosc_silnika) values (?, ?, ?, ?, ?, ?)");
+                    .prepareStatement("insert into samochod(id,marka,model,rocznik,rodzaj_paliwa,moc_silnika,przebieg,pojemnosc_silnika,skrzynia_biegow,typ_nadwozia,sciezka_zdjecie) values (?, ?, ?, ?, ?, ?,?,?,?,?,?)");
             
-            preparedStatement.setString(1, "50");
+            preparedStatement.setInt(1, id);
             preparedStatement.setString(2, car.getMarka());
             preparedStatement.setString(3, car.getModel());
             preparedStatement.setInt(4, car.getRocznik());
-            preparedStatement.setInt(5, car.getPrzebieg());
-            preparedStatement.setString(6, car.getPojemnoscSilnika() );
+            preparedStatement.setString(5, car.getRodzajPaliwa());
+            preparedStatement.setInt(6, car.getMocSilnika());
+            preparedStatement.setInt(7, car.getPrzebieg());
+            preparedStatement.setString(8, car.getPojemnoscSilnika());
+            preparedStatement.setString(9, car.getSkrzyniaBiegow());
+            preparedStatement.setString(10, car.getTypNadwozia());
+            preparedStatement.setString(11, car.getSciezkaZdjecie());
+            
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -96,6 +102,33 @@ public class CarDao {
             e.printStackTrace();
         }
     }
+           
+    
+           
+                 public Integer getLastId() {
+
+        Integer lastId = new Integer(0);
+        //sdfsd
+        try {
+
+            Statement statement = connection.createStatement();
+
+            ResultSet rs = statement.executeQuery("select * from samochod");
+
+            while (rs.next()) {
+            lastId++;
+          
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+        lastId++;
+        return lastId;
+    }
+           
            
            
        public List<Car> getAllCars() {
@@ -223,7 +256,7 @@ public class CarDao {
                 car.setRocznik(rs.getInt("rocznik"));
                 car.setPrzebieg(rs.getInt("przebieg"));
                 car.setPojemnoscSilnika(rs.getString("pojemnosc_silnika"));
-                car.setCenaDoba(rs.getInt("cena_doba"));
+               // car.setCenaDoba(rs.getInt("cena_doba"));
 
             }
 

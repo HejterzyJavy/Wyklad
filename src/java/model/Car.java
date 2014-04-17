@@ -16,10 +16,13 @@ public class Car {
     private String marka;
     private String model;
     private Integer rocznik;
+    private String rodzajPaliwa;
+    private Integer mocSilnika;
     private Integer przebieg;
     private String pojemnoscSilnika;
-    private Integer cenaDoba;
-    
+    private String skrzyniaBiegow;
+    private String typNadwozia;
+    private String sciezkaZdjecie;
     
     public Integer getId()
     {
@@ -61,6 +64,27 @@ public class Car {
         this.rocznik=rocznik;
     } 
        
+    public String getRodzajPaliwa()
+    {
+        return this.rodzajPaliwa;
+    }
+    
+    public void setRodzajPaliwa(String rodzajPaliwa)
+    {
+        this.rodzajPaliwa=rodzajPaliwa;
+    }
+    
+    public Integer getMocSilnika()
+    {
+        return this.mocSilnika;
+    }
+    
+    public void setMocSilnika(Integer mocSilnika)
+    {
+        this.mocSilnika=mocSilnika;
+    }
+    
+    
     public Integer getPrzebieg()
     {
         return przebieg;
@@ -82,14 +106,34 @@ public class Car {
         this.pojemnoscSilnika=pojemnoscSilnika;
     }
     
-    public Integer getCenaDoba()
+    public String getSkrzyniaBiegow()
     {
-        return cenaDoba;
+        return this.skrzyniaBiegow;
     }
     
-    public void setCenaDoba(Integer cenaDoba)
+    public void setSkrzyniaBiegow(String skrzyniaBiegow)
     {
-        this.cenaDoba=cenaDoba;
+        this.skrzyniaBiegow=skrzyniaBiegow;
+    }
+    
+    public String getTypNadwozia()
+    {
+        return this.typNadwozia;
+    }
+    
+    public void setTypNadwozia(String typNadwozia)
+    {
+        this.typNadwozia=typNadwozia;
+    }
+    
+    public String getSciezkaZdjecie()
+    {
+        return this.sciezkaZdjecie;
+    }
+    
+    public void setSciezkaZdjecie(String sciezkaZdjecie)
+    {
+        this.sciezkaZdjecie="img/samochody/"+sciezkaZdjecie+".jpg";
     }
     
     
