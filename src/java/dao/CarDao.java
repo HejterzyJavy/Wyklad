@@ -81,19 +81,31 @@ public class CarDao {
         try {
 
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("update samochod set marka=?, model=?, rocznik=?, przebieg=?, pojemnosc_silnika=?, cena_doba=?  "
+                    .prepareStatement("update samochod set marka=?, model=?, rocznik=?, rodzaj_paliwa=?,moc_silnika=?, przebieg=?, pojemnosc_silnika=?, skrzynia_biegow=?,typ_nadwozia=?,sciezka_zdjecie=? "
                             + "where id=?");
 
                 // Parameters start with 1  
-            preparedStatement.setString(1, car.getMarka());
+            
+            
+            preparedStatement.setString(2, car.getMarka());
 
-            preparedStatement.setString(2, car.getModel());
+            preparedStatement.setString(3, car.getModel());
 
-            preparedStatement.setInt(3, car.getRocznik());
+            preparedStatement.setInt(4, car.getRocznik());
 
-            preparedStatement.setInt(4, car.getPrzebieg());
+            preparedStatement.setString(5, car.getRodzajPaliwa());
+            
+            preparedStatement.setInt(6, car.getMocSilnika());
+     
+            preparedStatement.setInt(7, car.getPrzebieg());
 
-            preparedStatement.setString(5, car.getPojemnoscSilnika());
+            preparedStatement.setString(8, car.getPojemnoscSilnika());
+            
+            preparedStatement.setString(9, car.getSkrzyniaBiegow());
+            
+            preparedStatement.setString(10, car.getTypNadwozia());
+            
+            preparedStatement.setString(11, car.getSciezkaZdjecie());
 
             preparedStatement.executeUpdate();
 
@@ -105,25 +117,19 @@ public class CarDao {
            
     
            
-                 public Integer getLastId() {
+     public Integer getLastId() {
 
         Integer lastId = new Integer(0);
         //sdfsd
         try {
-
             Statement statement = connection.createStatement();
-
             ResultSet rs = statement.executeQuery("select * from samochod");
-
             while (rs.next()) {
             lastId++;
-          
             }
 
         } catch (SQLException e) {
-
             e.printStackTrace();
-
         }
         lastId++;
         return lastId;
@@ -148,10 +154,14 @@ public class CarDao {
                 car.setMarka(rs.getString("marka"));
                 car.setModel(rs.getString("model"));
                 car.setRocznik(rs.getInt("rocznik"));
+                car.setRodzajPaliwa(rs.getString("rodzaj_paliwa"));
+                car.setMocSilnika(rs.getInt("moc_silnika"));
                 car.setPrzebieg(rs.getInt("przebieg"));
                 car.setPojemnoscSilnika(rs.getString("pojemnosc_silnika"));
-                //car.setCenaDoba(rs.getInt("cena_doba"));
-              
+                car.setSkrzyniaBiegow(rs.getString("skrzynia_biegow"));
+                car.setTypNadwozia(rs.getString("typ_nadwozia"));
+                car.setSciezkaZdjecie(rs.getString("sciezka_zdjecie"));
+                
                 cars.add(car);
             }
 
@@ -182,8 +192,13 @@ public class CarDao {
                 car.setMarka(rs.getString("marka"));
                 car.setModel(rs.getString("model"));
                 car.setRocznik(rs.getInt("rocznik"));
+                car.setRodzajPaliwa(rs.getString("rodzaj_paliwa"));
+                car.setMocSilnika(rs.getInt("moc_silnika"));
                 car.setPrzebieg(rs.getInt("przebieg"));
                 car.setPojemnoscSilnika(rs.getString("pojemnosc_silnika"));
+                car.setSkrzyniaBiegow(rs.getString("skrzynia_biegow"));
+                car.setTypNadwozia(rs.getString("typ_nadwozia"));
+                car.setSciezkaZdjecie(rs.getString("sciezka_zdjecie"));
                 //car.setCenaDoba(rs.getInt("cena_doba"));
                 if(car.getMarka().equals(carBrand))
                 cars.add(car);
@@ -216,8 +231,13 @@ public class CarDao {
                 car.setMarka(rs.getString("marka"));
                 car.setModel(rs.getString("model"));
                 car.setRocznik(rs.getInt("rocznik"));
+                car.setRodzajPaliwa(rs.getString("rodzaj_paliwa"));
+                car.setMocSilnika(rs.getInt("moc_silnika"));
                 car.setPrzebieg(rs.getInt("przebieg"));
                 car.setPojemnoscSilnika(rs.getString("pojemnosc_silnika"));
+                car.setSkrzyniaBiegow(rs.getString("skrzynia_biegow"));
+                car.setTypNadwozia(rs.getString("typ_nadwozia"));
+                car.setSciezkaZdjecie(rs.getString("sciezka_zdjecie"));
                 //car.setCenaDoba(rs.getInt("cena_doba"));
                 if(car.getRocznik()>=min && car.getRocznik()<=max)
                 cars.add(car);
@@ -250,13 +270,17 @@ public class CarDao {
 
             if (rs.next()) {
                 
-                car.setID(rs.getInt("userid"));
+                car.setID(rs.getInt("id"));
                 car.setMarka(rs.getString("marka"));
                 car.setModel(rs.getString("model"));
                 car.setRocznik(rs.getInt("rocznik"));
+                car.setRodzajPaliwa(rs.getString("rodzaj_paliwa"));
+                car.setMocSilnika(rs.getInt("moc_silnika"));
                 car.setPrzebieg(rs.getInt("przebieg"));
                 car.setPojemnoscSilnika(rs.getString("pojemnosc_silnika"));
-               // car.setCenaDoba(rs.getInt("cena_doba"));
+                car.setSkrzyniaBiegow(rs.getString("skrzynia_biegow"));
+                car.setTypNadwozia(rs.getString("typ_nadwozia"));
+                car.setSciezkaZdjecie(rs.getString("sciezka_zdjecie"));
 
             }
 
