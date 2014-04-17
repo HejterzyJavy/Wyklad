@@ -1,25 +1,17 @@
 package kontroler;
 
-import java.io.IOException;
-
-import java.text.ParseException;
-
-import java.text.SimpleDateFormat;
-
-import java.util.Date;
-
-import javax.servlet.RequestDispatcher;
-
-import javax.servlet.ServletException;
-
-import javax.servlet.http.HttpServlet;
-
-import javax.servlet.http.HttpServletRequest;
-
-import javax.servlet.http.HttpServletResponse;
-
 import dao.UserDao;
-
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import model.User;
 
 public class UserKontroler extends HttpServlet {
@@ -97,6 +89,18 @@ public class UserKontroler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
+        Map<String, String> messages = new HashMap<String, String>();
+        request.setAttribute("messages", messages);
+        
+        
+        
+        String login = request.getParameter("login");
+        if (login == null || login.trim().isEmpty()) {
+            messages.put("login", "To pole nie może być puste");
+        } else if (!login.matches("\\p{Alnum}+")) {
+            messages.put("login", "Tylko litery");
+        }
+        
         User user = new User();
         
         RequestDispatcher view=request.getRequestDispatcher(INDEX);
@@ -160,23 +164,22 @@ public class UserKontroler extends HttpServlet {
         
         
         String Zaloguj=request.getParameter("Logowanie");
-        if (Zaloguj!=null) {
-        user.setLogin(request.getParameter("login"));
-        user.setHaslo(request.getParameter("haslo"));
-            
+        if (Zaloguj != null) {
+            user.setLogin(request.getParameter("login"));
+            user.setHaslo(request.getParameter("haslo"));
+
             System.out.println("logowanie");
-         if(dao.zaloguj(user.getLogin(),user.getHaslo()))
-         {
-             czyZalogowany=true;
-             System.out.println("zalogowany");
-             view = request.getRequestDispatcher(ZALOGOWANY);
-         }
-         else if(!dao.zaloguj(user.getLogin(),user.getHaslo())){
-             System.out.println("niezalogowany");
-             czyZalogowany=false;
-         view = request.getRequestDispatcher(INDEX);
-         }
-         }
+            if (dao.zaloguj(user.getLogin(), user.getHaslo())) {
+                czyZalogowany = true;
+                System.out.println("zalogowany");
+                view = request.getRequestDispatcher(ZALOGOWANY);
+            } else if (!dao.zaloguj(user.getLogin(), user.getHaslo())) {
+                System.out.println("niezalogowany");
+                czyZalogowany = false;
+                messages.put("loginHaslo", "Niepoprawny login lub haslo");
+                view = request.getRequestDispatcher("/Log.jsp");
+            }
+        }
         
         
          
