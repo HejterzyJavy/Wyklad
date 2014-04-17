@@ -74,7 +74,7 @@ public class CarKontroler extends HttpServlet {
         
         Car car = new Car();
         List<Car> cars = new ArrayList<Car>();
-        RequestDispatcher view=request.getRequestDispatcher(OFERTA);
+        RequestDispatcher view=request.getRequestDispatcher("/Samochody.jsp");
         
         String zatwierdzSamochod=request.getParameter("zatwierdzSamochod");
           if(zatwierdzSamochod!=null)

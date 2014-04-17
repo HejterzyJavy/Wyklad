@@ -177,6 +177,7 @@ public class UserKontroler extends HttpServlet {
                 System.out.println("niezalogowany");
                 czyZalogowany = false;
                 messages.put("loginHaslo", "Niepoprawny login lub haslo");
+                messages.put("pokaz", "false");
                 view = request.getRequestDispatcher("/Log.jsp");
             }
         }

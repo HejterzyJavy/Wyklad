@@ -62,7 +62,7 @@
         	</div>
         	<div id='menuPoziome'>
         		<div id='rezerwacjaB'> <p>REZERWUJ</p></div>
-        		<div class='przyciskMenu'> <p>SAMOCHODY</p> </div>
+                        <div class='przyciskMenu'> <a href="Samochody.jsp"><p>SAMOCHODY</p></a> </div>
         		<div class='przyciskMenu'> <p>OFERTA</p> </div>
         		<div class='przyciskMenu'> <p>LOKALIZACJA</p> </div>
         		<div class='przyciskMenu'> <p>USŁUGI</p> </div>

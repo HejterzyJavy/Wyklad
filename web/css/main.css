@@ -226,6 +226,10 @@ body{
 	width:1024px;
 	border-width:0px;
 }
+
+#srodekTresc{
+	margin-top: 15px;
+}
 .linia{
 	margin-top:15px;
 	width:1024px;
@@ -422,4 +426,19 @@ body{
     h3 {
         page-break-after: avoid;
     }
+}
+
+.kwadrat {
+    width:250px;
+    height:250px;
+    background-color: #3d2e1b;
+    float:left;
+    margin:2px 2px 2px 2px;
+    color:#EEEEEE;
+
+}
+
+.kwadrat p{
+    margin-left: 25%;
+    margin-top:10px;
 }

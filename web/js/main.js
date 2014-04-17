@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
 	$(".przyciskMenu, #rezerwacjaB").mouseover(function() {
 		$(this).animate({
 			borderBottomWidth : "4px"
