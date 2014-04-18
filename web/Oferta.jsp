@@ -27,7 +27,6 @@
             <div id="paczka2">
             <input id="usun2" type="button" value="Wyswietl wybrany rocznik" onclick="dodaj_element2('paczka2');" />
             </div>
-            <input type="submit" value="dodaj samochod" name="dodaj">
         </form>
         </div>
       

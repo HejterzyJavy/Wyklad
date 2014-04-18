@@ -52,6 +52,8 @@ public class CarKontroler extends HttpServlet {
     private static String OFERTA="/Oferta.jsp";
     
     private static String DODAWANIE="/dodajSamochod.jsp";
+    
+    private static String panelPracownika="/panelPracownika.jsp";
 
     private CarDao dao;
 
@@ -116,6 +118,14 @@ public class CarKontroler extends HttpServlet {
         //  view.forward(request, response); 
         }
         
+        String usunSamochod=request.getParameter("usun");
+        if(usunSamochod!=null)
+        {
+            cars=dao.getAllCars();
+            request.setAttribute("Cars", cars);
+          view=request.getRequestDispatcher(panelPracownika);
+        //  view.forward(request, response); 
+        }
         
         String wyswietlOferte=request.getParameter("oferta");
         if(wyswietlOferte!=null)

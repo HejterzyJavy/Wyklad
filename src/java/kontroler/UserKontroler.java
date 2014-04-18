@@ -26,6 +26,8 @@ public class UserKontroler extends HttpServlet {
     
     private static String ZALOGOWANY = "/Zalogowany.jsp";
     
+    private static String zalogowanyPRACOWNIK="/panelPracownika.jsp";
+    
     private static String OFERTA = "/Oferta.jsp";
 
     private UserDao dao;
@@ -173,7 +175,13 @@ public class UserKontroler extends HttpServlet {
                 czyZalogowany = true;
                 System.out.println("zalogowany");
                 view = request.getRequestDispatcher(ZALOGOWANY);
-            } else if (dao.zaloguj(user.getLogin(), user.getHaslo())==-1) {
+            }
+            if (dao.zaloguj(user.getLogin(), user.getHaslo())==1) {
+                czyZalogowany = true;
+                System.out.println("zalogowany");
+                view = request.getRequestDispatcher(zalogowanyPRACOWNIK);
+            } 
+            else if (dao.zaloguj(user.getLogin(), user.getHaslo())==-1) {
                 System.out.println("niezalogowany");
                 czyZalogowany = false;
                 messages.put("loginHaslo", "Niepoprawny login lub haslo");

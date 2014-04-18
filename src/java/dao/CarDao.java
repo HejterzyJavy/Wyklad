@@ -161,7 +161,7 @@ public class CarDao {
                 car.setSkrzyniaBiegow(rs.getString("skrzynia_biegow"));
                 car.setTypNadwozia(rs.getString("typ_nadwozia"));
                 car.setSciezkaZdjecie(rs.getString("sciezka_zdjecie"));
-                
+                car.setTmp(car.getId());
                 cars.add(car);
             }
 

@@ -23,16 +23,29 @@ public class Car {
     private String skrzyniaBiegow;
     private String typNadwozia;
     private String sciezkaZdjecie;
+    private String tmp;
     
     public Integer getId()
     {
         return carId;
     }
     
-    public void setID(int id)
+    public void setID(Integer id)
     {
         this.carId=id;
     }
+    
+    
+    public String getTmp()
+    {
+        return tmp;
+    }
+    
+    public void setTmp(Integer id)
+    {
+        this.tmp=id.toString();
+    }
+    
     
     public String getMarka()
     {
