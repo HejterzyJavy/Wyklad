@@ -13,7 +13,7 @@
     </head>
     <body>
         <div align="center">
-            <form  action="CarKontroler" method="POST" >
+            <form  action="CarKontroler" method="POST">
                 <div>
                 <h3>marka samochodu: <input type="text"  name="firma"></h3>
                 
@@ -37,8 +37,10 @@
                 
                 <h3>Typ Nadwozia: <input type="text" name="typNadwozia"></h3>
                 
-                <h3>Podaj sciezke do zdjecia: <input type="text" name="sciezka"></h3>
-  
+
+               <h3>Podaj sciezke do zdjecia: <input type="text" name="sciezka"></h3>
+                
+                <input type="file" name="obrazek" accept="image/jpeg,image/gif,image/jpg" /> 
                 
                 <input type="submit" name="zatwierdzSamochod" value="zatwierdz">
             </form>

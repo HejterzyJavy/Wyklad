@@ -22,9 +22,17 @@ import dao.CarDao;
 import java.io.PrintWriter;
 import static java.lang.System.out;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import model.Car;
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.FileUploadException;
+import org.apache.tomcat.util.http.fileupload.RequestContext;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import static sun.rmi.transport.TransportConstants.Return;
 
 public class CarKontroler extends HttpServlet {
@@ -72,6 +80,8 @@ public class CarKontroler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
+        
+        
         Car car = new Car();
         List<Car> cars = new ArrayList<Car>();
         RequestDispatcher view=request.getRequestDispatcher("/Samochody.jsp");
@@ -90,6 +100,11 @@ public class CarKontroler extends HttpServlet {
           car.setSkrzyniaBiegow(request.getParameter("skrzynia"));
           car.setTypNadwozia(request.getParameter("typNadwozia"));
           car.setSciezkaZdjecie(request.getParameter("sciezka"));
+          
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+        ServletFileUpload servletUpload = new ServletFileUpload(factory);
+            byte[] imageBytes = null;
+            
           dao.addCar(car);
                     
         }
