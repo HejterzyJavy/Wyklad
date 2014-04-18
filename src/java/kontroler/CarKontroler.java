@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.CarDao;
+import java.io.File;
 import java.io.PrintWriter;
 import static java.lang.System.out;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ import java.util.logging.Logger;
 
 import model.Car;
 import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.FileItemFactory;
 import org.apache.tomcat.util.http.fileupload.FileUploadException;
 import org.apache.tomcat.util.http.fileupload.RequestContext;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
@@ -84,7 +86,7 @@ public class CarKontroler extends HttpServlet {
         
         Car car = new Car();
         List<Car> cars = new ArrayList<Car>();
-        RequestDispatcher view=request.getRequestDispatcher("/Samochody.jsp");
+        RequestDispatcher view=request.getRequestDispatcher("/Oferta.jsp");
         
         String zatwierdzSamochod=request.getParameter("zatwierdzSamochod");
           if(zatwierdzSamochod!=null)
@@ -100,11 +102,8 @@ public class CarKontroler extends HttpServlet {
           car.setSkrzyniaBiegow(request.getParameter("skrzynia"));
           car.setTypNadwozia(request.getParameter("typNadwozia"));
           car.setSciezkaZdjecie(request.getParameter("sciezka"));
+  
           
-        DiskFileItemFactory factory = new DiskFileItemFactory();
-        ServletFileUpload servletUpload = new ServletFileUpload(factory);
-            byte[] imageBytes = null;
-            
           dao.addCar(car);
                     
         }

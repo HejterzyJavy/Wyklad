@@ -40,7 +40,7 @@
 
                <h3>Podaj sciezke do zdjecia: <input type="text" name="sciezka"></h3>
                 
-                <input type="file" name="obrazek" accept="image/jpeg,image/gif,image/jpg" /> 
+                <input type="file" id="sourceImage" name="sourceImage" />
                 
                 <input type="submit" name="zatwierdzSamochod" value="zatwierdz">
             </form>
