@@ -36,7 +36,7 @@ public class CarDao {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("insert into samochod(id,marka,model,rocznik,rodzaj_paliwa,moc_silnika,przebieg,pojemnosc_silnika,skrzynia_biegow,typ_nadwozia,sciezka_zdjecie) values (?, ?, ?, ?, ?, ?,?,?,?,?,?)");
             
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, car.getId());
             preparedStatement.setString(2, car.getMarka());
             preparedStatement.setString(3, car.getModel());
             preparedStatement.setInt(4, car.getRocznik());
@@ -61,7 +61,7 @@ public class CarDao {
         try {
 
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("delete from users where id=?");
+                    .prepareStatement("delete from samochod where id=?");
 
                 // Parameters start with 1  
              preparedStatement.setInt(1, carId);

@@ -22,15 +22,19 @@
         </form>
         </div>
         
+        <form action="CarKontroler" method="POST">    
         <table align="center" >
           <c:forEach var="cars" items="${Cars}" >
           <tr>
-          <td><input type="checkbox" value="${cars.przebieg}" name="iden"></td>
-          <td>${cars.marka}</td><td>${cars.model}</td><td>${cars.rocznik}</td>
+          <td><input type="checkbox" value="${cars.getId()}" name="iden"></td>
+          <td>${cars.getMarka()}</td><td>${cars.model}</td><td>${cars.rocznik}</td>
           </tr>
           </c:forEach>
+          <tr>
           <input type="submit" value="zatwierdz" name="zatwierdzUsun">
+          </tr>
           </table>
-        
+        </form>
+            
     </body>
 </html>

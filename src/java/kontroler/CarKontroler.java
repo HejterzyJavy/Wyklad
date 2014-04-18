@@ -123,8 +123,17 @@ public class CarKontroler extends HttpServlet {
         {
             cars=dao.getAllCars();
             request.setAttribute("Cars", cars);
-          view=request.getRequestDispatcher(panelPracownika);
+            view=request.getRequestDispatcher(panelPracownika);
         //  view.forward(request, response); 
+        }
+        
+        String zatwierdzUsun=request.getParameter("zatwierdzUsun");
+        if(zatwierdzUsun!=null)
+        {
+            dao.deleteCar(Integer.parseInt(request.getParameter("iden")));
+            cars=dao.getAllCars();
+            request.setAttribute("Cars", cars);
+            view=request.getRequestDispatcher(panelPracownika);
         }
         
         String wyswietlOferte=request.getParameter("oferta");
