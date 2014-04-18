@@ -169,11 +169,11 @@ public class UserKontroler extends HttpServlet {
             user.setHaslo(request.getParameter("haslo"));
 
             System.out.println("logowanie");
-            if (dao.zaloguj(user.getLogin(), user.getHaslo())) {
+            if (dao.zaloguj(user.getLogin(), user.getHaslo())==0) {
                 czyZalogowany = true;
                 System.out.println("zalogowany");
                 view = request.getRequestDispatcher(ZALOGOWANY);
-            } else if (!dao.zaloguj(user.getLogin(), user.getHaslo())) {
+            } else if (dao.zaloguj(user.getLogin(), user.getHaslo())==-1) {
                 System.out.println("niezalogowany");
                 czyZalogowany = false;
                 messages.put("loginHaslo", "Niepoprawny login lub haslo");

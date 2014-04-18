@@ -185,10 +185,10 @@ public class UserDao {
     }
     
     
-   public boolean zaloguj(String login,String haslo) {
+   public int zaloguj(String login,String haslo) {
 
         List<User> users = new ArrayList<User>();
-        boolean czyZalogowany=false;
+        int czyZalogowany=-1;
         try {
 
             Statement statement = connection.createStatement();
@@ -199,7 +199,7 @@ public class UserDao {
              
              if (rs.getString("login").equals(login) && rs.getString("haslo").equals(haslo))
              {
-                 czyZalogowany=true;
+                 czyZalogowany=0;
                  break;
              }
             
