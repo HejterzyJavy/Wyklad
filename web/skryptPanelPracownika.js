@@ -1,0 +1,4 @@
+function wyswietl(){
+alert("dziala");
+}
+

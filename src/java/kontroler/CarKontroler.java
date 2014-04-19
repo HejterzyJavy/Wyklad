@@ -130,7 +130,19 @@ public class CarKontroler extends HttpServlet {
         String zatwierdzUsun=request.getParameter("zatwierdzUsun");
         if(zatwierdzUsun!=null)
         {
-            dao.deleteCar(Integer.parseInt(request.getParameter("iden")));
+            List<Car> test = new ArrayList<Car>();
+            Car tmp=new Car();
+   
+            test=dao.getAllCars();
+            for (int i=0;i<test.size();i++)
+            {
+                tmp=test.get(i);
+                String index=request.getParameter(tmp.getId().toString());
+                
+                if(index!=null)
+                dao.deleteCar(Integer.parseInt(index));
+                
+            }
             cars=dao.getAllCars();
             request.setAttribute("Cars", cars);
             view=request.getRequestDispatcher(panelPracownika);
