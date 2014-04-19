@@ -34,9 +34,9 @@ public class CarDao {
         try {
  
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("insert into samochod(id,marka,model,rocznik,rodzaj_paliwa,moc_silnika,przebieg,pojemnosc_silnika,skrzynia_biegow,typ_nadwozia,sciezka_zdjecie) values (?, ?, ?, ?, ?, ?,?,?,?,?,?)");
+                    .prepareStatement("insert into samochod(id,marka,model,rocznik,rodzaj_paliwa,moc_silnika,przebieg,pojemnosc_silnika,skrzynia_biegow,typ_nadwozia,sciezka_zdjecie,dostepnosc) values (?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
             
-            preparedStatement.setInt(1, car.getId());
+            preparedStatement.setInt(1, id);
             preparedStatement.setString(2, car.getMarka());
             preparedStatement.setString(3, car.getModel());
             preparedStatement.setInt(4, car.getRocznik());
@@ -47,6 +47,7 @@ public class CarDao {
             preparedStatement.setString(9, car.getSkrzyniaBiegow());
             preparedStatement.setString(10, car.getTypNadwozia());
             preparedStatement.setString(11, car.getSciezkaZdjecie());
+            preparedStatement.setInt(12, 1);
             
             preparedStatement.executeUpdate();
 
@@ -81,7 +82,7 @@ public class CarDao {
         try {
 
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("update samochod set marka=?, model=?, rocznik=?, rodzaj_paliwa=?,moc_silnika=?, przebieg=?, pojemnosc_silnika=?, skrzynia_biegow=?,typ_nadwozia=?,sciezka_zdjecie=? "
+                    .prepareStatement("update samochod set marka=?, model=?, rocznik=?, rodzaj_paliwa=?,moc_silnika=?, przebieg=?, pojemnosc_silnika=?, skrzynia_biegow=?,typ_nadwozia=?,sciezka_zdjecie=?,dostepnosc=? "
                             + "where id=?");
 
                 // Parameters start with 1  
@@ -106,6 +107,8 @@ public class CarDao {
             preparedStatement.setString(10, car.getTypNadwozia());
             
             preparedStatement.setString(11, car.getSciezkaZdjecie());
+            
+            preparedStatement.setInt(12, car.getDostepnosc());
 
             preparedStatement.executeUpdate();
 
@@ -161,6 +164,7 @@ public class CarDao {
                 car.setSkrzyniaBiegow(rs.getString("skrzynia_biegow"));
                 car.setTypNadwozia(rs.getString("typ_nadwozia"));
                 car.setSciezkaZdjecie(rs.getString("sciezka_zdjecie"));
+                car.setDostepnosc(rs.getInt("dostepnosc"));
                 car.setTmp(car.getId());
                 cars.add(car);
             }

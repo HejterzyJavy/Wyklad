@@ -23,7 +23,9 @@ public class Car {
     private String skrzyniaBiegow;
     private String typNadwozia;
     private String sciezkaZdjecie;
+    private Integer dostepnosc;
     private String tmp;
+    
     
     public Integer getId()
     {
@@ -147,6 +149,16 @@ public class Car {
     public void setSciezkaZdjecie(String sciezkaZdjecie)
     {
         this.sciezkaZdjecie="img/samochody/"+sciezkaZdjecie+".jpg";
+    }
+    
+     public Integer getDostepnosc()
+    {
+        return this.dostepnosc;
+    }
+    
+    public void setDostepnosc(Integer dostepnosc)
+    {
+        this.dostepnosc=dostepnosc;
     }
     
     

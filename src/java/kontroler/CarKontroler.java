@@ -88,7 +88,7 @@ public class CarKontroler extends HttpServlet {
         
         Car car = new Car();
         List<Car> cars = new ArrayList<Car>();
-        RequestDispatcher view=request.getRequestDispatcher("/Oferta.jsp");
+        RequestDispatcher view=request.getRequestDispatcher("/panelPracownika.jsp");
         
         String zatwierdzSamochod=request.getParameter("zatwierdzSamochod");
           if(zatwierdzSamochod!=null)
@@ -153,6 +153,7 @@ public class CarKontroler extends HttpServlet {
         {
            cars=dao.getAllCars();
             request.setAttribute("Cars", cars);
+             view=request.getRequestDispatcher(OFERTA);
         }
         String wyswietlMarke=request.getParameter("marka");
         if(wyswietlMarke!=null)
@@ -160,7 +161,7 @@ public class CarKontroler extends HttpServlet {
            String marka=request.getParameter("pole");
            cars=dao.getCarByBrand(marka);
             request.setAttribute("Cars", cars);
-           
+           view=request.getRequestDispatcher(OFERTA);
         }
         String wyswietlRok=request.getParameter("rocznik");
         if(wyswietlRok!=null)
@@ -170,6 +171,7 @@ public class CarKontroler extends HttpServlet {
            
            cars=dao.getCarByYearInterval(rokOd, rokDo);
             request.setAttribute("Cars", cars);
+            view=request.getRequestDispatcher(OFERTA);
         }
         
         
