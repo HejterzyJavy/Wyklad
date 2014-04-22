@@ -32,7 +32,6 @@
           <td>${cars.getMarka()}</td><td>${cars.model}</td><td>${cars.rocznik}</td>
           </tr>
           <c:set var="ilosc" scope="session" value="${cars.getId()}"/>
-           <c:out value="${ilosc}"/>
           </c:forEach>
           </table>
           <c:choose>
