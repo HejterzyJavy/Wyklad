@@ -8,6 +8,10 @@
         <servlet-name>CarKontroler</servlet-name>
         <servlet-class>kontroler.CarKontroler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RentKontroler</servlet-name>
+        <servlet-class>kontroler.RentKontroler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserKontroler</servlet-name>
         <url-pattern>/UserKontroler</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>CarKontroler</servlet-name>
         <url-pattern>/CarKontroler</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RentKontroler</servlet-name>
+        <url-pattern>/RentKontroler</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

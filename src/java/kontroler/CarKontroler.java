@@ -53,6 +53,8 @@ public class CarKontroler extends HttpServlet {
     
     private static String DODAWANIE="/dodajSamochod.jsp";
     
+    private static String WYPOZYCZANIE="/Wypozyczanie.jsp";
+    
     private static String panelPracownika="/panelPracownika.jsp";
 
     private CarDao dao;
@@ -111,6 +113,9 @@ public class CarKontroler extends HttpServlet {
         }
         
         
+    
+          
+          
           String dodajSamochod=request.getParameter("dodaj");
         if(dodajSamochod!=null)
         {

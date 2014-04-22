@@ -19,7 +19,6 @@
         <div align="center">
         <form align="center" action="CarKontroler" method="POST">
             <input type="submit" value="Wyswietl całą oferte" name="oferta">
-            
             <div id="paczka">
             <input id="usun" type="button" value="Wyswietl wybrana marke" onclick="dodaj_element('paczka');" />
             </div>
@@ -27,10 +26,17 @@
             <div id="paczka2">
             <input id="usun2" type="button" value="Wyswietl wybrany rocznik" onclick="dodaj_element2('paczka2');" />
             </div>
-            <input type="submit" value="Wypożycz samochód" name="wypozyczenie">
+           
         </form>
+            
+            <form align="center" action="RentKontroler" method="POST">
+                 <input type="submit" value="Wypożycz samochód" name="wypozyczenie">
+            </form>
+            
         </div>
       
+        
+        
           <table align="center" >
           <c:forEach var="cars" items="${Cars}" >
           <tr>
