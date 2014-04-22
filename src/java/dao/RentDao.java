@@ -28,6 +28,8 @@ public class RentDao {
 
     public RentDao() {
         connection = DbUtil.getConnection();
+        
+        
     }
     
 }
