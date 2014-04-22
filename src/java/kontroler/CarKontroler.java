@@ -176,21 +176,21 @@ public class CarKontroler extends HttpServlet {
             
             for (int i=0;i<test.size();i++)
             {
-                
-                przebieg=request.getParameter(tmp.getId().toString());
+          
+                przebieg=request.getParameter(test.get(i).getId().toString());
                 if(Integer.parseInt(przebieg)!=test.get(i).getPrzebieg())
                 {
+                    test.get(i).setPrzebieg(Integer.parseInt(przebieg));
+                    dao.deleteCar(test.get(i).getId());
+                    dao.addCar(test.get(i));
+                   // dao.updateCar(test.get(i));
+                   // dao.updatePrzebieg(test.get(i).getId(), Integer.parseInt(przebieg));
                     
-                }
-                
-                String index=request.getParameter(tmp.getId().toString());
-                
-                if(index!=null)
-                dao.deleteCar(Integer.parseInt(index));
-                
+                }                
             }
+            
             cars=dao.getAllCars();
-            request.setAttribute("Cars", cars);
+            request.setAttribute("Edit", cars);
             view=request.getRequestDispatcher(panelPracownika);
         }
         

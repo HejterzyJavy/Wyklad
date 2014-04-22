@@ -77,7 +77,7 @@ public class CarDao {
     }    
         
        
-           public void updateCar(Car car) {
+           public void updateCar( Car car) {
 
         try {
 
@@ -121,6 +121,37 @@ public class CarDao {
     }
            
     
+           
+           
+   /*        
+    public void updatePrzebieg(Integer id,Integer nowyPrzebieg) {
+
+        try {
+
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("update samochod set przebieg=?"
+                            + "where id=?");
+
+                // Parameters start with 1  
+            
+            
+            preparedStatement.setInt(1, nowyPrzebieg);
+
+            preparedStatement.setInt(2, id);
+
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+    }
+      
+    */
+    
+           
+           
            
      public Integer getLastId() {
 
