@@ -180,7 +180,9 @@ public class CarKontroler extends HttpServlet {
                 przebieg=request.getParameter(test.get(i).getId().toString());
                 if(Integer.parseInt(przebieg)!=test.get(i).getPrzebieg())
                 {
+                    
                     test.get(i).setPrzebieg(Integer.parseInt(przebieg));
+                              
                     dao.deleteCar(test.get(i).getId());
                     dao.addCar(test.get(i));
                    // dao.updateCar(test.get(i));

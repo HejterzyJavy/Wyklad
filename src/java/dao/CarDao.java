@@ -161,7 +161,7 @@ public class CarDao {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("select * from samochod");
             while (rs.next()) {
-            lastId++;
+            lastId=rs.getInt("id");
             }
 
         } catch (SQLException e) {
