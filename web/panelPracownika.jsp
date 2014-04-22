@@ -20,9 +20,32 @@
              <form action="CarKontroler" method="POST">    
              <input type="submit" value="dodaj samochod" name="dodaj">
              <input type="submit" value="usun samochod"  name="usun">
-             
+             <input type="submit" value="edytuj przebieg samochodu"  name="edit">
         </form>
         </div>
+        
+        <form action="CarKontroler" method="POST">    
+        <table align="center" >
+          <c:forEach var="cars" items="${Edit}" >
+          <tr>
+          <td>${cars.getMarka()}</td><td>${cars.model}</td><td>${cars.rocznik}</td>
+           <td><input type="text" value="${cars.getPrzebieg()}" name="${cars.getId()}"></td>
+          </tr>
+          <c:set var="ilosc2" scope="session" value="${cars.getId()}"/>
+          </c:forEach>
+          </table>
+          <c:choose>
+              <c:when test="${ilosc2 > 0}">
+             <div align="center">
+                  <input type="submit" value="zatwierdz"  name="zatwierdzEdytuj">
+            </div>  
+            </c:when>
+         </c:choose>
+           
+        </form>
+        
+        
+        
         
         <form action="CarKontroler" method="POST">    
         <table align="center" >

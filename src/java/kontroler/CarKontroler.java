@@ -132,6 +132,17 @@ public class CarKontroler extends HttpServlet {
         //  view.forward(request, response); 
         }
         
+               String Edytuj=request.getParameter("edit");
+        if(Edytuj!=null)
+        {
+
+            cars=dao.getAllCars();
+            request.setAttribute("Edit", cars);
+            view=request.getRequestDispatcher(panelPracownika);
+        }
+        
+        
+        
         String zatwierdzUsun=request.getParameter("zatwierdzUsun");
         if(zatwierdzUsun!=null)
         {
@@ -152,6 +163,38 @@ public class CarKontroler extends HttpServlet {
             request.setAttribute("Cars", cars);
             view=request.getRequestDispatcher(panelPracownika);
         }
+        
+ 
+          String zatwierdzEdytuj=request.getParameter("zatwierdzEdytuj");
+        if(zatwierdzEdytuj!=null)
+        {
+            List<Car> test = new ArrayList<Car>();
+            Car tmp=new Car();
+            String przebieg,idSamochod;
+            test=dao.getAllCars();
+            
+            
+            for (int i=0;i<test.size();i++)
+            {
+                
+                przebieg=request.getParameter(tmp.getId().toString());
+                if(Integer.parseInt(przebieg)!=test.get(i).getPrzebieg())
+                {
+                    
+                }
+                
+                String index=request.getParameter(tmp.getId().toString());
+                
+                if(index!=null)
+                dao.deleteCar(Integer.parseInt(index));
+                
+            }
+            cars=dao.getAllCars();
+            request.setAttribute("Cars", cars);
+            view=request.getRequestDispatcher(panelPracownika);
+        }
+        
+        
         
         String wyswietlOferte=request.getParameter("oferta");
         if(wyswietlOferte!=null)

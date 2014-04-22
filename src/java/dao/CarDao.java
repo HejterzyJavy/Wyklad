@@ -88,27 +88,29 @@ public class CarDao {
                 // Parameters start with 1  
             
             
-            preparedStatement.setString(2, car.getMarka());
+            preparedStatement.setString(1, car.getMarka());
 
-            preparedStatement.setString(3, car.getModel());
+            preparedStatement.setString(2, car.getModel());
 
-            preparedStatement.setInt(4, car.getRocznik());
+            preparedStatement.setInt(3, car.getRocznik());
 
-            preparedStatement.setString(5, car.getRodzajPaliwa());
+            preparedStatement.setString(4, car.getRodzajPaliwa());
             
-            preparedStatement.setInt(6, car.getMocSilnika());
+            preparedStatement.setInt(5, car.getMocSilnika());
      
-            preparedStatement.setInt(7, car.getPrzebieg());
+            preparedStatement.setInt(6, car.getPrzebieg());
 
-            preparedStatement.setString(8, car.getPojemnoscSilnika());
+            preparedStatement.setString(7, car.getPojemnoscSilnika());
             
-            preparedStatement.setString(9, car.getSkrzyniaBiegow());
+            preparedStatement.setString(8, car.getSkrzyniaBiegow());
             
-            preparedStatement.setString(10, car.getTypNadwozia());
+            preparedStatement.setString(9, car.getTypNadwozia());
             
-            preparedStatement.setString(11, car.getSciezkaZdjecie());
+            preparedStatement.setString(10, car.getSciezkaZdjecie());
             
-            preparedStatement.setInt(12, car.getDostepnosc());
+            preparedStatement.setInt(11, car.getDostepnosc());
+            
+            preparedStatement.setInt(12, car.getId());
 
             preparedStatement.executeUpdate();
 
