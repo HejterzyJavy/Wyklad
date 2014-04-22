@@ -85,6 +85,8 @@ public class RentKontroler extends HttpServlet {
         List<Car> cars = new ArrayList<Car>();
         RequestDispatcher view=request.getRequestDispatcher(WYPOZYCZENIE);
         
+       
+        
             String wypozyczSamochod=request.getParameter("wypozyczenie");
         if(wypozyczSamochod!=null)
         {
