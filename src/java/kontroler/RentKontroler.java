@@ -8,6 +8,7 @@ package kontroler;
 
 import dao.CarDao;
 import dao.RentDao;
+import dao.UserDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Car;
 import model.Rent;
+import model.User;
 
 /**
  *
@@ -30,15 +32,19 @@ public class RentKontroler extends HttpServlet {
     
      private static String WYPOZYCZENIE="/Wypozyczanie.jsp";
     
+     private static String panelPracownika="/panelPracownika.jsp";
+     
      private CarDao cardao;
      
      private RentDao rentdao;
      
+     private UserDao userdao;
      
         public RentKontroler() {
         super();
         cardao = new CarDao();
         rentdao= new RentDao();
+        userdao=new UserDao();
     }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -83,9 +89,24 @@ public class RentKontroler extends HttpServlet {
         Rent rent=new Rent();
         Date data=new Date();
         List<Car> cars = new ArrayList<Car>();
+        List<Rent> rents = new ArrayList<Rent>();
+        List<User> users = new ArrayList<User>();
         RequestDispatcher view=request.getRequestDispatcher(WYPOZYCZENIE);
         
        
+        String akceptujWypozyczenia=request.getParameter("akceptujWypozyczenia");
+        if(akceptujWypozyczenia!=null)
+        {
+            cars=cardao.getAllCars();
+            rents=rentdao.getAllRents();
+            users=userdao.getAllUsers();
+            request.setAttribute("Rents", rents);
+            request.setAttribute("Cars2", cars);
+            request.setAttribute("Users", users);
+            view=request.getRequestDispatcher(panelPracownika);
+       
+        }
+        
         
             String wypozyczSamochod=request.getParameter("wypozyczenie");
         if(wypozyczSamochod!=null)

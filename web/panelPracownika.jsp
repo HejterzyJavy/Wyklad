@@ -17,12 +17,48 @@
         <c:set var="ilosc" scope="session" value="${0}"/>
         <div align="center">
             <h1>PANEL PRACOWNIKA</h1>    
+            <form action="RentKontroler" method="POST">
+              <input type="submit" value="akceptuj wypozyczenia" name="akceptujWypozyczenia">    
+            </form>
+            
              <form action="CarKontroler" method="POST">    
              <input type="submit" value="dodaj samochod" name="dodaj">
              <input type="submit" value="usun samochod"  name="usun">
              <input type="submit" value="edytuj przebieg samochodu"  name="edit">
         </form>
         </div>
+        
+        
+         <form action="RentKontroler" method="POST">    
+        <table align="center" >
+          <c:set var="daneSamochod" scope="session" value="${Cars2}"/>
+          <c:set var="daneUzytkownicy" scope="session" value="${Users}"/>
+          <c:forEach var="rents" items="${Rents}" >
+          <tr>
+          <td>${rents.getIdWypozyczenie()}</td><td>${daneUzytkownicy.get(rents.getIdUser()).getImie()}</td>
+          <td>${daneUzytkownicy.get(rents.getIdUser()).getNazwisko()}</td>
+          <td>${daneSamochod.get(rents.getIdSamochod()).getMarka()}</td>
+          <td>${daneSamochod.get(rents.getIdSamochod()).getModel()}</td>
+          <td>${daneSamochod.get(rents.getIdSamochod()).getRocznik()}</td>
+          <td>${rents.getDoZaplaty()}</td>
+           <td><input type="text" value="${rents.getOpis()}" name="${rents.getIdWypozyczenie()}"></td>
+          </tr>
+          <c:set var="ilosc3" scope="session" value="${rents.getIdWypozyczenie()}"/>
+          </c:forEach>
+          </table>
+          <c:choose>
+              <c:when test="${ilosc3 > 0}">
+             <div align="center">
+                  <input type="submit" value="zatwierdz"  name="akceptuj">
+            </div>  
+            </c:when>
+         </c:choose>
+           
+        </form>
+        
+        
+        
+        
         
         <form action="CarKontroler" method="POST">    
         <table align="center" >
