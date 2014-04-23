@@ -88,9 +88,8 @@
                        
                                      <c:forEach var="cars" items="${Cars}" >
                                          <div class="kwadrat">
-                                             <p>Marka:${cars.marka}</p>
-                                              <p>Model:${cars.model}</p>
-                                              <p>Rocznik:${cars.rocznik}</p>
+                                             <img src="${cars.sciezkaZdjecie}">
+
                                          </div>
                                      </c:forEach>
                                     
