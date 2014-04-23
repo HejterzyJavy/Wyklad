@@ -77,6 +77,53 @@ public class CarDao {
     }    
         
        
+        public void update (int id,Car car)
+        {
+               try {
+
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("delete from samochod where id=?");
+
+                // Parameters start with 1  
+             preparedStatement.setInt(1, id);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        } 
+               
+               
+                   try {
+ 
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("insert into samochod(id,marka,model,rocznik,rodzaj_paliwa,moc_silnika,przebieg,pojemnosc_silnika,skrzynia_biegow,typ_nadwozia,sciezka_zdjecie,dostepnosc) values (?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
+            
+            preparedStatement.setInt(1, id);
+            preparedStatement.setString(2, car.getMarka());
+            preparedStatement.setString(3, car.getModel());
+            preparedStatement.setInt(4, car.getRocznik());
+            preparedStatement.setString(5, car.getRodzajPaliwa());
+            preparedStatement.setInt(6, car.getMocSilnika());
+            preparedStatement.setInt(7, car.getPrzebieg());
+            preparedStatement.setString(8, car.getPojemnoscSilnika());
+            preparedStatement.setString(9, car.getSkrzyniaBiegow());
+            preparedStatement.setString(10, car.getTypNadwozia());
+            preparedStatement.setString(11, car.getSciezkaZdjecie());
+            preparedStatement.setInt(12, 1);
+            
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }    
+               
+               
+        }
+        
+        
            public void updateCar( Car car) {
 
         try {
