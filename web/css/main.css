@@ -451,3 +451,7 @@ img {
     height: auto;
     width: auto\9; /* ie8 */
 }
+
+.opisSamochodu{
+    visibility: hidden;
+}
