@@ -55,6 +55,41 @@ public class RentDao {
         }
     }
     
+        
+                  public List<Rent> getAllRents() {
+
+        List<Rent> rents= new ArrayList<Rent>();
+        //sdfsd
+        try {
+
+            Statement statement = connection.createStatement();
+
+            ResultSet rs = statement.executeQuery("select * from wypozyczenie");
+
+            while (rs.next()) {
+
+                Rent rent = new Rent();
+                rent.setIdWypozyczenie(rs.getInt("id_wypozyczenie"));
+                rent.setIdSamochod(rs.getInt("id"));
+                rent.setIdUser(rs.getInt("userid"));
+                rent.setDoZaplaty(rs.getInt("do_zaplaty"));
+                rent.setDataWypozyczenia(rs.getDate("data_wypozyczenia"));
+                rent.setDataZwrotu(rs.getDate("data_zwrotu"));
+                rent.setStatus(rs.getString("status"));
+                rent.setOpis(rs.getString("opis"));
+      
+                rents.add(rent);
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+        return rents;
+    }
+            
+            
             
                 public void acceptRent(Rent rent) {
 

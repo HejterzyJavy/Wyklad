@@ -16,9 +16,11 @@ public class Rent {
     private Integer idWypozyczenie;
     private Integer id; //id samochod
     private Integer idUser;
+    private Integer doZaplaty;
     private Date dataWypozyczenia;
     private Date dataZwrotu;
     private String status;
+    private String opis;
     
     
     public void setIdWypozyczenie(Integer idWypozyczenie)
@@ -51,6 +53,16 @@ public class Rent {
       return this.idUser;
   }
   
+  public void setDoZaplaty(Integer doZaplaty)
+  {
+      this.doZaplaty=doZaplaty;
+  }
+  
+  public Integer getDoZaplaty()
+  {
+      return this.doZaplaty;
+  }
+  
   public void setDataWypozyczenia(Date dataW)
   {
       this.dataWypozyczenia=dataW;
@@ -80,5 +92,14 @@ public class Rent {
       return this.status;
   }
   
-    
+  public void setOpis(String opis)
+  {
+      this.opis=opis;
+  }
+  
+  public String getOpis()
+  {
+      return this.opis;
+  }
+  
 }
