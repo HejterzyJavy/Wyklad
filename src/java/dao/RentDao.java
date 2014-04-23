@@ -121,6 +121,43 @@ public class RentDao {
         }
 
     }
+                
+                
+                    public void updateRent(Rent rent) {
+
+        try {
+
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("update wypozyczenie set id=?, userid=?, do_zaplaty=?, data_wypozyczenia=?,data_zwrotu=?,status=?,opis=?"
+                            + "where id_wypozyczenie=?");
+
+                // Parameters start with 1  
+            preparedStatement.setInt(1, rent.getIdSamochod());
+
+            preparedStatement.setInt(2, rent.getIdUser());
+
+            preparedStatement.setInt(3, rent.getDoZaplaty());
+            
+            preparedStatement.setDate(4, new java.sql.Date(rent.getDataWypozyczenia().getTime()));
+
+            preparedStatement.setDate(5, new java.sql.Date(rent.getDataZwrotu().getTime()));
+
+            preparedStatement.setString(6, rent.getStatus());
+
+            preparedStatement.setString(7, rent.getOpis());
+            
+            preparedStatement.setInt(8, rent.getIdWypozyczenie());
+            
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
+                
             
             
 }

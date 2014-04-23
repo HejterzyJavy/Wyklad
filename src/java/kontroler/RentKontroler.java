@@ -91,7 +91,7 @@ public class RentKontroler extends HttpServlet {
         List<Car> cars = new ArrayList<Car>();
         List<Rent> rents = new ArrayList<Rent>();
         List<User> users = new ArrayList<User>();
-        RequestDispatcher view=request.getRequestDispatcher(WYPOZYCZENIE);
+        RequestDispatcher view=request.getRequestDispatcher(panelPracownika);
         
        
         String akceptujWypozyczenia=request.getParameter("akceptujWypozyczenia");
@@ -106,6 +106,37 @@ public class RentKontroler extends HttpServlet {
             view=request.getRequestDispatcher(panelPracownika);
        
         }
+        
+        
+        String zatwierdzAkceptuj=request.getParameter("akceptuj");
+                if(zatwierdzAkceptuj!=null)
+                {
+             List<Rent> test = new ArrayList<Rent>();
+             Rent tmp = new Rent();
+             test=rentdao.getAllRents();
+             String status="",opis="";
+             
+             for (int i=0;i<test.size();i++)
+             {
+                 status=request.getParameter("akc"+test.get(i).getIdWypozyczenie());
+                 if(status!=null && !status.equals(test.get(i).getStatus()))
+                 {
+                    opis=request.getParameter(test.get(i).getIdWypozyczenie().toString()); 
+                    tmp=test.get(i);
+                    tmp.setStatus(status);
+                    tmp.setOpis(opis);
+                    rentdao.updateRent(tmp);
+                 }
+             }
+             
+            cars=cardao.getAllCars();
+            rents=rentdao.getAllRents();
+            users=userdao.getAllUsers();
+            request.setAttribute("Rents", rents);
+            request.setAttribute("Cars2", cars);
+            request.setAttribute("Users", users);
+            view=request.getRequestDispatcher(panelPracownika);
+                }
         
         
             String wypozyczSamochod=request.getParameter("wypozyczenie");
