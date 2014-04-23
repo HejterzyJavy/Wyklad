@@ -31,6 +31,7 @@ $(document).ready(function() {
         
 
         $(document).tooltip({
+            track: true,
             items: "img",
             content: function() {
                 var element = $(this);
@@ -38,7 +39,8 @@ $(document).ready(function() {
                     var ele = $(this).parent();
                     return $('.opisSamochodu',ele).html();
                 }
-            }
+            },
+            position: { my: "left+15 center", at: "right center" } 
         });
 
 });

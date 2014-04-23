@@ -458,9 +458,10 @@ img {
 
  .ui-tooltip {
     color: #3d2e1b;
-    border-radius: 5px;
+    border-radius: 0px;
     font:  15px "Helvetica Neue", Sans-Serif;
     text-transform: uppercase;
     box-shadow: 0 0 7px black;
    padding: 10px 20px;
+   opacity:0.9;
   }
