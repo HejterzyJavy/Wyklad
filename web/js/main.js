@@ -13,13 +13,13 @@ $(document).ready(function() {
 
 	$(".przyciskG").mouseover(function() {
 		$(this).animate({
-			opacity : '1',
+			opacity : '1'
 		}, 100);
 		$(this).css("background-color", "#6c361d");
 	});
 	$(".przyciskG").mouseleave(function() {
 		$(this).animate({
-			opacity : '0.75',
+			opacity : '0.75'
 		}, 200);
 		$(this).css("background-color", "");
 	});
