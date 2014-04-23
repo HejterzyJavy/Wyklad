@@ -111,7 +111,7 @@ public class CarDao {
             preparedStatement.setString(8, car.getPojemnoscSilnika());
             preparedStatement.setString(9, car.getSkrzyniaBiegow());
             preparedStatement.setString(10, car.getTypNadwozia());
-            preparedStatement.setString(11, car.getSciezkaZdjecie());
+            preparedStatement.setString(11, car.getSciezkaZdjecie().substring(0, 19));
             preparedStatement.setInt(12, 1);
             
             preparedStatement.executeUpdate();
