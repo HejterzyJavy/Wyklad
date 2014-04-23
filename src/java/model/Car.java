@@ -24,6 +24,7 @@ public class Car {
     private String typNadwozia;
     private String sciezkaZdjecie;
     private Integer dostepnosc;
+    private Integer cenaDoba;
     private String tmp;
     
     
@@ -161,6 +162,15 @@ public class Car {
         this.dostepnosc=dostepnosc;
     }
     
+    public Integer getCenaDoba()
+    {
+        return this.cenaDoba;
+    }
+    
+    public void setCenaDoba(Integer cenaDoba)
+    {
+        this.cenaDoba=cenaDoba;
+    }
     
     /*@Override
     public String toString() {

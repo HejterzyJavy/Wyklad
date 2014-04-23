@@ -37,7 +37,8 @@
                 
                 <h3>Typ Nadwozia: <input type="text" name="typNadwozia"></h3>
                 
-
+                <h3>Cena za dobe: <input type="text" name="cenaDoba"></h3>
+                
                <h3>Podaj sciezke do zdjecia: <input type="text" name="sciezka"></h3>
                 
                 <input type="file" id="sourceImage" name="sourceImage" />

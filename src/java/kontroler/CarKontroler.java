@@ -106,7 +106,7 @@ public class CarKontroler extends HttpServlet {
           car.setSkrzyniaBiegow(request.getParameter("skrzynia"));
           car.setTypNadwozia(request.getParameter("typNadwozia"));
           car.setSciezkaZdjecie(request.getParameter("sciezka"));
-  
+          car.setCenaDoba(Integer.parseInt(request.getParameter("cenaDoba")));
           
           dao.addCar(car);
                     
@@ -206,7 +206,7 @@ public class CarKontroler extends HttpServlet {
         {
            cars=dao.getAllCars();
             request.setAttribute("Cars", cars);
-             view=request.getRequestDispatcher(OFERTA);
+             view=request.getRequestDispatcher("/Samochody.jsp");
         }
         String wyswietlMarke=request.getParameter("marka");
         if(wyswietlMarke!=null)

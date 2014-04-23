@@ -34,7 +34,7 @@ public class CarDao {
         try {
  
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("insert into samochod(id,marka,model,rocznik,rodzaj_paliwa,moc_silnika,przebieg,pojemnosc_silnika,skrzynia_biegow,typ_nadwozia,sciezka_zdjecie,dostepnosc) values (?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
+                    .prepareStatement("insert into samochod(id,marka,model,rocznik,rodzaj_paliwa,moc_silnika,przebieg,pojemnosc_silnika,skrzynia_biegow,typ_nadwozia,sciezka_zdjecie,dostepnosc,cena_doba) values (?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
             
             preparedStatement.setInt(1, id);
             preparedStatement.setString(2, car.getMarka());
@@ -48,6 +48,7 @@ public class CarDao {
             preparedStatement.setString(10, car.getTypNadwozia());
             preparedStatement.setString(11, car.getSciezkaZdjecie());
             preparedStatement.setInt(12, 1);
+            preparedStatement.setInt(13, car.getCenaDoba());
             
             preparedStatement.executeUpdate();
 
@@ -79,27 +80,14 @@ public class CarDao {
        
         public void update (int id,Car car)
         {
-               try {
-
-            PreparedStatement preparedStatement = connection
-                    .prepareStatement("delete from samochod where id=?");
-
-                // Parameters start with 1  
-             preparedStatement.setInt(1, id);
-
-            preparedStatement.executeUpdate();
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-
-        } 
+          
+            deleteCar(id);
                
                
                    try {
  
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("insert into samochod(id,marka,model,rocznik,rodzaj_paliwa,moc_silnika,przebieg,pojemnosc_silnika,skrzynia_biegow,typ_nadwozia,sciezka_zdjecie,dostepnosc) values (?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
+                    .prepareStatement("insert into samochod(id,marka,model,rocznik,rodzaj_paliwa,moc_silnika,przebieg,pojemnosc_silnika,skrzynia_biegow,typ_nadwozia,sciezka_zdjecie,dostepnosc,cena_doba) values (?,?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
             
             preparedStatement.setInt(1, id);
             preparedStatement.setString(2, car.getMarka());
@@ -111,8 +99,9 @@ public class CarDao {
             preparedStatement.setString(8, car.getPojemnoscSilnika());
             preparedStatement.setString(9, car.getSkrzyniaBiegow());
             preparedStatement.setString(10, car.getTypNadwozia());
-            preparedStatement.setString(11, car.getSciezkaZdjecie().substring(0, 19));
+            preparedStatement.setString(11, car.getSciezkaZdjecie().substring(14, car.getSciezkaZdjecie().length()-4));
             preparedStatement.setInt(12, 1);
+            preparedStatement.setInt(13, car.getCenaDoba());
             
             preparedStatement.executeUpdate();
 
@@ -129,7 +118,7 @@ public class CarDao {
         try {
 
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("update samochod set marka=?, model=?, rocznik=?, rodzaj_paliwa=?,moc_silnika=?, przebieg=?, pojemnosc_silnika=?, skrzynia_biegow=?,typ_nadwozia=?,sciezka_zdjecie=?,dostepnosc=? "
+                    .prepareStatement("update samochod set marka=?, model=?, rocznik=?, rodzaj_paliwa=?,moc_silnika=?, przebieg=?, pojemnosc_silnika=?, skrzynia_biegow=?,typ_nadwozia=?,sciezka_zdjecie=?,dostepnosc=?,cena_doba=?"
                             + "where id=?");
 
                 // Parameters start with 1  
@@ -157,7 +146,9 @@ public class CarDao {
             
             preparedStatement.setInt(11, car.getDostepnosc());
             
-            preparedStatement.setInt(12, car.getId());
+            preparedStatement.setInt(12, car.getCenaDoba());
+            
+            preparedStatement.setInt(13, car.getId());
 
             preparedStatement.executeUpdate();
 
@@ -169,33 +160,7 @@ public class CarDao {
            
     
            
-           
-   /*        
-    public void updatePrzebieg(Integer id,Integer nowyPrzebieg) {
 
-        try {
-
-            PreparedStatement preparedStatement = connection
-                    .prepareStatement("update samochod set przebieg=?"
-                            + "where id=?");
-
-                // Parameters start with 1  
-            
-            
-            preparedStatement.setInt(1, nowyPrzebieg);
-
-            preparedStatement.setInt(2, id);
-
-
-            preparedStatement.executeUpdate();
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-        }
-    }
-      
-    */
     
            
            
@@ -245,6 +210,7 @@ public class CarDao {
                 car.setTypNadwozia(rs.getString("typ_nadwozia"));
                 car.setSciezkaZdjecie(rs.getString("sciezka_zdjecie"));
                 car.setDostepnosc(rs.getInt("dostepnosc"));
+                car.setCenaDoba(rs.getInt("cena_doba"));
                 car.setTmp(car.getId());
                 cars.add(car);
             }
@@ -283,7 +249,7 @@ public class CarDao {
                 car.setSkrzyniaBiegow(rs.getString("skrzynia_biegow"));
                 car.setTypNadwozia(rs.getString("typ_nadwozia"));
                 car.setSciezkaZdjecie(rs.getString("sciezka_zdjecie"));
-                //car.setCenaDoba(rs.getInt("cena_doba"));
+                car.setCenaDoba(rs.getInt("cena_doba"));
                 if(car.getMarka().equals(carBrand))
                 cars.add(car);
             }
@@ -322,7 +288,7 @@ public class CarDao {
                 car.setSkrzyniaBiegow(rs.getString("skrzynia_biegow"));
                 car.setTypNadwozia(rs.getString("typ_nadwozia"));
                 car.setSciezkaZdjecie(rs.getString("sciezka_zdjecie"));
-                //car.setCenaDoba(rs.getInt("cena_doba"));
+                car.setCenaDoba(rs.getInt("cena_doba"));
                 if(car.getRocznik()>=min && car.getRocznik()<=max)
                 cars.add(car);
             }
@@ -365,7 +331,7 @@ public class CarDao {
                 car.setSkrzyniaBiegow(rs.getString("skrzynia_biegow"));
                 car.setTypNadwozia(rs.getString("typ_nadwozia"));
                 car.setSciezkaZdjecie(rs.getString("sciezka_zdjecie"));
-
+                car.setCenaDoba(rs.getInt("cena_doba"));
             }
 
         } catch (SQLException e) {
