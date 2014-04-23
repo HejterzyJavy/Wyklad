@@ -16,8 +16,10 @@
 
 		<link rel="stylesheet" href="css/reset.css">
         <link rel="stylesheet" href="css/normalize.css">
+          <link rel="stylesheet" href="css/blitzer/jquery-ui-1.10.4.custom.min.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/formularz.css">
+       
         
         
         
@@ -89,6 +91,11 @@
                                      <c:forEach var="cars" items="${Cars}" >
                                          <div class="kwadrat">
                                              <img src="${cars.sciezkaZdjecie}">
+                                             <div class="opisSamochodu">
+                                              <p>Marka:${cars.marka}</p>
+                                              <p>Model:${cars.model}</p>
+                                              <p>Rocznik:${cars.rocznik}</p>
+                                             </div>
 
                                          </div>
                                      </c:forEach>

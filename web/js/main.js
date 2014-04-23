@@ -27,6 +27,19 @@ $(document).ready(function() {
 	$("#pLogowania").click(function() {
 		$( "#panelLogowania" ).toggle( "fold", 700 );
 	});
+        
+        
+
+        $(document).tooltip({
+            items: "img",
+            content: function() {
+                var element = $(this);
+                if (element.is("img")) {
+                    var ele = $(this).parent();
+                    return $('.opisSamochodu',ele).html();
+                }
+            }
+        });
 
 });
 
