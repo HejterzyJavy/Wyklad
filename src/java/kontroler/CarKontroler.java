@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import javax.sql.rowset.serial.SerialBlob;
 import model.Car;
 /*import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
@@ -108,7 +109,8 @@ public class CarKontroler extends HttpServlet {
             car.setSciezkaZdjecie(request.getParameter("sciezka"));
             car.setCenaDoba(Integer.parseInt(request.getParameter("cenaDoba")));
             final Part filePart = request.getPart("pliczek");
-             
+            
+            SerialBlob blob=null;
             String daneZPliku="";
             InputStream isr = filePart.getInputStream();
             int x;

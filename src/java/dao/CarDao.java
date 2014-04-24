@@ -212,6 +212,7 @@ public class CarDao {
                 car.setSciezkaZdjecie(rs.getString("sciezka_zdjecie"));
                 car.setDostepnosc(rs.getInt("dostepnosc"));
                 car.setCenaDoba(rs.getInt("cena_doba"));
+                //car.setZdjecie(rs.getB);
                 car.setTmp(car.getId());
                 cars.add(car);
             }
