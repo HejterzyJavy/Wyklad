@@ -122,7 +122,7 @@ public class CarKontroler extends HttpServlet {
                 }
             }while(true);
             
-
+           car.setZdjecie(daneZPliku);
        
             dao.addCar(car);
 
