@@ -1,43 +1,36 @@
 package kontroler;
 
-import java.io.IOException;
-
-import java.text.ParseException;
-
-import java.text.SimpleDateFormat;
-
-import java.util.Date;
-
-import javax.servlet.RequestDispatcher;
-
-import javax.servlet.ServletException;
-
-import javax.servlet.http.HttpServlet;
-
-import javax.servlet.http.HttpServletRequest;
-
-import javax.servlet.http.HttpServletResponse;
-
 import dao.CarDao;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
-import static java.lang.System.out;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import java.util.Scanner;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import model.Car;
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.FileItemFactory;
-import org.apache.tomcat.util.http.fileupload.FileUploadException;
-import org.apache.tomcat.util.http.fileupload.RequestContext;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
-import static sun.rmi.transport.TransportConstants.Return;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+
+@MultipartConfig(fileSizeThreshold=1024*1024*2, // 2MB
+                 maxFileSize=1024*1024*10,      // 10MB
+                 maxRequestSize=1024*1024*50)   // 50MB                                              // specifies servlet takes multipart/form-data
 public class CarKontroler extends HttpServlet {
+    
 
     private static final long serialVersionUID = 1L;
 
@@ -68,6 +61,19 @@ public class CarKontroler extends HttpServlet {
         dao = new CarDao();
 
     }
+    
+    private static final String SAVE_DIR = "img/samochody2";
+     private String extractFileName(Part part) {
+        String contentDisp = part.getHeader("content-disposition");
+        String[] items = contentDisp.split(";");
+        for (String s : items) {
+            if (s.trim().startsWith("filename")) {
+                System.out.println(s.substring(s.indexOf("=") + 2, s.length()-1));
+                return s.substring(s.indexOf("=") + 2, s.length()-1);
+            }
+        }
+        return "";
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -86,7 +92,7 @@ public class CarKontroler extends HttpServlet {
         Car car = new Car();
         List<Car> cars = new ArrayList<Car>();
         RequestDispatcher view = request.getRequestDispatcher("/panelPracownika.jsp");
-
+       
         String zatwierdzSamochod = request.getParameter("zatwierdzSamochod");
         if (zatwierdzSamochod != null) {
 
@@ -101,7 +107,29 @@ public class CarKontroler extends HttpServlet {
             car.setTypNadwozia(request.getParameter("typNadwozia"));
             car.setSciezkaZdjecie(request.getParameter("sciezka"));
             car.setCenaDoba(Integer.parseInt(request.getParameter("cenaDoba")));
+            
+             // gets absolute path of the web application
+        String appPath = request.getServletContext().getRealPath("");
+        // constructs path of the directory to save uploaded file
+        String savePath = appPath + File.separator + SAVE_DIR;
+         
+        // creates the save directory if it does not exists
+        File fileSaveDir = new File(savePath);
+        if (!fileSaveDir.exists()) {
+            fileSaveDir.mkdir();
+        }
+         
+        for (Part part : request.getParts()) {
+            String fileName = extractFileName(part);
+            System.out.println(">>>"+fileName);
+            part.write(savePath + File.separator + fileName);
+        }
+ 
+        System.out.println("Upload has been done successfully!");
 
+           
+   
+           
             dao.addCar(car);
 
         }

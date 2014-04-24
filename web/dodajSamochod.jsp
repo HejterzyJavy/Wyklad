@@ -13,7 +13,7 @@
     </head>
     <body>
         <div align="center">
-            <form  action="CarKontroler" method="POST">
+            <form  action="CarKontroler" method="POST" enctype="multipart/form-data">
                 <div>
                 <h3>marka samochodu: <input type="text"  name="firma"></h3>
                 
@@ -41,7 +41,7 @@
                 
                <h3>Podaj sciezke do zdjecia: <input type="text" name="sciezka"></h3>
                 
-                <input type="file" id="sourceImage" name="sourceImage" />
+                <input type="file" name="zdjecie" />
                 
                 <input type="submit" name="zatwierdzSamochod" value="zatwierdz">
             </form>

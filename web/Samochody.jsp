@@ -92,9 +92,16 @@
                                          <div class="kwadrat">
                                              <img src="${cars.sciezkaZdjecie}">
                                              <div class="opisSamochodu">
-                                              <p>Marka:${cars.marka}</p>
-                                              <p>Model:${cars.model}</p>
-                                              <p>Rocznik:${cars.rocznik}</p>
+                                              <p>Marka: ${cars.marka}</p>
+                                              <p>Model: ${cars.model}</p>
+                                              <p>Rocznik: ${cars.rocznik}</p>
+                                              <p>Rodzaj paliwa: ${cars.rodzajPaliwa}</p>
+                                              <p>Moc silnika: ${cars.mocSilnika}</p>
+                                              <p>Przebieg: ${cars.przebieg}</p>
+                                              <p>Skrzynia biegow: ${cars.skrzyniaBiegow}</p>
+                                              <p>Cena/24h: ${cars.cenaDoba}</p>
+
+                                              
                                              </div>
 
                                          </div>
