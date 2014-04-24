@@ -26,9 +26,9 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 */
 
-@MultipartConfig(fileSizeThreshold=1024*1024*2, // 2MB
-                 maxFileSize=1024*1024*10,      // 10MB
-                 maxRequestSize=1024*1024*50)   // 50MB                                              // specifies servlet takes multipart/form-data
+@MultipartConfig
+
+                                       // specifies servlet takes multipart/form-data
 public class CarKontroler extends HttpServlet {
     
 
@@ -107,29 +107,23 @@ public class CarKontroler extends HttpServlet {
             car.setTypNadwozia(request.getParameter("typNadwozia"));
             car.setSciezkaZdjecie(request.getParameter("sciezka"));
             car.setCenaDoba(Integer.parseInt(request.getParameter("cenaDoba")));
+            final Part filePart = request.getPart("pliczek");
+             
+            String daneZPliku="";
+            InputStream isr = filePart.getInputStream();
+            int x;
+            do{
+                x=isr.read();
+                if (x==-1) {
+                    break;
+                } else
+                {
+                    daneZPliku+=String.valueOf((char)x);
+                }
+            }while(true);
             
-             // gets absolute path of the web application
-        String appPath = request.getServletContext().getRealPath("");
-        // constructs path of the directory to save uploaded file
-        String savePath = appPath + File.separator + SAVE_DIR;
-         
-        // creates the save directory if it does not exists
-        File fileSaveDir = new File(savePath);
-        if (!fileSaveDir.exists()) {
-            fileSaveDir.mkdir();
-        }
-         
-        for (Part part : request.getParts()) {
-            String fileName = extractFileName(part);
-            System.out.println(">>>"+fileName);
-            part.write(savePath + File.separator + fileName);
-        }
- 
-        System.out.println("Upload has been done successfully!");
 
-           
-   
-           
+       
             dao.addCar(car);
 
         }

@@ -25,7 +25,20 @@ public class Car {
     private String sciezkaZdjecie;
     private Integer dostepnosc;
     private Integer cenaDoba;
+    private String zdjecie;
     private String tmp;
+    
+    
+    
+    public void setZdjecie(String zdjecie)
+    {
+        this.zdjecie=zdjecie;
+    }
+    
+     public String getZdjecie()
+    {
+        return this.zdjecie;
+    }
     
     
     public Integer getId()

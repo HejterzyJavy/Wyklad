@@ -34,7 +34,7 @@ public class CarDao {
         try {
  
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("insert into samochod(id,marka,model,rocznik,rodzaj_paliwa,moc_silnika,przebieg,pojemnosc_silnika,skrzynia_biegow,typ_nadwozia,sciezka_zdjecie,dostepnosc,cena_doba) values (?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
+                    .prepareStatement("insert into samochod(id,marka,model,rocznik,rodzaj_paliwa,moc_silnika,przebieg,pojemnosc_silnika,skrzynia_biegow,typ_nadwozia,sciezka_zdjecie,dostepnosc,cena_doba,zdjecie) values (?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?)");
             
             preparedStatement.setInt(1, id);
             preparedStatement.setString(2, car.getMarka());
@@ -49,6 +49,7 @@ public class CarDao {
             preparedStatement.setString(11, car.getSciezkaZdjecie());
             preparedStatement.setInt(12, 1);
             preparedStatement.setInt(13, car.getCenaDoba());
+            preparedStatement.setString(14, car.getZdjecie());
             
             preparedStatement.executeUpdate();
 
