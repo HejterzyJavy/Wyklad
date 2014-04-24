@@ -28,14 +28,17 @@
         </form>
         </div>
         
-        <c:set var="licznik" scope="session" value="${0}"/>
+        
          <form action="RentKontroler" method="POST">    
         <table align="center" >
+            <c:set var="wyswietlanieAkceptacja" scope="session" value="${wyswietlanieAkceptacja}"/>
           <c:set var="daneSamochod" scope="session" value="${Cars2}"/>
           <c:set var="daneUzytkownicy" scope="session" value="${Users}"/>
           <c:forEach var="rents" items="${Rents}" >
-          <tr>
-              
+              <tr>
+                  to jest zawartosc tej zmiennej ${jakas}
+              </tr>
+          <tr>             
           <td>${rents.getIdWypozyczenie()}</td><td>${daneUzytkownicy.get(rents.getIdUser()).getImie()}</td>
           <td>${daneUzytkownicy.get(rents.getIdUser()).getNazwisko()}</td>
           <td>${daneSamochod.get(rents.getIdSamochod()).getMarka()}</td>
@@ -49,7 +52,7 @@
           </c:forEach>
           </table>
           <c:choose>
-              <c:when test="${ilosc3 > 0}">
+              <c:when test="${wyswietlanieAkceptacja ==1}">
              <div align="center">
                   <input type="submit" value="zatwierdz"  name="akceptuj">
             </div>  

@@ -97,9 +97,15 @@ public class RentKontroler extends HttpServlet {
         String akceptujWypozyczenia=request.getParameter("akceptujWypozyczenia");
         if(akceptujWypozyczenia!=null)
         {
+            Integer wyswietlZatwierdzAkceptacja=0; 
             cars=cardao.getAllCars();
-            rents=rentdao.getAllRents();
+            rents=rentdao.getDontAcceptRents();
             users=userdao.getAllUsers();
+                 if(rents.size()>0)
+                wyswietlZatwierdzAkceptacja=1;
+            if(rents.isEmpty())
+                wyswietlZatwierdzAkceptacja=0;
+            request.setAttribute("wyswietlanieAkceptacja", wyswietlZatwierdzAkceptacja);
             request.setAttribute("Rents", rents);
             request.setAttribute("Cars2", cars);
             request.setAttribute("Users", users);
@@ -128,10 +134,19 @@ public class RentKontroler extends HttpServlet {
                     rentdao.updateRent(tmp);
                  }
              }
+            Integer wyswietlZatwierdzAkceptacja=0; 
              
+            
+            
             cars=cardao.getAllCars();
-            rents=rentdao.getAllRents();
+            rents=rentdao.getDontAcceptRents();
+            if(rents.size()>0)
+                wyswietlZatwierdzAkceptacja=1;
+            if(rents.isEmpty())
+                wyswietlZatwierdzAkceptacja=0;
+            
             users=userdao.getAllUsers();
+            request.setAttribute("wyswietlanieAkceptacja", wyswietlZatwierdzAkceptacja);
             request.setAttribute("Rents", rents);
             request.setAttribute("Cars2", cars);
             request.setAttribute("Users", users);
