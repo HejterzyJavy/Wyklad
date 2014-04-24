@@ -6,6 +6,8 @@
 
 package model;
 
+import java.io.InputStream;
+
 /**
  *
  * @author Adrian
@@ -25,17 +27,17 @@ public class Car {
     private String sciezkaZdjecie;
     private Integer dostepnosc;
     private Integer cenaDoba;
-    private String zdjecie;
+    private InputStream zdjecie;
     private String tmp;
     
     
     
-    public void setZdjecie(String zdjecie)
+    public void setZdjecie(InputStream zdjecie)
     {
         this.zdjecie=zdjecie;
     }
     
-     public String getZdjecie()
+     public InputStream getZdjecie()
     {
         return this.zdjecie;
     }

@@ -110,11 +110,10 @@ public class CarKontroler extends HttpServlet {
             car.setCenaDoba(Integer.parseInt(request.getParameter("cenaDoba")));
             final Part filePart = request.getPart("pliczek");
             
-            SerialBlob blob=null;
             String daneZPliku="";
             InputStream isr = filePart.getInputStream();
             int x;
-            do{
+            /*do{
                 x=isr.read();
                 if (x==-1) {
                     break;
@@ -123,8 +122,8 @@ public class CarKontroler extends HttpServlet {
                     daneZPliku+=String.valueOf((char)x);
                 }
             }while(true);
-            
-           car.setZdjecie(daneZPliku);
+            */
+           car.setZdjecie(isr);
        
             dao.addCar(car);
 

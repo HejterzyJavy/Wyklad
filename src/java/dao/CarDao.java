@@ -49,7 +49,7 @@ public class CarDao {
             preparedStatement.setString(11, car.getSciezkaZdjecie());
             preparedStatement.setInt(12, 1);
             preparedStatement.setInt(13, car.getCenaDoba());
-            preparedStatement.setString(14, car.getZdjecie());
+            preparedStatement.setBlob(14, car.getZdjecie());
             
             preparedStatement.executeUpdate();
 
