@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html class="no-js">
     <head>
+        <script type="text/javascript" src="skryptOferta.js"></script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>AutoRent - Wypożyczalnia Samochodów</title>

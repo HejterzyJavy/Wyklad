@@ -202,10 +202,15 @@ public class CarKontroler extends HttpServlet {
 
         String wyswietlOferte = request.getParameter("oferta");
         if (wyswietlOferte != null) {
+           // Integer czyZalogowany=Integer.parseInt(request.getParameter("czyZalogowany"));
+            
             cars = dao.getAllCars();
             request.setAttribute("Cars", cars);
+           // request.setAttribute("czyZalogowany", czyZalogowany);
             view = request.getRequestDispatcher("/Samochody.jsp");
         }
+        
+        
         String wyswietlMarke = request.getParameter("marka");
         if (wyswietlMarke != null) {
             String marka = request.getParameter("pole");

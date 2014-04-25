@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.User;
 
 public class UserKontroler extends HttpServlet {
@@ -36,6 +37,7 @@ public class UserKontroler extends HttpServlet {
 
     private boolean czyZalogowany=false;
     
+    private Integer logowanie=new Integer(0);
     
     public UserKontroler() {
 
@@ -178,22 +180,31 @@ public class UserKontroler extends HttpServlet {
         
         String Zaloguj=request.getParameter("Logowanie");
         if (Zaloguj != null) {
+           // HttpSession session = request.getSession(true);
+            
             user.setLogin(request.getParameter("login"));
             user.setHaslo(request.getParameter("haslo"));
 
             System.out.println("logowanie");
             if (dao.zaloguj(user.getLogin(), user.getHaslo())==0) {
                 czyZalogowany = true;
+                logowanie=1;
                 System.out.println("zalogowany");
+               // session.setAttribute("czyZalogowany", logowanie);
                 view = request.getRequestDispatcher(ZALOGOWANY);
             }
             if (dao.zaloguj(user.getLogin(), user.getHaslo())==1) {
                 czyZalogowany = true;
+                logowanie=1;
                 System.out.println("zalogowany");
+               // session.setAttribute("czyZalogowany", logowanie);
                 view = request.getRequestDispatcher(zalogowanyPRACOWNIK);
             } 
             else if (dao.zaloguj(user.getLogin(), user.getHaslo())==-1) {
                 System.out.println("niezalogowany");
+                logowanie=0;
+                System.out.println("zalogowany");
+               // session.setAttribute("czyZalogowany", logowanie);
                 czyZalogowany = false;
                 messages.put("loginHaslo", "Niepoprawny login lub haslo");
                 messages.put("pokaz", "false");

@@ -31,7 +31,12 @@
         <script src="js/vendor/jquery-ui-1.10.4.custom.min.js"> </script>
     </head>
     <body>
-
+    <c:set var="czyZalogowany" scope="session" value="${czyZalogowany}"/>
+    
+    
+         
+    
+    
         <div id = 'container'>
         	<div id='header'>
         		<div id= 'logo'> </div>
@@ -39,6 +44,7 @@
                             <div class='przyciskG' id='pLogowania'> <a href="Log.jsp">LOGOWANIE</a> </div>
         			<div class='przyciskG' id='pRejestracja'> REJESTRACJA </div>
         		</div>
+                       
         		<div id="panelLogowania">
         			<div id="panelLogowaniaNaglowek"><p>Logowanie</p></div>
         			
@@ -62,6 +68,7 @@
 					</form>
 
 				</div>
+                     
         	</div>
         	<div id='menuPoziome'>
         		<div id='rezerwacjaB'> <p>REZERWUJ</p></div>
