@@ -24,7 +24,7 @@ public class UserKontroler extends HttpServlet {
     
     private static String INDEX = "/index.html";
     
-    private static String ZALOGOWANY = "/Zalogowany.jsp";
+    private static String ZALOGOWANY = "/Oferta.jsp";
     
     private static String LOGOWANIE="/Log.jsp";
     
