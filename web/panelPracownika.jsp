@@ -30,36 +30,16 @@
         	<div id='header'>
         		<div id= 'logo'> </div>
         		<div id='pasekLogowania'>
-        			<div class='przyciskG' id='pLogowania'> LOGOWANIE </div>
-        			<div class='przyciskG' id='pRejestracja'> REJESTRACJA </div>
+                            
+                            <div class='przyciskG' id='pLogowania' name="wyloguj"> 
+                                <form action="UserKontroler" method="POST">
+                                <input type="submit" name="wylogowanie" value="WYLOGUJ"> 
+                                </form>
+                                </div>
+                                
+                                
         		</div>
-        		<div id="panelLogowania">
-        			<div id="panelLogowaniaNaglowek"><p>Logowanie</p></div>
-        			
-					<form class="formularzLogowania"  method="POST" action="UserKontroler">
-						<fieldset>
-							
-						<div>
-							<label>Login:</label>
-							<input type="text" name="login" />
-                                                        <div class="error">${messages.login}</div>
-						</div>
-						<div>
-							<label>Haslo: <a href="forgot_password.html" rel="forgot_password" class="zapomnianeHaslo"> Zapomniałeś hasła? </a> </label>
-							<input type="password" name="haslo" />
-                                                        <div class="error">${messages.haslo}</div>
-                                                        
-                                                        <div class="error">${messages.loginHaslo}</div>
-						</div>
-						<div class="bottom">
-							<input type="SUBMIT" name="Logowanie" value="ZALOGUJ">
-							<a href="register.html" rel="register" class="linkform"> Nie masz jeszcze konta? Zarejestruj się</a>
-							<div class="clear"></div>
-						</div>
-						</fieldset>
-					</form>
-
-				</div>
+        	
         	</div>
         	<div id='menuPoziome'>
         		<div id='rezerwacjaB'> <p>REZERWUJ</p></div>

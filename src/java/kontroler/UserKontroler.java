@@ -26,6 +26,8 @@ public class UserKontroler extends HttpServlet {
     
     private static String ZALOGOWANY = "/Zalogowany.jsp";
     
+    private static String LOGOWANIE="/Log.jsp";
+    
     private static String zalogowanyPRACOWNIK="/panelPracownika.jsp";
     
     private static String OFERTA = "/Oferta.jsp";
@@ -107,6 +109,15 @@ public class UserKontroler extends HttpServlet {
         
         RequestDispatcher view=request.getRequestDispatcher(INDEX);
 
+        
+        
+        String wylogowanie= request.getParameter("wylogowanie");
+        if(wylogowanie!=null)
+        {
+            view = request.getRequestDispatcher(LOGOWANIE);
+        }
+        
+        
         String SprawdzOferte=request.getParameter("Oferta");
         if(SprawdzOferte!=null && czyZalogowany)
         {

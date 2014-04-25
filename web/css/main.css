@@ -183,6 +183,23 @@ body{
 	cursor: hand;
 }
 
+
+.przyciskWyloguj{
+	width:100px;
+	height:25px;
+	float:right;
+	margin-right:15px;
+	margin-top:8px;
+	padding:5px 5px 0px 5px;
+	color:#FFF1C9;
+	text-align:center;
+	opacity: 0.5 ;
+	cursor: pointer; 
+	cursor: hand;
+}
+
+
+
 #menuPoziome{
 	width:1020px;
 	height:50px;
