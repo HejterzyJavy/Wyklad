@@ -12,6 +12,10 @@
         <servlet-name>RentKontroler</servlet-name>
         <servlet-class>kontroler.RentKontroler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ZdjecieZBazy</servlet-name>
+        <servlet-class>util.ZdjecieZBazy</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserKontroler</servlet-name>
         <url-pattern>/UserKontroler</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>RentKontroler</servlet-name>
         <url-pattern>/RentKontroler</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ZdjecieZBazy</servlet-name>
+        <url-pattern>/ZdjecieZBazy</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

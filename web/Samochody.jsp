@@ -90,7 +90,7 @@
                        
                                      <c:forEach var="cars" items="${Cars}" >
                                          <div class="kwadrat">
-                                             <img src="${cars.sciezkaZdjecie}">
+                                             <img src="ZdjecieZBazy?id=${cars.id}" />
                                              <div class="opisSamochodu">
                                               <p>Marka: ${cars.marka}</p>
                                               <p>Model: ${cars.model}</p>
