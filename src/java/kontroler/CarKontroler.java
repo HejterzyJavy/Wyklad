@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import javax.sql.rowset.serial.SerialBlob;
 import model.Car;
@@ -202,11 +203,23 @@ public class CarKontroler extends HttpServlet {
 
         String wyswietlOferte = request.getParameter("oferta");
         if (wyswietlOferte != null) {
-           // Integer czyZalogowany=Integer.parseInt(request.getParameter("czyZalogowany"));
+           // Integer czyZalogowany1=Integer.parseInt(request.getParameter("czyZalogowany1"));
+            //if(czyZalogowany1==null)
+              //  czyZalogowany1=0;
+            String czyZalogowany=new String();
+            HttpSession session = request.getSession(true);
+            try 
+            {
+            czyZalogowany = session.getAttribute("czyZalogowany1").toString();
+            }
+            catch(NullPointerException e)
+            {
+             czyZalogowany="0";
+            }
             
             cars = dao.getAllCars();
             request.setAttribute("Cars", cars);
-           // request.setAttribute("czyZalogowany", czyZalogowany);
+            request.setAttribute("czyZalogowany", czyZalogowany);
             view = request.getRequestDispatcher("/Samochody.jsp");
         }
         

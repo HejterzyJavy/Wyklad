@@ -34,21 +34,51 @@
     <c:set var="czyZalogowany" scope="session" value="${czyZalogowany}"/>
     
     
+                <c:choose>
+              <c:when test="${czyZalogowany == 0}">
          
+                  
+            </c:when>
+         </c:choose>
     
     
         <div id = 'container'>
         	<div id='header'>
         		<div id= 'logo'> </div>
-        		<div id='pasekLogowania'>
+        		
+                           <c:choose>
+                           <c:when test="${czyZalogowany == 0}">
+                        <div id='pasekLogowania'>
                             <div class='przyciskG' id='pLogowania'> <a href="Log.jsp">LOGOWANIE</a> </div>
         			<div class='przyciskG' id='pRejestracja'> REJESTRACJA </div>
         		</div>
                        
+                             </c:when>
+                             </c:choose>
+                        
+                         <c:choose>
+                           <c:when test="${czyZalogowany == 1}">
+                        <div id='pasekLogowania'>
+                            <div class='przyciskG' id='pLogowania' name="wyloguj"> 
+                                <form action="UserKontroler" method="POST">
+                                <input type="submit" name="wylogowanie" value="WYLOGUJ"> 
+                                </form>
+                            </div>
+        		</div>
+                       
+                             </c:when>
+                             </c:choose>
+                        
+                        
+                         <c:choose>
+                         <c:when test="${czyZalogowany == 0}">
+                        
         		<div id="panelLogowania">
         			<div id="panelLogowaniaNaglowek"><p>Logowanie</p></div>
         			
-					<form class="formularzLogowania"  method="POST" action="UserKontroler">
+				    	
+                                
+                                <form class="formularzLogowania"  method="POST" action="UserKontroler">
 						<fieldset>
 							
 						<div>
@@ -66,8 +96,13 @@
 						</div>
 						</fieldset>
 					</form>
+                                
+                                
 
 				</div>
+                                         
+           </c:when>
+         </c:choose>
                      
         	</div>
         	<div id='menuPoziome'>

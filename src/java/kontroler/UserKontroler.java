@@ -116,6 +116,9 @@ public class UserKontroler extends HttpServlet {
         String wylogowanie= request.getParameter("wylogowanie");
         if(wylogowanie!=null)
         {
+            logowanie=0;
+            HttpSession session = request.getSession(true);
+            session.setAttribute("czyZalogowany1", logowanie);
             view = request.getRequestDispatcher(LOGOWANIE);
         }
         
@@ -180,7 +183,7 @@ public class UserKontroler extends HttpServlet {
         
         String Zaloguj=request.getParameter("Logowanie");
         if (Zaloguj != null) {
-           // HttpSession session = request.getSession(true);
+            HttpSession session = request.getSession(true);
             
             user.setLogin(request.getParameter("login"));
             user.setHaslo(request.getParameter("haslo"));
@@ -190,21 +193,21 @@ public class UserKontroler extends HttpServlet {
                 czyZalogowany = true;
                 logowanie=1;
                 System.out.println("zalogowany");
-               // session.setAttribute("czyZalogowany", logowanie);
+                session.setAttribute("czyZalogowany1", logowanie);
                 view = request.getRequestDispatcher(ZALOGOWANY);
             }
             if (dao.zaloguj(user.getLogin(), user.getHaslo())==1) {
                 czyZalogowany = true;
                 logowanie=1;
                 System.out.println("zalogowany");
-               // session.setAttribute("czyZalogowany", logowanie);
+                session.setAttribute("czyZalogowany1", logowanie);
                 view = request.getRequestDispatcher(zalogowanyPRACOWNIK);
             } 
             else if (dao.zaloguj(user.getLogin(), user.getHaslo())==-1) {
                 System.out.println("niezalogowany");
                 logowanie=0;
                 System.out.println("zalogowany");
-               // session.setAttribute("czyZalogowany", logowanie);
+                session.setAttribute("czyZalogowany1", logowanie);
                 czyZalogowany = false;
                 messages.put("loginHaslo", "Niepoprawny login lub haslo");
                 messages.put("pokaz", "false");
