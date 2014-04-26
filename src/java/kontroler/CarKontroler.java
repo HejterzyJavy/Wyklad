@@ -6,10 +6,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -107,7 +110,6 @@ public class CarKontroler extends HttpServlet {
             car.setPojemnoscSilnika(request.getParameter("pojemnosc"));
             car.setSkrzyniaBiegow(request.getParameter("skrzynia"));
             car.setTypNadwozia(request.getParameter("typNadwozia"));
-            car.setSciezkaZdjecie(request.getParameter("sciezka"));
             car.setCenaDoba(Integer.parseInt(request.getParameter("cenaDoba")));
             final Part filePart = request.getPart("pliczek");
             
@@ -187,10 +189,8 @@ public class CarKontroler extends HttpServlet {
                     if (Integer.parseInt(przebieg) != test.get(i).getPrzebieg()) {
 
                         test.get(i).setPrzebieg(Integer.parseInt(przebieg));
-
                         dao.update(test.get(i).getId(), test.get(i));
-                   // dao.updateCar(test.get(i));
-                        // dao.updatePrzebieg(test.get(i).getId(), Integer.parseInt(przebieg));
+                      
 
                     }
                 }
@@ -229,7 +229,7 @@ public class CarKontroler extends HttpServlet {
             String marka = request.getParameter("pole");
             cars = dao.getCarByBrand(marka);
             request.setAttribute("Cars", cars);
-            view = request.getRequestDispatcher(OFERTA);
+            view = request.getRequestDispatcher("/Samochody.jsp");
         }
         String wyswietlRok = request.getParameter("rocznik");
         if (wyswietlRok != null) {

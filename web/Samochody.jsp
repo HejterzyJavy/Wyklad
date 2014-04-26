@@ -96,9 +96,6 @@
 						</div>
 						</fieldset>
 					</form>
-                                
-                                
-
 				</div>
                                          
            </c:when>

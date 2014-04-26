@@ -34,7 +34,7 @@ public class CarDao {
         try {
 
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("insert into samochod(id,marka,model,rocznik,rodzaj_paliwa,moc_silnika,przebieg,pojemnosc_silnika,skrzynia_biegow,typ_nadwozia,sciezka_zdjecie,dostepnosc,cena_doba,zdjecie) values (?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?)");
+                    .prepareStatement("insert into samochod(id,marka,model,rocznik,rodzaj_paliwa,moc_silnika,przebieg,pojemnosc_silnika,skrzynia_biegow,typ_nadwozia,dostepnosc,cena_doba,zdjecie) values (?, ?, ?, ?, ?,?,?,?,?,?,?,?,?)");
 
             preparedStatement.setInt(1, id);
             preparedStatement.setString(2, car.getMarka());
@@ -46,10 +46,9 @@ public class CarDao {
             preparedStatement.setString(8, car.getPojemnoscSilnika());
             preparedStatement.setString(9, car.getSkrzyniaBiegow());
             preparedStatement.setString(10, car.getTypNadwozia());
-            preparedStatement.setString(11, car.getSciezkaZdjecie());
-            preparedStatement.setInt(12, 1);
-            preparedStatement.setInt(13, car.getCenaDoba());
-            preparedStatement.setBlob(14, car.getZdjecie());
+            preparedStatement.setInt(11, 1);
+            preparedStatement.setInt(12, car.getCenaDoba());
+            preparedStatement.setBlob(13, car.getZdjecie());
 
             preparedStatement.executeUpdate();
 
@@ -83,8 +82,8 @@ public class CarDao {
 
         try {
 
-            PreparedStatement preparedStatement = connection
-                    .prepareStatement("insert into samochod(id,marka,model,rocznik,rodzaj_paliwa,moc_silnika,przebieg,pojemnosc_silnika,skrzynia_biegow,typ_nadwozia,sciezka_zdjecie,dostepnosc,cena_doba) values (?,?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
+              PreparedStatement preparedStatement = connection
+                    .prepareStatement("insert into samochod(id,marka,model,rocznik,rodzaj_paliwa,moc_silnika,przebieg,pojemnosc_silnika,skrzynia_biegow,typ_nadwozia,dostepnosc,cena_doba,zdjecie) values (?, ?, ?, ?, ?,?,?,?,?,?,?,?,?)");
 
             preparedStatement.setInt(1, id);
             preparedStatement.setString(2, car.getMarka());
@@ -96,9 +95,9 @@ public class CarDao {
             preparedStatement.setString(8, car.getPojemnoscSilnika());
             preparedStatement.setString(9, car.getSkrzyniaBiegow());
             preparedStatement.setString(10, car.getTypNadwozia());
-            preparedStatement.setString(11, car.getSciezkaZdjecie().substring(14, car.getSciezkaZdjecie().length() - 4));
-            preparedStatement.setInt(12, 1);
-            preparedStatement.setInt(13, car.getCenaDoba());
+            preparedStatement.setInt(11, 1);
+            preparedStatement.setInt(12, car.getCenaDoba());
+            preparedStatement.setBlob(13, car.getZdjecie());
 
             preparedStatement.executeUpdate();
 
@@ -108,6 +107,32 @@ public class CarDao {
 
     }
 
+    
+    
+    
+       public void zmienPrzebieg(int id, Integer przebieg) throws SQLException {
+            
+       
+            
+         try {  
+             PreparedStatement preparedStatement = connection
+                    .prepareStatement("update samochod set przebieg=? where id=?");
+
+             preparedStatement.setInt(1, przebieg);
+
+            preparedStatement.setInt(2, id);
+           
+             } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+    
+    
+    
+    
+    
     public void updateCar(Car car) {
 
         try {
@@ -135,13 +160,11 @@ public class CarDao {
 
             preparedStatement.setString(9, car.getTypNadwozia());
 
-            preparedStatement.setString(10, car.getSciezkaZdjecie());
+            preparedStatement.setInt(10, car.getDostepnosc());
 
-            preparedStatement.setInt(11, car.getDostepnosc());
+            preparedStatement.setInt(11, car.getCenaDoba());
 
-            preparedStatement.setInt(12, car.getCenaDoba());
-
-            preparedStatement.setInt(13, car.getId());
+            preparedStatement.setInt(12, car.getId());
 
             preparedStatement.executeUpdate();
 
@@ -192,9 +215,10 @@ public class CarDao {
                 car.setPojemnoscSilnika(rs.getString("pojemnosc_silnika"));
                 car.setSkrzyniaBiegow(rs.getString("skrzynia_biegow"));
                 car.setTypNadwozia(rs.getString("typ_nadwozia"));
-                car.setSciezkaZdjecie(rs.getString("sciezka_zdjecie"));
                 car.setDostepnosc(rs.getInt("dostepnosc"));
                 car.setCenaDoba(rs.getInt("cena_doba"));
+                //car.setZdjecie(rs.ge);
+                        
                 //car.setZdjecie(rs.getB);
                 car.setTmp(car.getId());
                 cars.add(car);
@@ -231,7 +255,6 @@ public class CarDao {
                 car.setPojemnoscSilnika(rs.getString("pojemnosc_silnika"));
                 car.setSkrzyniaBiegow(rs.getString("skrzynia_biegow"));
                 car.setTypNadwozia(rs.getString("typ_nadwozia"));
-                car.setSciezkaZdjecie(rs.getString("sciezka_zdjecie"));
                 car.setCenaDoba(rs.getInt("cena_doba"));
                 if (car.getMarka().equals(carBrand)) {
                     cars.add(car);
@@ -269,7 +292,6 @@ public class CarDao {
                 car.setPojemnoscSilnika(rs.getString("pojemnosc_silnika"));
                 car.setSkrzyniaBiegow(rs.getString("skrzynia_biegow"));
                 car.setTypNadwozia(rs.getString("typ_nadwozia"));
-                car.setSciezkaZdjecie(rs.getString("sciezka_zdjecie"));
                 car.setCenaDoba(rs.getInt("cena_doba"));
                 if (car.getRocznik() >= min && car.getRocznik() <= max) {
                     cars.add(car);
@@ -309,7 +331,6 @@ public class CarDao {
                 car.setPojemnoscSilnika(rs.getString("pojemnosc_silnika"));
                 car.setSkrzyniaBiegow(rs.getString("skrzynia_biegow"));
                 car.setTypNadwozia(rs.getString("typ_nadwozia"));
-                car.setSciezkaZdjecie(rs.getString("sciezka_zdjecie"));
                 car.setCenaDoba(rs.getInt("cena_doba"));
             }
 

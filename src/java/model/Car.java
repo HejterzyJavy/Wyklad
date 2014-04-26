@@ -24,7 +24,6 @@ public class Car {
     private String pojemnoscSilnika;
     private String skrzyniaBiegow;
     private String typNadwozia;
-    private String sciezkaZdjecie;
     private Integer dostepnosc;
     private Integer cenaDoba;
     private InputStream zdjecie;
@@ -157,15 +156,6 @@ public class Car {
         this.typNadwozia=typNadwozia;
     }
     
-    public String getSciezkaZdjecie()
-    {
-        return this.sciezkaZdjecie;
-    }
-    
-    public void setSciezkaZdjecie(String sciezkaZdjecie)
-    {
-        this.sciezkaZdjecie="img/samochody/"+sciezkaZdjecie+".jpg";
-    }
     
      public Integer getDostepnosc()
     {
