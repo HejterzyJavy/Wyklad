@@ -112,7 +112,7 @@ public class CarDao {
     
        public void zmienPrzebieg(int id, Integer przebieg) throws SQLException {
             
-       
+       String sql = "update samochod set przebieg=? where id=?";
             
          try {  
              PreparedStatement preparedStatement = connection
@@ -122,6 +122,7 @@ public class CarDao {
 
             preparedStatement.setInt(2, id);
            
+            int rowsAffected = preparedStatement.executeUpdate();
              } catch (SQLException e) {
 
             e.printStackTrace();

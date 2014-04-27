@@ -189,7 +189,11 @@ public class CarKontroler extends HttpServlet {
                     if (Integer.parseInt(przebieg) != test.get(i).getPrzebieg()) {
 
                         test.get(i).setPrzebieg(Integer.parseInt(przebieg));
-                        dao.update(test.get(i).getId(), test.get(i));
+                        try {
+                            dao.zmienPrzebieg(test.get(i).getId(),Integer.parseInt(przebieg));
+                        } catch (SQLException ex) {
+                            Logger.getLogger(CarKontroler.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                       
 
                     }
@@ -207,6 +211,7 @@ public class CarKontroler extends HttpServlet {
             //if(czyZalogowany1==null)
               //  czyZalogowany1=0;
             String czyZalogowany=new String();
+            String ktoZalogowany=new String();
             HttpSession session = request.getSession(true);
             try 
             {
@@ -217,9 +222,19 @@ public class CarKontroler extends HttpServlet {
              czyZalogowany="0";
             }
             
+             try 
+            {
+            ktoZalogowany = session.getAttribute("ktoZalogowany").toString();
+            }
+            catch(NullPointerException e)
+            {
+             ktoZalogowany="-1";
+            }
+            
             cars = dao.getAllCars();
             request.setAttribute("Cars", cars);
             request.setAttribute("czyZalogowany", czyZalogowany);
+            request.setAttribute("ktoZalogowany", ktoZalogowany);
             view = request.getRequestDispatcher("/Samochody.jsp");
         }
         

@@ -142,6 +142,23 @@ public class UserKontroler extends HttpServlet {
             System.out.print("wcisnieto Sprzedaz");
           
         }
+          
+              String panelKlienta=request.getParameter("panelKlienta");
+          if(panelKlienta!=null)
+        {
+            view = request.getRequestDispatcher(ZALOGOWANY);
+
+        }
+          
+             String panelPracownika=request.getParameter("panelPracownika");
+          if(panelPracownika!=null)
+        {
+            view = request.getRequestDispatcher(zalogowanyPRACOWNIK);
+
+        }
+          
+          
+          
         
         String Rejestruj=request.getParameter("Rejestruj");
         if(Rejestruj!=null)
@@ -183,6 +200,7 @@ public class UserKontroler extends HttpServlet {
         
         String Zaloguj=request.getParameter("Logowanie");
         if (Zaloguj != null) {
+            
             HttpSession session = request.getSession(true);
             
             user.setLogin(request.getParameter("login"));
@@ -194,6 +212,7 @@ public class UserKontroler extends HttpServlet {
                 logowanie=1;
                 System.out.println("zalogowany");
                 session.setAttribute("czyZalogowany1", logowanie);
+                session.setAttribute("ktoZalogowany", 0);
                 view = request.getRequestDispatcher(ZALOGOWANY);
             }
             if (dao.zaloguj(user.getLogin(), user.getHaslo())==1) {
@@ -201,6 +220,7 @@ public class UserKontroler extends HttpServlet {
                 logowanie=1;
                 System.out.println("zalogowany");
                 session.setAttribute("czyZalogowany1", logowanie);
+                session.setAttribute("ktoZalogowany", 1);
                 view = request.getRequestDispatcher(zalogowanyPRACOWNIK);
             } 
             else if (dao.zaloguj(user.getLogin(), user.getHaslo())==-1) {

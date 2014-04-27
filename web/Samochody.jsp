@@ -32,11 +32,12 @@
     </head>
     <body>
     <c:set var="czyZalogowany" scope="session" value="${czyZalogowany}"/>
+    <c:set var="ktoZalogowany" scope="session" value="${ktoZalogowany}"/>
     
     
                 <c:choose>
-              <c:when test="${czyZalogowany == 0}">
-         
+              <c:when test="${ktoZalogowany == 1}">
+              
                   
             </c:when>
          </c:choose>
@@ -53,17 +54,46 @@
         			<div class='przyciskG' id='pRejestracja'> REJESTRACJA </div>
         		</div>
                        
+                        
+                        
+                          
+                        
+                        
+                        
                              </c:when>
                              </c:choose>
                         
                          <c:choose>
                            <c:when test="${czyZalogowany == 1}">
                         <div id='pasekLogowania'>
+         
                             <div class='przyciskG' id='pLogowania' name="wyloguj"> 
                                 <form action="UserKontroler" method="POST">
                                 <input type="submit" name="wylogowanie" value="WYLOGUJ"> 
                                 </form>
+                   
                             </div>
+                            
+                              <div class='przyciskGU' id='pLogowania' name="panel"> 
+                              <c:choose>
+                              <c:when test="${ktoZalogowany == 1}">
+                                <form  method="POST" >
+                                <input type="submit" name="panelPracownik" value="PANEL PRACOWNIKA"> 
+                                </form>
+                              </c:when>
+                              </c:choose>
+                                  
+                              <c:choose>
+                              <c:when test="${ktoZalogowany == 0}">
+                                <form  method="POST" action="UserKontroler">
+                                <input type="submit" name="panelKlienta" value="MOJE KONTO"> 
+                                </form>
+                              </c:when>
+                              </c:choose>
+                                  
+                              </div>
+                            
+                            
         		</div>
                        
                              </c:when>
@@ -100,6 +130,10 @@
                                          
            </c:when>
          </c:choose>
+                        
+                        
+                        
+                        
                      
         	</div>
         	<div id='menuPoziome'>
