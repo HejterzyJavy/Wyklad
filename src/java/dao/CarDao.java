@@ -314,7 +314,7 @@ public class CarDao {
         try {
 
             PreparedStatement preparedStatement = connection.
-                    prepareStatement("select * from samochod where carId=?");
+                    prepareStatement("select * from samochod where id=?");
 
             preparedStatement.setInt(1, carId);
 
@@ -332,7 +332,14 @@ public class CarDao {
                 car.setPojemnoscSilnika(rs.getString("pojemnosc_silnika"));
                 car.setSkrzyniaBiegow(rs.getString("skrzynia_biegow"));
                 car.setTypNadwozia(rs.getString("typ_nadwozia"));
+                car.setDostepnosc(rs.getInt("dostepnosc"));
                 car.setCenaDoba(rs.getInt("cena_doba"));
+                
+                /////////////
+                
+                
+                
+                
             }
 
         } catch (SQLException e) {

@@ -12,6 +12,7 @@ import dao.UserDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -33,6 +34,8 @@ public class RentKontroler extends HttpServlet {
      private static String WYPOZYCZENIE="/Wypozyczanie.jsp";
     
      private static String panelPracownika="/panelPracownika.jsp";
+     
+     private static String wypozyczanieSamochodu="/wypozyczanieSamochodu.jsp";
      
      private CarDao cardao;
      
@@ -112,6 +115,74 @@ public class RentKontroler extends HttpServlet {
             view=request.getRequestDispatcher(panelPracownika);
        
         }
+        
+        
+        String wypozycSamochod=request.getParameter("wypozyczSamochod");
+        if(wypozycSamochod!=null)
+        {
+            Rent wypozyczenie=new Rent();
+            
+            wypozyczenie.setIdSamochod(Integer.SIZE);
+        }
+        
+        
+        String jakiSamochod=request.getParameter("jakiSamochod");
+        if(jakiSamochod!=null)
+        {
+            Car wypozyczanySamochod=cardao.getCarById(Integer.parseInt(jakiSamochod));
+            Calendar calendar= Calendar.getInstance();
+            Integer dzien=calendar.get(Calendar.DATE);
+            Integer miesiac=calendar.get(Calendar.MONTH);
+            Integer rok=calendar.get(Calendar.YEAR);
+            String aktualnaData=new String();
+            
+            if(miesiac>9 && dzien>9)
+            aktualnaData=rok+"-"+miesiac+"-"+dzien;
+            if(miesiac<10)
+            aktualnaData=rok+"-0"+miesiac+"-"+dzien;    
+            if(dzien<10)
+            aktualnaData=rok+"-"+miesiac+"-0"+dzien;  
+            if(dzien<10 && miesiac<10)
+            aktualnaData=rok+"-0"+miesiac+"-0"+dzien;  
+            
+            
+            request.setAttribute("ostatniId", rentdao.getLastId());
+            request.setAttribute("idSamochodu", wypozyczanySamochod.getId());
+            request.setAttribute("aktualnaData", aktualnaData);
+           
+            request.setAttribute("wypozyczanySamochod", wypozyczanySamochod);
+            view=request.getRequestDispatcher(wypozyczanieSamochodu);
+        }
+        
+        
+        String obliczKwote=request.getParameter("obliczKwote");
+        if(obliczKwote!=null)
+        {
+            String dataWypozyczenia=request.getParameter("dataWypozyczenia");
+            Integer rokWypozyczenie=Integer.parseInt(dataWypozyczenia.substring(0, 3));
+            Integer miesiacWypozyczenie=Integer.parseInt(dataWypozyczenia.substring(5, 6));
+            Integer dzienWypozyczenie=Integer.parseInt(dataWypozyczenia.substring(8, 9));
+            
+            Date dataPoczatek=new Date();
+            dataPoczatek.setDate(dzienWypozyczenie);
+            dataPoczatek.setMonth(miesiacWypozyczenie);
+            dataPoczatek.setYear(rokWypozyczenie);
+            
+            
+              String dataZwrotu=request.getParameter("dataZwrotu");
+            Integer rokZwrotu=Integer.parseInt(dataZwrotu.substring(0, 3));
+            Integer miesiacZwrotu=Integer.parseInt(dataZwrotu.substring(5, 6));
+            Integer dzienZwrotu=Integer.parseInt(dataZwrotu.substring(8, 9));
+            
+            Date dataKoniec=new Date();
+            dataKoniec.setDate(dzienZwrotu);
+            dataKoniec.setMonth(miesiacZwrotu);
+            dataKoniec.setYear(rokZwrotu);
+            
+            
+            
+        }
+        
         
         
         String zatwierdzAkceptuj=request.getParameter("akceptuj");

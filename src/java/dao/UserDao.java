@@ -184,6 +184,35 @@ public class UserDao {
 
     }
     
+    public int jakieId(String login, String haslo)
+    {
+        int jakieId=0;
+        
+              try {
+
+            Statement statement = connection.createStatement();
+
+            ResultSet rs = statement.executeQuery("select * from users");
+
+            while (rs.next()) {
+             
+             if (rs.getString("login").equals(login) && rs.getString("haslo").equals(haslo))
+             {
+                 jakieId=rs.getInt("userid");
+                 break;
+             }
+            
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+        return jakieId;
+    }
+    
+    
     
    public int zaloguj(String login,String haslo) {
 

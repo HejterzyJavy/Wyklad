@@ -212,14 +212,17 @@ public class CarKontroler extends HttpServlet {
               //  czyZalogowany1=0;
             String czyZalogowany=new String();
             String ktoZalogowany=new String();
+            String idZalogowany=new String();
             HttpSession session = request.getSession(true);
             try 
             {
             czyZalogowany = session.getAttribute("czyZalogowany1").toString();
+            idZalogowany = session.getAttribute("jakieId").toString();
             }
             catch(NullPointerException e)
             {
              czyZalogowany="0";
+             idZalogowany="0";
             }
             
              try 
@@ -235,6 +238,7 @@ public class CarKontroler extends HttpServlet {
             request.setAttribute("Cars", cars);
             request.setAttribute("czyZalogowany", czyZalogowany);
             request.setAttribute("ktoZalogowany", ktoZalogowany);
+            request.setAttribute("idZalogowany", idZalogowany);
             view = request.getRequestDispatcher("/Samochody.jsp");
         }
         

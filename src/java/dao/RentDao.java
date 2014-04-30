@@ -127,7 +127,23 @@ public class RentDao {
     }
          
                   
-                  
+    public Integer getLastId() {
+
+        Integer lastId = new Integer(0);
+        //sdfsd
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select * from wypozyczenie");
+            while (rs.next()) {
+                lastId = rs.getInt("id_wypozyczenie");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        lastId++;
+        return lastId;
+    }         
             
             
                 public void acceptRent(Rent rent) {

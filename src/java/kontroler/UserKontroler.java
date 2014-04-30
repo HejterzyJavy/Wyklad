@@ -213,6 +213,7 @@ public class UserKontroler extends HttpServlet {
                 System.out.println("zalogowany");
                 session.setAttribute("czyZalogowany1", logowanie);
                 session.setAttribute("ktoZalogowany", 0);
+                session.setAttribute("jakieId", dao.jakieId(user.getLogin(), user.getHaslo()));
                 view = request.getRequestDispatcher(ZALOGOWANY);
             }
             if (dao.zaloguj(user.getLogin(), user.getHaslo())==1) {
@@ -221,6 +222,7 @@ public class UserKontroler extends HttpServlet {
                 System.out.println("zalogowany");
                 session.setAttribute("czyZalogowany1", logowanie);
                 session.setAttribute("ktoZalogowany", 1);
+                session.setAttribute("jakieId", dao.jakieId(user.getLogin(), user.getHaslo()));
                 view = request.getRequestDispatcher(zalogowanyPRACOWNIK);
             } 
             else if (dao.zaloguj(user.getLogin(), user.getHaslo())==-1) {

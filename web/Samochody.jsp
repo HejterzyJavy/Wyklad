@@ -53,14 +53,9 @@
                             <div class='przyciskG' id='pLogowania'> <a href="Log.jsp">LOGOWANIE</a> </div>
         			<div class='przyciskG' id='pRejestracja'> REJESTRACJA </div>
         		</div>
-                       
+     
                         
-                        
-                          
-                        
-                        
-                        
-                             </c:when>
+                           </c:when>
                              </c:choose>
                         
                          <c:choose>
@@ -162,8 +157,27 @@
                                      <div class='linia'> </div>
                        
                                      <c:forEach var="cars" items="${Cars}" >
+                                         
                                          <div class="kwadrat">
-                                             <img src="ZdjecieZBazy?id=${cars.id}" />
+                                             
+                                             <c:choose>
+                                             <c:when test="${czyZalogowany == 1}">
+                                             <form method="POST" action="RentKontroler" >
+                                             <input type="image" name="jakiSamochod" value="${cars.id}" src="ZdjecieZBazy?id=${cars.id}" alt="Submit" width="250" height="250">
+                                             </form>
+                                             </c:when>
+                                             </c:choose>
+                                             
+                                                  <c:choose>
+                           <c:when test="${czyZalogowany == 0}">
+                      
+                            <img src="ZdjecieZBazy?id=${cars.id}" />
+                        
+                           </c:when>
+                             </c:choose>
+                                             
+                                             
+                                             
                                              <div class="opisSamochodu">
                                               <p>Marka: ${cars.marka}</p>
                                               <p>Model: ${cars.model}</p>
