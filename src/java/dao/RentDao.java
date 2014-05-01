@@ -38,15 +38,16 @@ public class RentDao {
         try {
  
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("insert into wypozyczenie(id_wypozyczenie,id,userid,data_wypozyczenia,data_zwrotu,status) values (?, ?, ?, ?, ?, ?)");
+                    .prepareStatement("insert into wypozyczenie(id_wypozyczenie,id,userid,do_zaplaty,data_wypozyczenia,data_zwrotu,status,opis) values (?, ?, ?, ?, ?, ?,?,?)");
             
             preparedStatement.setInt(1,rent.getIdWypozyczenie());
             preparedStatement.setInt(2, rent.getIdSamochod());
             preparedStatement.setInt(3, rent.getIdUser());
-            preparedStatement.setDate(4, new java.sql.Date(rent.getDataWypozyczenia().getTime()));
-            preparedStatement.setDate(5, new java.sql.Date(rent.getDataZwrotu().getTime()));
-            preparedStatement.setString(6, rent.getStatus());
-           
+            preparedStatement.setLong(4, rent.getDoZaplaty());
+            preparedStatement.setDate(5, new java.sql.Date(rent.getDataWypozyczenia().getTime()));
+            preparedStatement.setDate(6, new java.sql.Date(rent.getDataZwrotu().getTime()));
+            preparedStatement.setString(7, rent.getStatus());
+            preparedStatement.setString(8, rent.getOpis());
             
             preparedStatement.executeUpdate();
 
@@ -191,7 +192,7 @@ public class RentDao {
 
             preparedStatement.setInt(2, rent.getIdUser());
 
-            preparedStatement.setInt(3, rent.getDoZaplaty());
+            preparedStatement.setLong(3, rent.getDoZaplaty());
             
             preparedStatement.setDate(4, new java.sql.Date(rent.getDataWypozyczenia().getTime()));
 

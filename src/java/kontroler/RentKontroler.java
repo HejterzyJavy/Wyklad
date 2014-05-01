@@ -11,6 +11,8 @@ import dao.RentDao;
 import dao.UserDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -20,6 +22,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Car;
 import model.Rent;
 import model.User;
@@ -116,13 +119,53 @@ public class RentKontroler extends HttpServlet {
        
         }
         
+    
         
-        String wypozycSamochod=request.getParameter("wypozyczSamochod");
-        if(wypozycSamochod!=null)
+        
+        
+        String wypozyczSamochod=request.getParameter("wypozyczSamochod");
+        if(wypozyczSamochod!=null)
         {
+            HttpSession session = request.getSession(true);
             Rent wypozyczenie=new Rent();
+            String idUser=session.getAttribute("jakieId").toString();
+            String idSamochod=session.getAttribute("idSamochodu").toString();
+            DateFormat dateFrm = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date myDate = new java.util.Date();
+            java.sql.Date dataWypozyczenia;
+            java.sql.Date dataZwrotu;
             
-            wypozyczenie.setIdSamochod(Integer.SIZE);
+            
+            
+               try
+               {
+               myDate = dateFrm.parse(request.getParameter("dataWypozyczenia"));
+               dataWypozyczenia = new java.sql.Date(myDate.getTime());
+               myDate = dateFrm.parse(request.getParameter("dataZwrotu"));
+               dataZwrotu=new java.sql.Date(myDate.getTime());
+               }
+               catch (Exception e)
+               {
+               dataWypozyczenia = null;
+               dataZwrotu = null;
+               }
+            
+               long roznica = Math.abs(dataWypozyczenia.getTime() - dataZwrotu.getTime());
+               long wynik=(roznica / ((long) (1000 * 60 * 60 * 24)))*cardao.getCarById(Integer.parseInt(idSamochod)).getCenaDoba();
+               
+            
+            wypozyczenie.setIdWypozyczenie(rentdao.getLastId());
+            wypozyczenie.setIdUser(Integer.parseInt(idUser));
+            wypozyczenie.setIdSamochod(Integer.parseInt(idSamochod));
+            wypozyczenie.setDoZaplaty(wynik);
+            wypozyczenie.setDataWypozyczenia(dataWypozyczenia);
+            wypozyczenie.setDataZwrotu(dataZwrotu);
+            wypozyczenie.setStatus("oczekujace na akceptacje");
+            wypozyczenie.setOpis("");
+            
+            rentdao.addRent(wypozyczenie);
+            
+            view=request.getRequestDispatcher(wypozyczanieSamochodu);
         }
         
         
@@ -135,6 +178,8 @@ public class RentKontroler extends HttpServlet {
             Integer miesiac=calendar.get(Calendar.MONTH);
             Integer rok=calendar.get(Calendar.YEAR);
             String aktualnaData=new String();
+            HttpSession session = request.getSession(true);
+            miesiac++;
             
             if(miesiac>9 && dzien>9)
             aktualnaData=rok+"-"+miesiac+"-"+dzien;
@@ -148,6 +193,7 @@ public class RentKontroler extends HttpServlet {
             
             request.setAttribute("ostatniId", rentdao.getLastId());
             request.setAttribute("idSamochodu", wypozyczanySamochod.getId());
+            session.setAttribute("idSamochodu", wypozyczanySamochod.getId());
             request.setAttribute("aktualnaData", aktualnaData);
            
             request.setAttribute("wypozyczanySamochod", wypozyczanySamochod);
@@ -155,31 +201,40 @@ public class RentKontroler extends HttpServlet {
         }
         
         
+
+        
+        
         String obliczKwote=request.getParameter("obliczKwote");
         if(obliczKwote!=null)
         {
-            String dataWypozyczenia=request.getParameter("dataWypozyczenia");
-            Integer rokWypozyczenie=Integer.parseInt(dataWypozyczenia.substring(0, 3));
-            Integer miesiacWypozyczenie=Integer.parseInt(dataWypozyczenia.substring(5, 6));
-            Integer dzienWypozyczenie=Integer.parseInt(dataWypozyczenia.substring(8, 9));
+            HttpSession session = request.getSession(true);
+            String idSamochod=session.getAttribute("idSamochodu").toString();
+            DateFormat dateFrm = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date myDate = new java.util.Date();
+            java.sql.Date dataWypozyczenia;
+            java.sql.Date dataZwrotu;
+            long wynik=0;
+    
+               try
+               {
+               myDate = dateFrm.parse(request.getParameter("dataWypozyczenia"));
+               dataWypozyczenia = new java.sql.Date(myDate.getTime());
+               myDate = dateFrm.parse(request.getParameter("dataZwrotu"));
+               dataZwrotu=new java.sql.Date(myDate.getTime());
+               }
+               catch (Exception e)
+               {
+               dataWypozyczenia = null;
+               dataZwrotu = null;
+               }
             
-            Date dataPoczatek=new Date();
-            dataPoczatek.setDate(dzienWypozyczenie);
-            dataPoczatek.setMonth(miesiacWypozyczenie);
-            dataPoczatek.setYear(rokWypozyczenie);
-            
-            
-              String dataZwrotu=request.getParameter("dataZwrotu");
-            Integer rokZwrotu=Integer.parseInt(dataZwrotu.substring(0, 3));
-            Integer miesiacZwrotu=Integer.parseInt(dataZwrotu.substring(5, 6));
-            Integer dzienZwrotu=Integer.parseInt(dataZwrotu.substring(8, 9));
-            
-            Date dataKoniec=new Date();
-            dataKoniec.setDate(dzienZwrotu);
-            dataKoniec.setMonth(miesiacZwrotu);
-            dataKoniec.setYear(rokZwrotu);
-            
-            
+               long roznica = Math.abs(dataWypozyczenia.getTime() - dataZwrotu.getTime());
+                wynik=(roznica / ((long) (1000 * 60 * 60 * 24)))*cardao.getCarById(Integer.parseInt(idSamochod)).getCenaDoba();
+               request.setAttribute("doZaplaty", wynik);
+               request.setAttribute("dataWypozyczenia", dataWypozyczenia);
+               request.setAttribute("dataZwrotu", dataZwrotu);
+               
+               view=request.getRequestDispatcher(wypozyczanieSamochodu);
             
         }
         
@@ -225,7 +280,7 @@ public class RentKontroler extends HttpServlet {
                 }
         
         
-            String wypozyczSamochod=request.getParameter("wypozyczenie");
+          /*  String wypozyczSamochod=request.getParameter("wypozyczenie");
         if(wypozyczSamochod!=null)
         {
           cars=cardao.getAllCars();
@@ -238,15 +293,11 @@ public class RentKontroler extends HttpServlet {
           data.setMonth(07);
           data.setDate(11);
           rent.setDataWypozyczenia(data);
-         /* data.setYear(2014);
-          data.setMonth(06);
-          data.setDate(22);
-          */
+  
           rent.setDataZwrotu(data);
           rent.setStatus("oczekujace na akceptacje");
           rentdao.addRent(rent);
-        //  view.forward(request, response); 
-        }
+        }*/
         
         
         view.forward(request, response);

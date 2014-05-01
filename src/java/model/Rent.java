@@ -16,7 +16,7 @@ public class Rent {
     private Integer idWypozyczenie;
     private Integer id; //id samochod
     private Integer idUser;
-    private Integer doZaplaty;
+    private long doZaplaty;
     private Date dataWypozyczenia;
     private Date dataZwrotu;
     private String status;
@@ -53,12 +53,12 @@ public class Rent {
       return this.idUser;
   }
   
-  public void setDoZaplaty(Integer doZaplaty)
+  public void setDoZaplaty(long doZaplaty)
   {
       this.doZaplaty=doZaplaty;
   }
   
-  public Integer getDoZaplaty()
+  public long getDoZaplaty()
   {
       return this.doZaplaty;
   }

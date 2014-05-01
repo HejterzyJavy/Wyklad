@@ -16,13 +16,25 @@
         <c:set var="aktualnaData" scope="session" value="${aktualnaData}"/>
         <c:set var="idSamochodu" scope="session" value="${idSamochodu}"/>
         <c:set var="jakieId" scope="session" value="${jakieId}"/>
+        <c:set var="doZaplaty" scope="session" value="${doZaplaty}"/>
         
         <h1>last id ${ostatniId} idKlient ${jakieId}  idsamochod ${idSamochodu}  ${aktualnaData}  ${wypozyczanySamochod.getMarka()}  ${wypozyczanySamochod.getModel()} ${wypozyczanySamochod.getCenaDoba()}</h1>
+       
+       
+        
+            <c:choose>
+              <c:when test="${doZaplaty != null}">
+               <h2>Aktualnie do zaplaty mamy ${doZaplaty}</h2>  
+            </c:when>
+         </c:choose>
+        
+        
         <form action="RentKontroler" method="POST">
+      
             <input type="date" name="dataWypozyczenia" value="${aktualnaData}">
             <input type="date" name="dataZwrotu">
             <input type="submit" name="obliczKwote" value="Oblicz Kwote">
-            <input type="submit" name="wypozycSamochod" value="Zatwierdz">
+            <input type="submit" name="wypozyczSamochod" value="Zatwierdz">
         </form>
     </body>
 </html>
