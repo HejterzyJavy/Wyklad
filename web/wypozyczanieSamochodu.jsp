@@ -12,13 +12,15 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <c:set var="daneKlient" scope="session" value="${daneKlient}"/>
         <c:set var="wypozyczanySamochod" scope="session" value="${wypozyczanySamochod}"/>
         <c:set var="aktualnaData" scope="session" value="${aktualnaData}"/>
         <c:set var="idSamochodu" scope="session" value="${idSamochodu}"/>
         <c:set var="jakieId" scope="session" value="${jakieId}"/>
         <c:set var="doZaplaty" scope="session" value="${doZaplaty}"/>
         
-        <h1>last id ${ostatniId} idKlient ${jakieId}  idsamochod ${idSamochodu}  ${aktualnaData}  ${wypozyczanySamochod.getMarka()}  ${wypozyczanySamochod.getModel()} ${wypozyczanySamochod.getCenaDoba()}</h1>
+        <h1>last id ${ostatniId}  imie: ${daneKlient.getImie()} nazwisko: ${daneKlient.getNazwisko()}   idsamochod ${idSamochodu} 
+            ${aktualnaData}  ${wypozyczanySamochod.getMarka()}  ${wypozyczanySamochod.getModel()} ${wypozyczanySamochod.getCenaDoba()}</h1>
        
        
         

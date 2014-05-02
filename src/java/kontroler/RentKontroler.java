@@ -184,6 +184,7 @@ public class RentKontroler extends HttpServlet {
         if(jakiSamochod!=null)
         {
             Car wypozyczanySamochod=cardao.getCarById(Integer.parseInt(jakiSamochod));
+            
             Calendar calendar= Calendar.getInstance();
             Integer dzien=calendar.get(Calendar.DATE);
             Integer miesiac=calendar.get(Calendar.MONTH);
@@ -191,7 +192,10 @@ public class RentKontroler extends HttpServlet {
             String aktualnaData=new String();
             HttpSession session = request.getSession(true);
             miesiac++;
-            
+            String userid=session.getAttribute("jakieId").toString();
+            ///////////////////////
+            User klient=userdao.getUserById(Integer.parseInt(userid));
+            ////////////////////
             if(miesiac>9 && dzien>9)
             aktualnaData=rok+"-"+miesiac+"-"+dzien;
             if(miesiac<10)
@@ -203,7 +207,8 @@ public class RentKontroler extends HttpServlet {
             
             
             request.setAttribute("ostatniId", rentdao.getLastId());
-            request.setAttribute("idSamochodu", wypozyczanySamochod.getId());
+            request.setAttribute("daneKlient", klient);
+            request.setAttribute("daneSamochodu", wypozyczanySamochod);
             session.setAttribute("idSamochodu", wypozyczanySamochod.getId());
             request.setAttribute("aktualnaData", aktualnaData);
            
