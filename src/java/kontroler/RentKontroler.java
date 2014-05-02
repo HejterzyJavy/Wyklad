@@ -11,12 +11,15 @@ import dao.RentDao;
 import dao.UserDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,6 +42,8 @@ public class RentKontroler extends HttpServlet {
      private static String panelPracownika="/panelPracownika.jsp";
      
      private static String wypozyczanieSamochodu="/wypozyczanieSamochodu.jsp";
+     
+     private static String OFERTA="/Samochody.jsp";
      
      private CarDao cardao;
      
@@ -105,13 +110,15 @@ public class RentKontroler extends HttpServlet {
         {
             Integer wyswietlZatwierdzAkceptacja=0; 
             cars=cardao.getAllCars();
-            rents=rentdao.getDontAcceptRents();
             users=userdao.getAllUsers();
+            rents=rentdao.getAcceptRents(cars,users);
+            
                  if(rents.size()>0)
                 wyswietlZatwierdzAkceptacja=1;
             if(rents.isEmpty())
                 wyswietlZatwierdzAkceptacja=0;
             request.setAttribute("wyswietlanieAkceptacja", wyswietlZatwierdzAkceptacja);
+            
             request.setAttribute("Rents", rents);
             request.setAttribute("Cars2", cars);
             request.setAttribute("Users", users);
@@ -160,12 +167,16 @@ public class RentKontroler extends HttpServlet {
             wypozyczenie.setDoZaplaty(wynik);
             wypozyczenie.setDataWypozyczenia(dataWypozyczenia);
             wypozyczenie.setDataZwrotu(dataZwrotu);
-            wypozyczenie.setStatus("oczekujace na akceptacje");
+            wypozyczenie.setStatus("oczekujace");
             wypozyczenie.setOpis("");
-            
+            try {
+                cardao.wypozyczSamochod(Integer.parseInt(idSamochod));
+            } catch (SQLException ex) {
+                Logger.getLogger(RentKontroler.class.getName()).log(Level.SEVERE, null, ex);
+            }
             rentdao.addRent(wypozyczenie);
             
-            view=request.getRequestDispatcher(wypozyczanieSamochodu);
+            view=request.getRequestDispatcher(OFERTA);
         }
         
         
@@ -261,17 +272,17 @@ public class RentKontroler extends HttpServlet {
                  }
              }
             Integer wyswietlZatwierdzAkceptacja=0; 
-             
             
-            
+        
             cars=cardao.getAllCars();
-            rents=rentdao.getDontAcceptRents();
+            users=userdao.getAllUsers();
+            rents=rentdao.getAcceptRents(cars,users);
+            
             if(rents.size()>0)
                 wyswietlZatwierdzAkceptacja=1;
             if(rents.isEmpty())
                 wyswietlZatwierdzAkceptacja=0;
             
-            users=userdao.getAllUsers();
             request.setAttribute("wyswietlanieAkceptacja", wyswietlZatwierdzAkceptacja);
             request.setAttribute("Rents", rents);
             request.setAttribute("Cars2", cars);
@@ -279,25 +290,6 @@ public class RentKontroler extends HttpServlet {
             view=request.getRequestDispatcher(panelPracownika);
                 }
         
-        
-          /*  String wypozyczSamochod=request.getParameter("wypozyczenie");
-        if(wypozyczSamochod!=null)
-        {
-          cars=cardao.getAllCars();
-          request.setAttribute("Cars", cars);
-          view=request.getRequestDispatcher(WYPOZYCZENIE);
-          rent.setIdWypozyczenie(5);
-          rent.setIdUser(1);
-          rent.setIdSamochod(1);
-          data.setYear(1111);
-          data.setMonth(07);
-          data.setDate(11);
-          rent.setDataWypozyczenia(data);
-  
-          rent.setDataZwrotu(data);
-          rent.setStatus("oczekujace na akceptacje");
-          rentdao.addRent(rent);
-        }*/
         
         
         view.forward(request, response);

@@ -131,6 +131,25 @@ public class CarDao {
     }
     
     
+              public void wypozyczSamochod(int id) throws SQLException {
+            
+       String sql = "update samochod set przebieg=? where id=?";
+            
+         try {  
+             PreparedStatement preparedStatement = connection
+                    .prepareStatement("update samochod set dostepnosc=? where id=?");
+
+             preparedStatement.setInt(1, 0);
+
+            preparedStatement.setInt(2, id);
+           
+            int rowsAffected = preparedStatement.executeUpdate();
+             } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+    }
     
     
     

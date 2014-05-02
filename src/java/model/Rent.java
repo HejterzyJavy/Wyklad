@@ -21,7 +21,10 @@ public class Rent {
     private Date dataZwrotu;
     private String status;
     private String opis;
-    
+    private String tmpMarka;
+    private String tmpModel;
+    private String tmpImie;
+    private String tmpNazwisko;
     
     public void setIdWypozyczenie(Integer idWypozyczenie)
     {
@@ -32,6 +35,52 @@ public class Rent {
   {
       return this.idWypozyczenie;
   }
+  
+   public String getTmpMarka()
+  {
+      return this.tmpMarka;
+  }
+   
+   public void setTmpMarka(String tmpMarka)
+   {
+       this.tmpMarka=tmpMarka;
+   }
+   
+   public String getTmpModel()
+           {
+               return this.tmpModel;
+           }
+   
+   public void setTmpModel(String tmpModel)
+   {
+       this.tmpModel=tmpModel;
+   }
+   
+   
+   public String getTmpImie()
+  {
+      return this.tmpImie;
+  }
+  
+  public void setTmpImie(String tmpImie)
+  {
+      this.tmpImie=tmpImie;
+  }
+   
+  
+  public String getTmpNazwisko()
+  {
+      return this.tmpNazwisko;
+  }
+  
+    
+  public void setTmpNazwisko(String tmpNazwisko)
+  {
+      this.tmpNazwisko=tmpNazwisko;
+  }
+  
+  
+  /////////
     
   public void setIdSamochod(Integer idSamochod)
   {

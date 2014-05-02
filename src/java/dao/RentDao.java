@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Car;
 import model.Rent;
+import model.User;
 import util.DbUtil;
 
 /**
@@ -81,7 +82,7 @@ public class RentDao {
       
                 rents.add(rent);
             }
-
+            
         } catch (SQLException e) {
 
             e.printStackTrace();
@@ -127,7 +128,68 @@ public class RentDao {
         return rents;
     }
          
-                  
+            
+        
+           public List<Rent> getAcceptRents( List<Car> cars,List<User> users) {
+
+        List<Rent> rents= new ArrayList<Rent>();
+        //sdfsd
+        try {
+
+            Statement statement = connection.createStatement();
+
+            ResultSet rs = statement.executeQuery("select * from wypozyczenie");
+
+            while (rs.next()) {
+
+                Rent rent = new Rent();
+                rent.setIdWypozyczenie(rs.getInt("id_wypozyczenie"));
+                rent.setIdSamochod(rs.getInt("id"));
+                rent.setIdUser(rs.getInt("userid"));
+                rent.setDoZaplaty(rs.getInt("do_zaplaty"));
+                rent.setDataWypozyczenia(rs.getDate("data_wypozyczenia"));
+                rent.setDataZwrotu(rs.getDate("data_zwrotu"));
+                rent.setStatus(rs.getString("status"));
+                rent.setOpis(rs.getString("opis"));
+                
+                if(rent.getStatus().equalsIgnoreCase("oczekujace"))
+                {
+                    for (int i=0;i<users.size();i++)
+                    {
+                        if(users.get(i).getUserid()==rent.getIdUser())
+                        {
+                        rent.setTmpImie(users.get(i).getImie());
+                        rent.setTmpNazwisko(users.get(i).getNazwisko());
+                        }
+                    }        
+                    
+                      for (int i=0;i<cars.size();i++)
+                    {
+                        if(cars.get(i).getId()==rent.getIdSamochod())
+                        {
+                        rent.setTmpMarka(cars.get(i).getMarka());
+                        rent.setTmpModel(cars.get(i).getModel());
+                        }
+                        
+                        }  
+                    
+                            
+                    rents.add(rent);
+                
+                }
+                
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+        return rents;
+    }
+        
+        
+        
     public Integer getLastId() {
 
         Integer lastId = new Integer(0);

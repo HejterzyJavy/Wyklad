@@ -76,17 +76,12 @@
           <c:set var="daneSamochod" scope="session" value="${Cars2}"/>
           <c:set var="daneUzytkownicy" scope="session" value="${Users}"/>
           <c:forEach var="rents" items="${Rents}" >
-              <tr>
-                  to jest zawartosc tej zmiennej ${jakas}
-              </tr>
+            
           <tr>             
-          <td>${rents.getIdWypozyczenie()}</td><td>${daneUzytkownicy.get(rents.getIdUser()).getImie()}</td>
-          <td>${daneUzytkownicy.get(rents.getIdUser()).getNazwisko()}</td>
-          <td>${daneSamochod.get(rents.getIdSamochod()).getMarka()}</td>
-          <td>${daneSamochod.get(rents.getIdSamochod()).getModel()}</td>
-          <td>${daneSamochod.get(rents.getIdSamochod()).getRocznik()}</td>
-          <td>${rents.getDoZaplaty()}</td><td>akceptuje<input type="radio" value="zaakceptowane" name="akc${rents.getIdWypozyczenie()}"</td>
-          <td>nie akceptuje<input type="radio" value="odrzucone" name="akc${rents.getIdWypozyczenie()}"</td>
+          <td>${rents.getIdWypozyczenie()} &nbsp &nbsp</td><td>${rents.getTmpImie()}&nbsp &nbsp </td><td>&nbsp &nbsp ${rents.getTmpNazwisko()}</td>
+          <td>&nbsp &nbsp ${rents.getTmpMarka()}</td><td>&nbsp &nbsp ${rents.getTmpModel()}</td>
+          <td>&nbsp &nbsp ${rents.getDoZaplaty()}</td><td>&nbsp &nbsp akceptuje<input type="radio" value="zaakceptowane" name="akc${rents.getIdWypozyczenie()}"</td>
+          <td>&nbsp &nbsp nie akceptuje<input type="radio" value="odrzucone" name="akc${rents.getIdWypozyczenie()}"</td>
            <td><input type="text" value="${rents.getOpis()}" name="${rents.getIdWypozyczenie()}"></td>
           </tr>
           <c:set var="ilosc3" scope="session" value="${rents.getIdWypozyczenie()}"/>
