@@ -9,7 +9,7 @@ import java.util.Properties;
  
 /**
 11.*
-12.* @author Mateusz Korwel
+12.* 
 13.*
 14.*/
 public class Email {
