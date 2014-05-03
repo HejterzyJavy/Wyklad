@@ -24,6 +24,8 @@
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
         <script src="js/vendor/jquery-ui-1.10.4.custom.min.js"> </script>
+
+        
     </head>
     <body>
 
@@ -43,7 +45,7 @@
         	
         	</div>
         	<div id='menuPoziome'>
-        		<div id='rezerwacjaB'> <p>REZERWUJ</p></div>
+        		<div id='rezerwacjaB'><a href="Samochody.jsp"><p>SAMOCHODY</p></a> </div>
                         <div class='przyciskMenu'> <a href="Samochody.jsp"><p>SAMOCHODY</p></a> </div>
         		<div class='przyciskMenu'> <p>OFERTA</p> </div>
         		<div class='przyciskMenu'> <p>LOKALIZACJA</p> </div>
@@ -149,7 +151,7 @@
         </div>
         </div>
 
-        
+        panel
 
     </body>
 </html>
