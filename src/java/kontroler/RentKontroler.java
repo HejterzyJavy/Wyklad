@@ -29,6 +29,7 @@ import javax.servlet.http.HttpSession;
 import model.Car;
 import model.Rent;
 import model.User;
+import pdf.GenerowaniePdf;
 
 /**
  *
@@ -141,7 +142,7 @@ public class RentKontroler extends HttpServlet {
             java.util.Date myDate = new java.util.Date();
             java.sql.Date dataWypozyczenia;
             java.sql.Date dataZwrotu;
-            
+            GenerowaniePdf umowa=new GenerowaniePdf();
             
             
                try
@@ -175,6 +176,8 @@ public class RentKontroler extends HttpServlet {
                 Logger.getLogger(RentKontroler.class.getName()).log(Level.SEVERE, null, ex);
             }
             rentdao.addRent(wypozyczenie);
+            umowa.generujUmowe(cardao.getCarById(Integer.parseInt(idSamochod))
+                    ,userdao.getUserById(Integer.parseInt(idUser)),wypozyczenie);
             
             view=request.getRequestDispatcher(OFERTA);
         }
@@ -211,7 +214,8 @@ public class RentKontroler extends HttpServlet {
             request.setAttribute("daneSamochodu", wypozyczanySamochod);
             session.setAttribute("idSamochodu", wypozyczanySamochod.getId());
             request.setAttribute("aktualnaData", aktualnaData);
-           
+            
+            
             request.setAttribute("wypozyczanySamochod", wypozyczanySamochod);
             view=request.getRequestDispatcher(wypozyczanieSamochodu);
         }
