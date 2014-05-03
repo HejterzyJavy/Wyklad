@@ -9,6 +9,7 @@ package kontroler;
 import dao.CarDao;
 import dao.RentDao;
 import dao.UserDao;
+import email.Email;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -143,7 +144,7 @@ public class RentKontroler extends HttpServlet {
             java.sql.Date dataWypozyczenia;
             java.sql.Date dataZwrotu;
             GenerowaniePdf umowa=new GenerowaniePdf();
-            
+            Email email=new Email();
             
                try
                {
@@ -178,6 +179,9 @@ public class RentKontroler extends HttpServlet {
             rentdao.addRent(wypozyczenie);
             umowa.generujUmowe(cardao.getCarById(Integer.parseInt(idSamochod))
                     ,userdao.getUserById(Integer.parseInt(idUser)),wypozyczenie);
+            
+            email.wyslijEmail();
+            request.setAttribute("wyslanoEmail", 1);
             
             view=request.getRequestDispatcher(OFERTA);
         }

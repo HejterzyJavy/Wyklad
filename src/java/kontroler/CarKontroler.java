@@ -239,6 +239,7 @@ public class CarKontroler extends HttpServlet {
             request.setAttribute("czyZalogowany", czyZalogowany);
             request.setAttribute("ktoZalogowany", ktoZalogowany);
             request.setAttribute("idZalogowany", idZalogowany);
+            request.setAttribute("wyslanoEmail", 0);
             view = request.getRequestDispatcher("/Samochody.jsp");
         }
         

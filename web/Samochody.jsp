@@ -33,6 +33,7 @@
     <body>
     <c:set var="czyZalogowany" scope="session" value="${czyZalogowany}"/>
     <c:set var="ktoZalogowany" scope="session" value="${ktoZalogowany}"/>
+    <c:set var="wyslanoEmail" scope="session" value="${wyslanoEmail}"/>
     
     
                 <c:choose>
@@ -194,7 +195,12 @@
                                          </div>
                                      </c:forEach>
                                     
-                                   
+                                       <c:choose>
+              <c:when test="${wyslanoEmail == 1}">
+                  <h2 align="center">Umowa wynajmu samochodu zostala wyslana na adres email podany przy rejestracji </h2> 
+                  
+             </c:when>
+             </c:choose>
     
                                     
                                     

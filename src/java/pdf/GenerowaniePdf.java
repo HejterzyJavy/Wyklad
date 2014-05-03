@@ -25,7 +25,7 @@ import model.User;
 
 
 public class GenerowaniePdf {
-  private static String FILE = "c:/temp/FirstPdf.pdf";
+  private static String FILE = "c:/Users/Adrian/projektISZ/Wyklad/umowa.pdf";
   private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
       Font.BOLD);
   private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
