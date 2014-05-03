@@ -17,15 +17,15 @@ public class Email {
 private static final String HOST = "smtp.gmail.com";
 private static final int PORT = 465;
 // Adres email osby która wysyła maila
-private static final String FROM = " ";
+private static final String FROM = "adrianwojton91@gmail.com";
 // Hasło do konta osoby która wysyła maila
-private static final String PASSWORD = " ";
+private static final String PASSWORD = "";
 // Adres email osoby do której wysyłany jest mail
-private static final String TO = " ";
+private static final String TO = "gardian92@o2.pl";
 // Temat wiadomości
-private static final String SUBJECT = "Hello World";
+private static final String SUBJECT = "Umowa wynajmu samochodu";
 // Treść wiadomości
-private static final String CONTENT = "To mój pierwszy mail z <i>załącznikami</i> wysłaby za pomocą <b>JavaMailAPI</b>.";
+private static final String CONTENT = "Zamieszczona umowe nalezy wydrukowac i podpisac.";
 // Ścieżka do pliku
 private static final String PATH_FILE = "c:/Users/Adrian/projektISZ/Wyklad/umowa.pdf";
  

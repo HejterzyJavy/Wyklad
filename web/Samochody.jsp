@@ -29,6 +29,9 @@
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
         <script src="js/vendor/jquery-ui-1.10.4.custom.min.js"> </script>
+        
+        
+        
     </head>
     <body>
     <c:set var="czyZalogowany" scope="session" value="${czyZalogowany}"/>
@@ -133,7 +136,14 @@
                      
         	</div>
         	<div id='menuPoziome'>
-        		<div id='rezerwacjaB'> <p>REZERWUJ</p></div>
+                    
+                     <c:choose>
+                           <c:when test="${czyZalogowany == 0}">
+        		
+                        </c:when>
+                     </c:choose>
+                        
+                        <div id='rezerwacjaB'> <p>REZERWUJ</p></div>
         		<div class='przyciskMenu'> <p>SAMOCHODY</p> </div>
         		<div class='przyciskMenu'> <p>OFERTA</p> </div>
         		<div class='przyciskMenu'> <p>LOKALIZACJA</p> </div>
