@@ -29,6 +29,7 @@
     </head>
     <body>
 
+        <c:set var="czyZalogowany" scope="session" value="${czyZalogowany}"/>
         <div id = 'container'>
         	<div id='header'>
         		<div id= 'logo'> </div>
@@ -38,13 +39,12 @@
                                 <form action="UserKontroler" method="POST">
                                 <input type="submit" name="wylogowanie" value="WYLOGUJ"> 
                                 </form>
-                                </div>
-                                
-                                
+                                </div>                            
         		</div>
         	
         	</div>
         	<div id='menuPoziome'>
+                        
         		<div id='rezerwacjaB'><a href="Samochody.jsp"><p>REZERWUJ</p></a> </div>
                         <div class='przyciskMenu'> <a href="Samochody.jsp"><p>SAMOCHODY</p></a> </div>
         		<div class='przyciskMenu'> <p>OFERTA</p> </div>
@@ -74,7 +74,6 @@
                                     
                  <form action="RentKontroler" method="POST">    
         <table align="center" >
-            <c:set var="wyswietlanieAkceptacja" scope="session" value="${wyswietlanieAkceptacja}"/>
           <c:set var="daneSamochod" scope="session" value="${Cars2}"/>
           <c:set var="daneUzytkownicy" scope="session" value="${Users}"/>
           <c:forEach var="rents" items="${Rents}" >
@@ -86,11 +85,11 @@
           <td>&nbsp &nbsp nie akceptuje<input type="radio" value="odrzucone" name="akc${rents.getIdWypozyczenie()}"</td>
            <td><input type="text" value="${rents.getOpis()}" name="${rents.getIdWypozyczenie()}"></td>
           </tr>
-          <c:set var="ilosc3" scope="session" value="${rents.getIdWypozyczenie()}"/>
+          <c:set var="wyswietlanieAkceptacja" scope="session" value="${wyswietlanieAkceptacja}"/>
           </c:forEach>
           </table>
           <c:choose>
-              <c:when test="${wyswietlanieAkceptacja ==1}">
+              <c:when test="${wyswietlanieAkceptacja >0}">
              <div align="center">
                   <input type="submit" value="zatwierdz"  name="akceptuj">
             </div>  
@@ -110,11 +109,11 @@
           <td>${cars.getMarka()}</td><td>${cars.model}</td><td>${cars.rocznik}</td>
            <td><input type="text" value="${cars.getPrzebieg()}" name="${cars.getId()}"></td>
           </tr>
-          <c:set var="ilosc2" scope="session" value="${cars.getId()}"/>
+          <c:set var="wyswietlEdycje" scope="session" value="${wyswietlEdycje}"/>
           </c:forEach>
           </table>
           <c:choose>
-              <c:when test="${ilosc2 > 0}">
+              <c:when test="${wyswietlEdycje > 0}">
              <div align="center">
                   <input type="submit" value="zatwierdz"  name="zatwierdzEdytuj">
             </div>  
@@ -133,11 +132,11 @@
           <td><input type="checkbox" value="${cars.getId()}" name="${cars.getId()}"></td>
           <td>${cars.getMarka()}</td><td>${cars.model}</td><td>${cars.rocznik}</td>
           </tr>
-          <c:set var="ilosc" scope="session" value="${cars.getId()}"/>
+          <c:set var="wyswietlUsun" scope="session" value="${wyswietlUsun}"/>
           </c:forEach>
           </table>
           <c:choose>
-              <c:when test="${ilosc > 0}">
+              <c:when test="${wyswietlUsun > 0}">
              <div align="center">
                   <input type="submit" value="zatwierdz"  name="zatwierdzUsun">
             </div>  
@@ -151,7 +150,7 @@
         </div>
         </div>
 
-        panel
+
 
     </body>
 </html>

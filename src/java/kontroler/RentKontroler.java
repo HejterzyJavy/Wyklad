@@ -121,6 +121,11 @@ public class RentKontroler extends HttpServlet {
                 wyswietlZatwierdzAkceptacja=0;
             request.setAttribute("wyswietlanieAkceptacja", wyswietlZatwierdzAkceptacja);
             
+            
+            request.setAttribute("wyswietlEdycje", 0);
+            request.setAttribute("wyswietlUsun", 0);
+            request.setAttribute("wyswietlanieAkceptacja", 1);
+            
             request.setAttribute("Rents", rents);
             request.setAttribute("Cars2", cars);
             request.setAttribute("Users", users);
@@ -296,6 +301,10 @@ public class RentKontroler extends HttpServlet {
             if(rents.isEmpty())
                 wyswietlZatwierdzAkceptacja=0;
             
+            
+            request.setAttribute("wyswietlEdycje", 0);
+            request.setAttribute("wyswietlUsun", 0);
+            request.setAttribute("wyswietlanieAkceptacja", 1);
             request.setAttribute("wyswietlanieAkceptacja", wyswietlZatwierdzAkceptacja);
             request.setAttribute("Rents", rents);
             request.setAttribute("Cars2", cars);

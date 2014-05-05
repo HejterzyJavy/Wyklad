@@ -276,7 +276,7 @@ public class CarDao {
                 car.setSkrzyniaBiegow(rs.getString("skrzynia_biegow"));
                 car.setTypNadwozia(rs.getString("typ_nadwozia"));
                 car.setCenaDoba(rs.getInt("cena_doba"));
-                if (car.getMarka().equals(carBrand)) {
+                if (car.getMarka().equalsIgnoreCase(carBrand)) {
                     cars.add(car);
                 }
             }

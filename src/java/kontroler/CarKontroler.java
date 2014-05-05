@@ -116,16 +116,7 @@ public class CarKontroler extends HttpServlet {
             String daneZPliku="";
             InputStream isr = filePart.getInputStream();
             int x;
-            /*do{
-                x=isr.read();
-                if (x==-1) {
-                    break;
-                } else
-                {
-                    daneZPliku+=String.valueOf((char)x);
-                }
-            }while(true);
-            */
+  
            car.setZdjecie(isr);
        
             dao.addCar(car);
@@ -138,10 +129,24 @@ public class CarKontroler extends HttpServlet {
             //  view.forward(request, response); 
         }
 
+        
+         String wypozyczenie = request.getParameter("wypozyczenie");
+        if(wypozyczenie !=null)
+        {
+                     cars = dao.getAllCars();
+                     request.setAttribute("Cars", cars);
+                     view = request.getRequestDispatcher("/Samochody.jsp");
+        }
+         
+         
+        
         String usunSamochod = request.getParameter("usun");
         if (usunSamochod != null) {
             cars = dao.getAllCars();
             request.setAttribute("Cars", cars);
+            request.setAttribute("wyswietlEdycje", 0);
+            request.setAttribute("wyswietlUsun", 1);
+            request.setAttribute("wyswietlanieAkceptacja", 0);
             view = request.getRequestDispatcher(panelPracownika);
             //  view.forward(request, response); 
         }
@@ -151,6 +156,11 @@ public class CarKontroler extends HttpServlet {
 
             cars = dao.getAllCars();
             request.setAttribute("Edit", cars);
+            
+            request.setAttribute("wyswietlEdycje", 1);
+            request.setAttribute("wyswietlUsun", 0);
+            request.setAttribute("wyswietlanieAkceptacja", 0);
+            
             view = request.getRequestDispatcher(panelPracownika);
         }
 
@@ -171,6 +181,9 @@ public class CarKontroler extends HttpServlet {
             }
             cars = dao.getAllCars();
             request.setAttribute("Cars", cars);
+            request.setAttribute("wyswietlEdycje", 0);
+            request.setAttribute("wyswietlUsun", 1);
+            request.setAttribute("wyswietlanieAkceptacja", 0);
             view = request.getRequestDispatcher(panelPracownika);
         }
 
@@ -202,6 +215,9 @@ public class CarKontroler extends HttpServlet {
 
             cars = dao.getAllCars();
             request.setAttribute("Edit", cars);
+            request.setAttribute("wyswietlEdycje", 1);
+            request.setAttribute("wyswietlUsun", 0);
+            request.setAttribute("wyswietlanieAkceptacja", 0);
             view = request.getRequestDispatcher(panelPracownika);
         }
 
@@ -247,18 +263,87 @@ public class CarKontroler extends HttpServlet {
         String wyswietlMarke = request.getParameter("marka");
         if (wyswietlMarke != null) {
             String marka = request.getParameter("pole");
+  
+          
+            
+            String czyZalogowany=new String();
+            String ktoZalogowany=new String();
+            String idZalogowany=new String();
+            HttpSession session = request.getSession(true);
+            try 
+            {
+            czyZalogowany = session.getAttribute("czyZalogowany1").toString();
+            idZalogowany = session.getAttribute("jakieId").toString();
+            }
+            catch(NullPointerException e)
+            {
+             czyZalogowany="0";
+             idZalogowany="0";
+            }
+            
+             try 
+            {
+            ktoZalogowany = session.getAttribute("ktoZalogowany").toString();
+            }
+            catch(NullPointerException e)
+            {
+             ktoZalogowany="-1";
+            }
+      
             cars = dao.getCarByBrand(marka);
             request.setAttribute("Cars", cars);
+            request.setAttribute("czyZalogowany", czyZalogowany);
+            request.setAttribute("ktoZalogowany", ktoZalogowany);
+            request.setAttribute("idZalogowany", idZalogowany);
+            request.setAttribute("wyslanoEmail", 0);
             view = request.getRequestDispatcher("/Samochody.jsp");
+            
+            
+            
         }
         String wyswietlRok = request.getParameter("rocznik");
         if (wyswietlRok != null) {
             Integer rokOd = Integer.parseInt(request.getParameter("rokOd"));
             Integer rokDo = Integer.parseInt(request.getParameter("rokDo"));
-
             cars = dao.getCarByYearInterval(rokOd, rokDo);
+            
+            
+            
+            String czyZalogowany=new String();
+            String ktoZalogowany=new String();
+            String idZalogowany=new String();
+            HttpSession session = request.getSession(true);
+            try 
+            {
+            czyZalogowany = session.getAttribute("czyZalogowany1").toString();
+            idZalogowany = session.getAttribute("jakieId").toString();
+            }
+            catch(NullPointerException e)
+            {
+             czyZalogowany="0";
+             idZalogowany="0";
+            }
+            
+             try 
+            {
+            ktoZalogowany = session.getAttribute("ktoZalogowany").toString();
+            }
+            catch(NullPointerException e)
+            {
+             ktoZalogowany="-1";
+            }
+            
+            
+            
+            
+            
+            
             request.setAttribute("Cars", cars);
-            view = request.getRequestDispatcher(OFERTA);
+            request.setAttribute("czyZalogowany", czyZalogowany);
+            request.setAttribute("ktoZalogowany", ktoZalogowany);
+            request.setAttribute("idZalogowany", idZalogowany);
+            request.setAttribute("wyslanoEmail", 0);
+            view = request.getRequestDispatcher("/Samochody.jsp");
         }
 
         view.forward(request, response);
