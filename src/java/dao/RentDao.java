@@ -128,6 +128,45 @@ public class RentDao {
         return rents;
     }
          
+        
+        
+            public Rent getRentById(int rentId) {
+
+        Rent rent = new Rent();
+
+        try {
+
+            PreparedStatement preparedStatement = connection.
+                    prepareStatement("select * from wypozyczenie where id_wypozyczenie=?");
+
+            preparedStatement.setInt(1, rentId);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+
+                rent.setIdWypozyczenie(rs.getInt("id_wypozyczenie"));
+                rent.setIdSamochod(rs.getInt("id"));
+                rent.setIdUser(rs.getInt("userid"));
+                rent.setDoZaplaty(rs.getInt("do_zaplaty"));
+                rent.setDataWypozyczenia(rs.getDate("data_wypozyczenia"));
+                rent.setDataZwrotu(rs.getDate("data_zwrotu"));
+                rent.setStatus(rs.getString("status"));
+                rent.setOpis(rs.getString("opis"));
+
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+
+        return rent;
+
+    }
+        
+        
             
         
            public List<Rent> getAcceptRents( List<Car> cars,List<User> users) {

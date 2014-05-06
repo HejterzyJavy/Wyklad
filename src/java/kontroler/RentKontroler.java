@@ -148,8 +148,8 @@ public class RentKontroler extends HttpServlet {
             java.util.Date myDate = new java.util.Date();
             java.sql.Date dataWypozyczenia;
             java.sql.Date dataZwrotu;
-            GenerowaniePdf umowa=new GenerowaniePdf();
-            Email email=new Email();
+            
+           
             
                try
                {
@@ -182,10 +182,7 @@ public class RentKontroler extends HttpServlet {
                 Logger.getLogger(RentKontroler.class.getName()).log(Level.SEVERE, null, ex);
             }
             rentdao.addRent(wypozyczenie);
-            umowa.generujUmowe(cardao.getCarById(Integer.parseInt(idSamochod))
-                    ,userdao.getUserById(Integer.parseInt(idUser)),wypozyczenie);
-            
-            email.wyslijEmail();
+
             request.setAttribute("wyslanoEmail", 1);
             
             view=request.getRequestDispatcher(OFERTA);
@@ -274,12 +271,18 @@ public class RentKontroler extends HttpServlet {
                 {
              List<Rent> test = new ArrayList<Rent>();
              Rent tmp = new Rent();
+             GenerowaniePdf umowa=new GenerowaniePdf();
              test=rentdao.getAllRents();
              String status="",opis="";
+              Email email=new Email();
+             int idWypozyczenia=0;
+             User klient=new User();
+             Car samochod=new Car();
              
              for (int i=0;i<test.size();i++)
              {
                  status=request.getParameter("akc"+test.get(i).getIdWypozyczenie());
+                 
                  if(status!=null && !status.equals(test.get(i).getStatus()))
                  {
                     opis=request.getParameter(test.get(i).getIdWypozyczenie().toString()); 
@@ -287,6 +290,28 @@ public class RentKontroler extends HttpServlet {
                     tmp.setStatus(status);
                     tmp.setOpis(opis);
                     rentdao.updateRent(tmp);
+                    
+                    if(tmp.getStatus().equalsIgnoreCase("zaakceptowane"))
+                    {
+                        
+                           tmp=test.get(i);
+                           umowa.generujUmowe(cardao.getCarById(tmp.getIdSamochod())
+                           ,userdao.getUserById(tmp.getIdUser()),rentdao.getRentById(tmp.getIdWypozyczenie()));
+                        
+                        klient=userdao.getUserById(tmp.getIdUser());
+                        email.wyslijAkceptacja("zaakceptowane",klient.getEmail());
+                    }
+                    
+                    if(tmp.getStatus().equalsIgnoreCase("odrzucone"))
+                    {
+                       
+                        tmp=test.get(i);
+                        samochod=cardao.getCarById(tmp.getIdSamochod());
+                        klient=userdao.getUserById(tmp.getIdUser());
+                        email.wyslijOdrzucenie(tmp.getOpis(),klient.getEmail(),samochod.getMarka(),samochod.getModel());
+                    }
+                    
+                    
                  }
              }
             Integer wyswietlZatwierdzAkceptacja=0; 
@@ -310,7 +335,7 @@ public class RentKontroler extends HttpServlet {
             request.setAttribute("Cars2", cars);
             request.setAttribute("Users", users);
             view=request.getRequestDispatcher(panelPracownika);
-                }
+            }
         
         
         

@@ -207,7 +207,7 @@
                                     
                                        <c:choose>
               <c:when test="${wyslanoEmail == 1}">
-                  <h2 align="center">Umowa wynajmu samochodu zostala wyslana na adres email podany przy rejestracji </h2> 
+                  <h2 align="center">Na emaila zostanie wyslana informacja na temat zlecenia</h2> 
                   
              </c:when>
              </c:choose>
