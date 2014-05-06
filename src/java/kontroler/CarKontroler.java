@@ -260,6 +260,51 @@ public class CarKontroler extends HttpServlet {
         }
         
         
+        String przyjmijSamochody = request.getParameter("przyjmijSamochody");
+        if (przyjmijSamochody != null) {
+            cars = dao.getAllCars();
+            request.setAttribute("wyswietlEdycje", 0);
+            request.setAttribute("wyswietlUsun", 0);
+            request.setAttribute("wyswietlanieAkceptacja", 0);
+            request.setAttribute("wyswietlaniePrzyjmij", 1);
+            
+            request.setAttribute("przyjmij", cars);
+            view = request.getRequestDispatcher(panelPracownika);
+        }
+        
+        
+        String zatwierdzPrzyjmij = request.getParameter("zatwierdzPrzyjmij");
+        if (zatwierdzPrzyjmij != null) {
+            
+            List<Car> test = new ArrayList<Car>();
+            Car tmp = new Car();
+            String zakonczono, idSamochod;
+            test = dao.getAllCars();
+
+          /*  for (int i = 0; i < test.size(); i++) {
+
+                przebieg = request.getParameter(test.get(i).getId().toString());
+
+                if (przebieg != null) {
+                    if (Integer.parseInt(przebieg) != test.get(i).getPrzebieg()) {
+
+                        test.get(i).setPrzebieg(Integer.parseInt(przebieg));
+                        try {
+                            dao.zmienPrzebieg(test.get(i).getId(),Integer.parseInt(przebieg));
+                        } catch (SQLException ex) {
+                            Logger.getLogger(CarKontroler.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                      
+
+                    }
+                }
+            }*/
+            
+        }
+        
+        
+        
+        
         String wyswietlMarke = request.getParameter("marka");
         if (wyswietlMarke != null) {
             String marka = request.getParameter("pole");

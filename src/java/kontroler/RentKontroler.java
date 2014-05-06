@@ -264,6 +264,32 @@ public class RentKontroler extends HttpServlet {
             
         }
         
+         String wyswietlNieZwrocone=request.getParameter("nieZwrocone");
+                if(wyswietlNieZwrocone!=null)
+                {
+            Integer wyswietlZatwierdzAkceptacja=0; 
+            cars=cardao.getAllCars();
+            users=userdao.getAllUsers();
+            rents=rentdao.getAllHistory(cars,users);
+            
+                 if(rents.size()>0)
+                wyswietlZatwierdzAkceptacja=1;
+            if(rents.isEmpty())
+                wyswietlZatwierdzAkceptacja=0;
+            request.setAttribute("wyswietlanieAkceptacja", wyswietlZatwierdzAkceptacja);
+            
+            
+            request.setAttribute("wyswietlEdycje", 0);
+            request.setAttribute("wyswietlUsun", 0);
+            request.setAttribute("wyswietlanieAkceptacja", 0);
+            
+            request.setAttribute("Historia", rents);
+            request.setAttribute("Cars2", cars);
+            request.setAttribute("Users", users);
+            view=request.getRequestDispatcher(panelPracownika);
+                }
+        
+        
         
         
         String zatwierdzAkceptuj=request.getParameter("akceptuj");

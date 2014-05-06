@@ -25,6 +25,7 @@ public class Rent {
     private String tmpModel;
     private String tmpImie;
     private String tmpNazwisko;
+    private Integer zakonczono;
     
     public void setIdWypozyczenie(Integer idWypozyczenie)
     {
@@ -149,6 +150,16 @@ public class Rent {
   public String getOpis()
   {
       return this.opis;
+  }
+  
+  public void setZakonczono(Integer zakonczono)
+  {
+      this.zakonczono=zakonczono;
+  }
+  
+  public Integer getZakonczono()
+  {
+      return this.zakonczono;
   }
   
 }

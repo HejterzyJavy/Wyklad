@@ -63,15 +63,28 @@
 				<div align="center" id="srodekTresc"> 
                                 
                                <form action="RentKontroler" method="POST">
-                               <input type="submit" value="akceptuj wypozyczenia" name="akceptujWypozyczenia">    
+                               <input type="submit" value="akceptuj wypozyczenia" name="akceptujWypozyczenia" style="height: 45px; width: 300px">   
+                               <br>
+                               <br>
+                               <input type="submit" value="wyswietl nie zwrocone samochody"  name="nieZwrocone" style="height: 45px; width: 300px">
+                               
                                </form>
          <c:set var="ilosc" scope="session" value="${0}"/>   
         <form action="CarKontroler" method="POST">    
-             <input type="submit" value="dodaj samochod" name="dodaj">
-             <input type="submit" value="usun samochod"  name="usun">
-             <input type="submit" value="edytuj przebieg samochodu"  name="edit">
+             <br>
+             <input type="submit" value="dodaj samochod" name="dodaj"  style="height: 45px; width: 300px">
+             <br>
+             <br>
+             <input type="submit" value="usun samochod"  name="usun" style="height: 45px; width: 300px">
+             <br>
+             <br>
+             <input type="submit" value="edytuj przebieg samochodu"  name="edit" style="height: 45px; width: 300px">
+             <br>
+             <br>
+             <input type="submit" value="przyjmij samochody"  name="przyjmijSamochody" style="height: 45px; width: 300px">
         </form>
-                                    
+               <br>
+               <br>                     
                  <form action="RentKontroler" method="POST">    
         <table align="center" >
           <c:set var="daneSamochod" scope="session" value="${Cars2}"/>
@@ -99,6 +112,50 @@
         </form>
         
         
+          
+          
+          
+          
+          
+          
+                     <form action="RentKontroler" method="POST">    
+        <table align="center" >
+          <c:set var="daneSamochod" scope="session" value="${Cars2}"/>
+          <c:set var="daneUzytkownicy" scope="session" value="${Users}"/>
+          <c:forEach var="historia" items="${Historia}" >
+            
+          <tr>             
+          <td>${historia.getIdWypozyczenie()} &nbsp &nbsp</td><td>${historia.getTmpImie()}&nbsp &nbsp </td>
+          <td>&nbsp &nbsp ${historia.getTmpNazwisko()}</td>
+          <td>&nbsp &nbsp ${historia.getTmpMarka()}</td><td>&nbsp &nbsp ${historia.getTmpModel()}</td>
+          <td>&nbsp &nbsp ${historia.getDoZaplaty()}</td><td>&nbsp &nbsp ${historia.getDataWypozyczenia()}</td>
+          <td>&nbsp &nbsp ${historia.getDataZwrotu()} </td>
+          
+             <c:choose>
+              <c:when test="${historia.getZakonczono()==1}">
+             <td>&nbsp &nbsp zlecenie zakonczone </td>
+            </c:when>
+         </c:choose>
+          
+               <c:choose>
+              <c:when test="${historia.getZakonczono()==0}">
+             <td>&nbsp &nbsp zlecenie w trakcie </td>
+            </c:when>
+         </c:choose>
+          
+          </tr>
+          <c:set var="wyswietlanieAkceptacja" scope="session" value="${wyswietlanieAkceptacja}"/>
+          </c:forEach>
+          </table>
+           
+        </form>
+          
+          
+          
+          
+          
+          
+          
         
         
         
@@ -144,8 +201,29 @@
          </c:choose>
            
         </form>
-                        
-                                    
+          
+          
+          <form action="CarKontroler" method="POST">    
+          <table align="center" >
+          <c:forEach var="przyjmij" items="${przyjmij}" >
+          <tr>
+          <td><input type="checkbox" value="${przyjmij.getId()}" name="${przyjmij.getId()}"></td>
+          <td>${przyjmij.getMarka()}&nbsp &nbsp &nbsp &nbsp</td><td>${przyjmij.model}&nbsp &nbsp &nbsp &nbsp</td><td>${przyjmij.rocznik}</td>
+          </tr>
+          <c:set var="wyswietlPrzyjmij" scope="session" value="${wyswietlPrzyjmij}"/>
+          </c:forEach>
+          </table>
+          <c:choose>
+              <c:when test="${wyswietlPrzyjmij > 0}">
+             <div align="center">
+                  <input type="submit" value="zatwierdz"  name="zatwierdzPrzyjmij">
+            </div>  
+            </c:when>
+           </c:choose>
+           </form>
+          
+          
+          
         </div>
         </div>
         </div>
