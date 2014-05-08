@@ -93,7 +93,6 @@
         	</div>
         </div>
 
-        
-Log
+
     </body>
 </html>

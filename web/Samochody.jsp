@@ -219,7 +219,6 @@
         	</div>
         </div>
 
-        samoch
 
     </body>
 </html>
