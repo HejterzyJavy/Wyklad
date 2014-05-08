@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 07 Maj 2014, 19:28
+-- Czas wygenerowania: 08 Maj 2014, 14:35
 -- Wersja serwera: 5.5.21-log
 -- Wersja PHP: 5.4.10
 
@@ -93,7 +93,7 @@ INSERT INTO `users` (`userid`, `login`, `haslo`, `adres`, `kod_pocztowy`, `telef
 (6, 'gardian91', 'aaaa', 'sssd', 'dddd', 'asd', 'asdasd', 'asdasd', 'asdasd', '2014-03-04', 'asdasd', 0),
 (7, 'dsfsdf', 'sdfsdfsdfsdf', 'sdfsdfsdfs', 'dsfsdf', 'sdfsdf', 'sdfsdf', 'sdfsfd', 'sdfsdf', '2014-03-03', 'fsdf', 0),
 (8, 'sdf', 'sdfsdf', 'sdfsdf', 'sdfsdf', 'sdfsdf', 'sdfsdf', 'sdfgdsfg', 'sdfsdf', '2014-03-11', 'fsdf', 0),
-(9, 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', '2014-03-05', 'adrianwojton91@gmail.com', 0),
+(9, 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', '2014-03-05', 'gardian92@o2.pl', 0),
 (10, 'asdNOWE', 'asdad', 'asd', 'asd', '123', 'sdf', 'sdf', '123', '2014-04-16', 'gardian92@o2.pl', 0),
 (11, 'gracjan', 'roztocki', 'asdads', 'jhkjn', 'kjn', 'kjnkj', 'kjn', 'kkjn', '2014-04-17', 'gardian92@o2.pl', 0),
 (12, 'x', 'x', 'Hen daleko', '25-002', '77788550', 'Adrian', 'Wojton', '12345678912', '2014-03-25', 'gardian92@o2.pl', 1);
@@ -162,7 +162,9 @@ INSERT INTO `wypozyczenie` (`id_wypozyczenie`, `id`, `userid`, `do_zaplaty`, `da
 (128, 20, 9, 1380, '2014-05-06', '2014-05-10', 'zaakceptowane', 'xx', 1),
 (129, 20, 9, 3450, '2014-05-06', '2014-05-16', 'zaakceptowane', 'sd', 1),
 (130, 20, 9, 1380, '2014-05-06', '2014-05-10', 'zaakceptowane', '', 1),
-(131, 13, 3, 496, '2014-05-06', '2014-05-10', 'zaakceptowane', 'ok', 1);
+(131, 13, 3, 496, '2014-05-06', '2014-05-10', 'zaakceptowane', 'ok', 1),
+(132, 20, 9, 1035, '2014-05-08', '2014-05-11', 'zaakceptowane', 'asdasd', 1),
+(133, 18, 9, 800, '2014-05-08', '2014-05-10', 'zaakceptowane', 's', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
