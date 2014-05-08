@@ -202,7 +202,7 @@
            
         </form>
           
-          
+          <c:set var="wyswietlPrzyjmij" scope="session" value="${wyswietlPrzyjmij}"/>
           <form action="CarKontroler" method="POST">    
           <table align="center" >
           <c:forEach var="przyjmij" items="${przyjmij}" >
@@ -210,9 +210,10 @@
           <td><input type="checkbox" value="${przyjmij.getId()}" name="${przyjmij.getId()}"></td>
           <td>${przyjmij.getMarka()}&nbsp &nbsp &nbsp &nbsp</td><td>${przyjmij.model}&nbsp &nbsp &nbsp &nbsp</td><td>${przyjmij.rocznik}</td>
           </tr>
-          <c:set var="wyswietlPrzyjmij" scope="session" value="${wyswietlPrzyjmij}"/>
+          
           </c:forEach>
           </table>
+              
           <c:choose>
               <c:when test="${wyswietlPrzyjmij > 0}">
              <div align="center">
@@ -220,7 +221,8 @@
             </div>  
             </c:when>
            </c:choose>
-           </form>
+           
+          </form>
           
           
           

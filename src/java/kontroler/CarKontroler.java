@@ -266,7 +266,7 @@ public class CarKontroler extends HttpServlet {
             request.setAttribute("wyswietlEdycje", 0);
             request.setAttribute("wyswietlUsun", 0);
             request.setAttribute("wyswietlanieAkceptacja", 0);
-            request.setAttribute("wyswietlaniePrzyjmij", 1);
+            request.setAttribute("wyswietlPrzyjmij", 1);
             
             request.setAttribute("przyjmij", cars);
             view = request.getRequestDispatcher(panelPracownika);
@@ -278,12 +278,12 @@ public class CarKontroler extends HttpServlet {
             
             List<Car> test = new ArrayList<Car>();
             Car tmp = new Car();
-            String zakonczono, idSamochod;
+            String zwrocony, idSamochod;
             test = dao.getAllCars();
 
-          /*  for (int i = 0; i < test.size(); i++) {
+           /* for (int i = 0; i < test.size(); i++) {
 
-                przebieg = request.getParameter(test.get(i).getId().toString());
+                zwrocony = request.getParameter(test.get(i).getId().toString());
 
                 if (przebieg != null) {
                     if (Integer.parseInt(przebieg) != test.get(i).getPrzebieg()) {
