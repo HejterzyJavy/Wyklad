@@ -63,10 +63,10 @@
                               <form align="center" action="CarKontroler" method="POST">
                               <input type="submit" value="Wypożycz samochód" name="oferta">
                               <div id="paczka">
-                              <input id="usun" type="button" value="Wyswietl wybrana marke" onclick="dodaj_element('paczka');" />
+                              <input id="usun" type="button" value="Wyswietl wybrana marke" onclick="dodaj_element('paczka');"  />
                               </div>
             
-                              <div id="paczka2">
+                              <div id='paczka2'>
                               <input id="usun2" type="button" value="Wyswietl wybrany rocznik" onclick="dodaj_element2('paczka2');" />
                               </div>
            
