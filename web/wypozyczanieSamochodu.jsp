@@ -1,26 +1,111 @@
-<%-- 
-    Document   : wypozyczanieSamochodu
-    Created on : 2014-04-30, 19:22:29
-    Author     : Adrian
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html class="no-js">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>AutoRent - Wypo?yczalnia Samochodów</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/formularz.css">
+        
+        
+        
+        <script src="js/vendor/modernizr-2.7.1.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>');</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/vendor/jquery-ui-1.10.4.custom.min.js"> </script>
+        
+                <script>
+               $(document).ready(function(){
+               $("#rezerwacjaB").click(function(){
+               alert("Aby rezerwowac samochody zaloguj sie ");
+	
+               });
+               });
+            
+        </script>
+        
+        
     </head>
     <body>
+
+        <div id = 'container'>
+        	<div id='header'>
+        		<div id= 'logo'> </div>
+        		<div id='pasekLogowania'>
+                            <div class='przyciskG' id='pLogowania'> <a href="Log.jsp">LOGOWANIE</a> </div>
+        			<div class='przyciskG' id='pRejestracja'> REJESTRACJA </div>
+        		</div>
+        		<div id="panelLogowania">
+        			<div id="panelLogowaniaNaglowek"><p>Logowanie</p></div>
+        			
+					<form class="formularzLogowania"  method="POST" action="UserKontroler">
+						<fieldset>
+							
+						<div>
+							<label>Login:</label>
+							<input type="text" name="login" />
+						</div>
+						<div>
+							<label>Haslo: <a href="forgot_password.html" rel="forgot_password" class="zapomnianeHaslo"> Zapomnia?e? has?a? </a> </label>
+							<input type="password" name="haslo" />
+						</div>
+						<div class="bottom">
+							<input type="SUBMIT" name="Logowanie" value="ZALOGUJ">
+							<a href="register.html" rel="register" class="linkform"> Nie masz jeszcze konta? Zarejestruj si?</a>
+							<div class="clear"></div>
+						</div>
+						</fieldset>
+					</form>
+
+				</div>
+        	</div>
+        	<div id='menuPoziome'>
+                    <div id='rezerwacjaB'> <p>REZERWUJ </p></div>
+        		  <div class='przyciskMenu'> <a href="Samochody.jsp"><p>SAMOCHODY</p></a> </div>
+        		<div class='przyciskMenu'>  <a href="Samochody.jsp"><p>OFERTA</p></a> </div>
+        		<div class='przyciskMenu'> <p>LOKALIZACJA</p> </div>
+        		<div class='przyciskMenu'> <p>US?UGI</p> </div>
+        		<div class='przyciskMenu'> <p>NAGRODY</p> </div>
+        		<div class='przyciskMenu'> <p>DLA FIRM</p> </div>
+        	</div>
+        	<div id="srodek">
+        		<div class='linia'> </div>
+				<div id="srodekNaglowek">
+					<div id="srodekZnacznik"> </div>
+					<p>REZERWACJA</p>
+				</div>
+				<div class='linia'> </div>
+				<div id="srodekTresc">   
+        <c:set var="obliczanieKwoty" scope="session" value="${obliczanieKwoty}"/>      
         <c:set var="daneKlient" scope="session" value="${daneKlient}"/>
         <c:set var="wypozyczanySamochod" scope="session" value="${wypozyczanySamochod}"/>
-        <c:set var="aktualnaData" scope="session" value="${aktualnaData}"/>
+             <c:choose>
+              <c:when test="${obliczanieKwoty == 0}">
+        <c:set var="dataWypozyczenia" scope="session" value="${aktualnaData}"/>
+          </c:when>
+         </c:choose>
+          
+          <c:choose>
+              <c:when test="${obliczanieKwoty == 1}">
+             <c:set var="doZaplaty" scope="session" value="${doZaplaty}"/>
+             <c:set var="dataWypozyczenia" scope="session" value="${dataWypozyczenia}"/>
+              <c:set var="dataZwrotu" scope="session" value="${dataZwrotu}"/>
+         </c:when>
+         </c:choose>
+        
         <c:set var="idSamochodu" scope="session" value="${idSamochodu}"/>
         <c:set var="jakieId" scope="session" value="${jakieId}"/>
-        <c:set var="doZaplaty" scope="session" value="${doZaplaty}"/>
         
-        <h1>last id ${ostatniId}  imie: ${daneKlient.getImie()} nazwisko: ${daneKlient.getNazwisko()}   idsamochod ${idSamochodu} 
-            ${aktualnaData}  ${wypozyczanySamochod.getMarka()}  ${wypozyczanySamochod.getModel()} ${wypozyczanySamochod.getCenaDoba()}</h1>
+                              
+                         
+            <h1 align="center">a tutaj imie ${daneKlient.getImie()}  Marka: ${wypozyczanySamochod.getMarka()} Model:  ${wypozyczanySamochod.getModel()} Cena za dzien: ${wypozyczanySamochod.getCenaDoba()}</h1>
        
        
         
@@ -29,14 +114,23 @@
                <h2>Aktualnie do zaplaty mamy ${doZaplaty}</h2>  
             </c:when>
          </c:choose>
+            <br>
         
-        
+            <c:choose>
+            <c:when test="${obliczanieKwoty == 0}">
         <form action="RentKontroler" method="POST">
       
-            <input type="date" name="dataWypozyczenia" value="${aktualnaData}">
-            <input type="date" name="dataZwrotu">
+            <input type="date" name="dataWypozyczenia" value="${dataWypozyczenia}">
+            <input type="date" name="dataZwrotu"  value="${dataZwrotu}">
             <input type="submit" name="obliczKwote" value="Oblicz Kwote">
             <input type="submit" name="wypozyczSamochod" value="Zatwierdz">
         </form>
+         </c:when>
+         </c:choose>                      
+                                    
+                </div>	
+        	</div>
+        </div>
+
     </body>
 </html>

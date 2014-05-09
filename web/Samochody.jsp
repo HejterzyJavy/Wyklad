@@ -179,7 +179,7 @@
                                              </c:when>
                                              </c:choose>
                                              
-                                                  <c:choose>
+                           <c:choose>
                            <c:when test="${czyZalogowany == 0}">
                       
                             <img src="ZdjecieZBazy?id=${cars.id}" />

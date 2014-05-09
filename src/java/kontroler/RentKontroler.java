@@ -177,11 +177,7 @@ public class RentKontroler extends HttpServlet {
             wypozyczenie.setStatus("oczekujace");
             wypozyczenie.setOpis("");
             wypozyczenie.setZakonczono(0);
-            try {
-                cardao.wypozyczSamochod(Integer.parseInt(idSamochod));
-            } catch (SQLException ex) {
-                Logger.getLogger(RentKontroler.class.getName()).log(Level.SEVERE, null, ex);
-            }
+          
             rentdao.addRent(wypozyczenie);
 
             request.setAttribute("wyslanoEmail", 1);
@@ -194,7 +190,7 @@ public class RentKontroler extends HttpServlet {
         if(jakiSamochod!=null)
         {
             Car wypozyczanySamochod=cardao.getCarById(Integer.parseInt(jakiSamochod));
-            
+            Integer obliczanieKwoty=0;
             Calendar calendar= Calendar.getInstance();
             Integer dzien=calendar.get(Calendar.DATE);
             Integer miesiac=calendar.get(Calendar.MONTH);
@@ -215,7 +211,7 @@ public class RentKontroler extends HttpServlet {
             if(dzien<10 && miesiac<10)
             aktualnaData=rok+"-0"+miesiac+"-0"+dzien;  
             
-            
+            request.setAttribute("obliczanieKwoty", obliczanieKwoty);
             request.setAttribute("ostatniId", rentdao.getLastId());
             request.setAttribute("daneKlient", klient);
             request.setAttribute("daneSamochodu", wypozyczanySamochod);
@@ -241,25 +237,39 @@ public class RentKontroler extends HttpServlet {
             java.sql.Date dataWypozyczenia;
             java.sql.Date dataZwrotu;
             long wynik=0;
-    
+            Integer obliczanieKwoty=1;
+            Car samochod=new Car();
+            
+            String tmpDataWyp=new String(),tmpDataZak=new String();
+            String userid=session.getAttribute("jakieId").toString();
+            String carid=session.getAttribute("idSamochodu").toString();
+            ///////////////////////
+            User klient=userdao.getUserById(Integer.parseInt(userid));
+            
                try
                {
                myDate = dateFrm.parse(request.getParameter("dataWypozyczenia"));
                dataWypozyczenia = new java.sql.Date(myDate.getTime());
+               tmpDataWyp=dataWypozyczenia.toString();
                myDate = dateFrm.parse(request.getParameter("dataZwrotu"));
                dataZwrotu=new java.sql.Date(myDate.getTime());
+               tmpDataZak=dataZwrotu.toString();
                }
                catch (Exception e)
                {
                dataWypozyczenia = null;
                dataZwrotu = null;
                }
-            
+             
                long roznica = Math.abs(dataWypozyczenia.getTime() - dataZwrotu.getTime());
                 wynik=(roznica / ((long) (1000 * 60 * 60 * 24)))*cardao.getCarById(Integer.parseInt(idSamochod)).getCenaDoba();
+               request.setAttribute("daneKlient", klient);
+               request.setAttribute("obliczanieKwoty", obliczanieKwoty);
                request.setAttribute("doZaplaty", wynik);
-               request.setAttribute("dataWypozyczenia", dataWypozyczenia);
-               request.setAttribute("dataZwrotu", dataZwrotu);
+               samochod=cardao.getCarById(Integer.parseInt(carid));
+               request.setAttribute("wypozyczanySamochod", samochod);
+               request.setAttribute("dataWypozyczenia", tmpDataWyp);
+               request.setAttribute("dataZwrotu", tmpDataZak);
                
                view=request.getRequestDispatcher(wypozyczanieSamochodu);
             
@@ -327,6 +337,13 @@ public class RentKontroler extends HttpServlet {
                         
                         klient=userdao.getUserById(tmp.getIdUser());
                         email.wyslijAkceptacja("zaakceptowane",klient.getEmail());
+                          
+                            try {
+                            cardao.wypozyczSamochod(tmp.getIdSamochod());
+                            } catch (SQLException ex) {
+                            Logger.getLogger(RentKontroler.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        
                     }
                     
                     if(tmp.getStatus().equalsIgnoreCase("odrzucone"))

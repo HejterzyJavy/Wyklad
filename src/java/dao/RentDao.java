@@ -171,20 +171,17 @@ public class RentDao {
         
    
                     public void endRent(int id) throws SQLException {
-            
-       
-            
+        
          try {  
              PreparedStatement preparedStatement = connection
                     .prepareStatement("update wypozyczenie set zakonczono=? where id_wypozyczenie=?");
 
              preparedStatement.setInt(1, 1);
 
-            preparedStatement.setInt(2, id);
+             preparedStatement.setInt(2, id);
            
             int rowsAffected = preparedStatement.executeUpdate();
              } catch (SQLException e) {
-
             e.printStackTrace();
         }
 
