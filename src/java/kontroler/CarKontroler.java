@@ -1,6 +1,7 @@
 package kontroler;
 
 import dao.CarDao;
+import dao.RentDao;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -24,6 +25,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import javax.sql.rowset.serial.SerialBlob;
 import model.Car;
+import model.Rent;
 /*import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
@@ -262,7 +264,7 @@ public class CarKontroler extends HttpServlet {
         
         String przyjmijSamochody = request.getParameter("przyjmijSamochody");
         if (przyjmijSamochody != null) {
-            cars = dao.getAllCars();
+            cars = dao.getDontReturnedCar();
             request.setAttribute("wyswietlEdycje", 0);
             request.setAttribute("wyswietlUsun", 0);
             request.setAttribute("wyswietlanieAkceptacja", 0);
@@ -280,25 +282,25 @@ public class CarKontroler extends HttpServlet {
             Car tmp = new Car();
             String zwrocony, idSamochod;
             test = dao.getAllCars();
-
-           /* for (int i = 0; i < test.size(); i++) {
+            request.setAttribute("wyswietlPrzyjmij", 0);
+            Rent rent=new Rent();
+            RentDao rentdao=new RentDao();
+            
+            for (int i = 0; i < test.size(); i++) {
 
                 zwrocony = request.getParameter(test.get(i).getId().toString());
 
-                if (przebieg != null) {
-                    if (Integer.parseInt(przebieg) != test.get(i).getPrzebieg()) {
-
-                        test.get(i).setPrzebieg(Integer.parseInt(przebieg));
+                if (zwrocony != null) {
                         try {
-                            dao.zmienPrzebieg(test.get(i).getId(),Integer.parseInt(przebieg));
+                            dao.przyjmijSamochod(Integer.parseInt(zwrocony));
+                            rent=rentdao.getRentByCarId(Integer.parseInt(zwrocony));
+                            rentdao.endRent(rent.getIdWypozyczenie());
                         } catch (SQLException ex) {
                             Logger.getLogger(CarKontroler.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                      
-
-                    }
+             
                 }
-            }*/
+            }
             
         }
         

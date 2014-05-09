@@ -130,6 +130,27 @@ public class CarDao {
 
     }
     
+              public void przyjmijSamochod(int id) throws SQLException {
+            
+       String sql = "update samochod set przebieg=? where id=?";
+            
+         try {  
+             PreparedStatement preparedStatement = connection
+                    .prepareStatement("update samochod set dostepnosc=? where id=?");
+
+             preparedStatement.setInt(1, 1);
+
+            preparedStatement.setInt(2, id);
+           
+            int rowsAffected = preparedStatement.executeUpdate();
+             } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+       
+       
     
               public void wypozyczSamochod(int id) throws SQLException {
             
@@ -326,6 +347,49 @@ public class CarDao {
         return cars;
     }
 
+    
+        public List<Car> getDontReturnedCar() {
+
+        List<Car> cars = new ArrayList<Car>();
+
+        try {
+
+            Statement statement = connection.createStatement();
+
+            ResultSet rs = statement.executeQuery("select * from samochod");
+
+            while (rs.next()) {
+
+                Car car = new Car();
+                car.setID(rs.getInt("id"));
+                car.setMarka(rs.getString("marka"));
+                car.setModel(rs.getString("model"));
+                car.setRocznik(rs.getInt("rocznik"));
+                car.setRodzajPaliwa(rs.getString("rodzaj_paliwa"));
+                car.setMocSilnika(rs.getInt("moc_silnika"));
+                car.setPrzebieg(rs.getInt("przebieg"));
+                car.setPojemnoscSilnika(rs.getString("pojemnosc_silnika"));
+                car.setSkrzyniaBiegow(rs.getString("skrzynia_biegow"));
+                car.setTypNadwozia(rs.getString("typ_nadwozia"));
+                car.setDostepnosc(rs.getInt("dostepnosc"));
+                car.setCenaDoba(rs.getInt("cena_doba"));
+                if (car.getDostepnosc()==0) {
+                    cars.add(car);
+                }
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+        return cars;
+    }
+    
+    
+    
+    
+    
     public Car getCarById(int carId) {
 
         Car car = new Car();
@@ -396,5 +460,9 @@ public class CarDao {
 
         return blob;
     }
+    
+    
+    
+    
 
 }

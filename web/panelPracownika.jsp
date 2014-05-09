@@ -111,12 +111,7 @@
            
         </form>
         
-        
-          
-          
-          
-          
-          
+     
           
                      <form action="RentKontroler" method="POST">    
         <table align="center" >
@@ -198,9 +193,9 @@
                   <input type="submit" value="zatwierdz"  name="zatwierdzUsun">
             </div>  
             </c:when>
-         </c:choose>
-           
+         </c:choose>        
         </form>
+          
           
           <c:set var="wyswietlPrzyjmij" scope="session" value="${wyswietlPrzyjmij}"/>
           <form action="CarKontroler" method="POST">    

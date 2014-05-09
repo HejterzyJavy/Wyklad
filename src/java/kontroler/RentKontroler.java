@@ -176,6 +176,7 @@ public class RentKontroler extends HttpServlet {
             wypozyczenie.setDataZwrotu(dataZwrotu);
             wypozyczenie.setStatus("oczekujace");
             wypozyczenie.setOpis("");
+            wypozyczenie.setZakonczono(0);
             try {
                 cardao.wypozyczSamochod(Integer.parseInt(idSamochod));
             } catch (SQLException ex) {

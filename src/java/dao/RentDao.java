@@ -39,7 +39,7 @@ public class RentDao {
         try {
  
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("insert into wypozyczenie(id_wypozyczenie,id,userid,do_zaplaty,data_wypozyczenia,data_zwrotu,status,opis) values (?, ?, ?, ?, ?, ?,?,?)");
+                    .prepareStatement("insert into wypozyczenie(id_wypozyczenie,id,userid,do_zaplaty,data_wypozyczenia,data_zwrotu,status,opis,zakonczono) values (?, ?, ?, ?, ?, ?,?,?,?)");
             
             preparedStatement.setInt(1,rent.getIdWypozyczenie());
             preparedStatement.setInt(2, rent.getIdSamochod());
@@ -49,6 +49,7 @@ public class RentDao {
             preparedStatement.setDate(6, new java.sql.Date(rent.getDataZwrotu().getTime()));
             preparedStatement.setString(7, rent.getStatus());
             preparedStatement.setString(8, rent.getOpis());
+            preparedStatement.setInt(9, 0);
             
             preparedStatement.executeUpdate();
 
@@ -168,7 +169,65 @@ public class RentDao {
 
     }
         
-        
+   
+                    public void endRent(int id) throws SQLException {
+            
+       
+            
+         try {  
+             PreparedStatement preparedStatement = connection
+                    .prepareStatement("update wypozyczenie set zakonczono=? where id_wypozyczenie=?");
+
+             preparedStatement.setInt(1, 1);
+
+            preparedStatement.setInt(2, id);
+           
+            int rowsAffected = preparedStatement.executeUpdate();
+             } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+            
+            
+       public Rent getRentByCarId(int carId) {
+
+        Rent rent = new Rent();
+
+        try {
+
+            PreparedStatement preparedStatement = connection.
+                    prepareStatement("select * from wypozyczenie where id=?");
+
+            preparedStatement.setInt(1, carId);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+
+                rent.setIdWypozyczenie(rs.getInt("id_wypozyczenie"));
+                rent.setIdSamochod(rs.getInt("id"));
+                rent.setIdUser(rs.getInt("userid"));
+                rent.setDoZaplaty(rs.getInt("do_zaplaty"));
+                rent.setDataWypozyczenia(rs.getDate("data_wypozyczenia"));
+                rent.setDataZwrotu(rs.getDate("data_zwrotu"));
+                rent.setStatus(rs.getString("status"));
+                rent.setOpis(rs.getString("opis"));
+                rent.setZakonczono(rs.getInt("zakonczono"));
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+
+        return rent;
+
+    }
+            
+            
             
         
            public List<Rent> getAcceptRents( List<Car> cars,List<User> users) {
