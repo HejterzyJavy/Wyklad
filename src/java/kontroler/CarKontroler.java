@@ -264,12 +264,22 @@ public class CarKontroler extends HttpServlet {
         
         String przyjmijSamochody = request.getParameter("przyjmijSamochody");
         if (przyjmijSamochody != null) {
+            int wyswietlPrzyjmij=0;
+            
             cars = dao.getDontReturnedCar();
             request.setAttribute("wyswietlEdycje", 0);
             request.setAttribute("wyswietlUsun", 0);
             request.setAttribute("wyswietlanieAkceptacja", 0);
-            request.setAttribute("wyswietlPrzyjmij", 1);
+             if (cars.isEmpty())
+                 wyswietlPrzyjmij=0;
+             if (!cars.isEmpty())
+                 wyswietlPrzyjmij=1;
             
+            request.setAttribute("wyswietlPrzyjmij", wyswietlPrzyjmij);
+            
+           
+            
+                
             request.setAttribute("przyjmij", cars);
             view = request.getRequestDispatcher(panelPracownika);
         }
@@ -379,11 +389,7 @@ public class CarKontroler extends HttpServlet {
             {
              ktoZalogowany="-1";
             }
-            
-            
-            
-            
-            
+
             
             request.setAttribute("Cars", cars);
             request.setAttribute("czyZalogowany", czyZalogowany);
