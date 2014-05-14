@@ -15,7 +15,6 @@
         <link rel="stylesheet" href="css/formularz.css">
         
         
-        
         <script src="js/vendor/modernizr-2.7.1.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>');</script>
@@ -40,47 +39,10 @@
         <div id = 'container'>
         	<div id='header'>
         		<div id= 'logo'> </div>
-        		<div id='pasekLogowania'>
-        			<div class='przyciskG' id='pLogowania'> LOGOWANIE </div>
-        			<div class='przyciskG' id='pRejestracja'> REJESTRACJA </div>
-        		</div>
-        		<div id="panelLogowania">
-        			<div id="panelLogowaniaNaglowek"><p>Logowanie</p></div>
-        			
-					<form class="formularzLogowania"  method="POST" action="UserKontroler">
-						<fieldset>
-							
-						<div>
-							<label>Login:</label>
-							<input type="text" name="login" />
-                                                        <div class="error">${messages.login}</div>
-						</div>
-						<div>
-							<label>Haslo: <a href="forgot_password.html" rel="forgot_password" class="zapomnianeHaslo"> Zapomniałeś hasła? </a> </label>
-							<input type="password" name="haslo" />
-                                                        <div class="error">${messages.haslo}</div>
-                                                        
-                                                        <div class="error">${messages.loginHaslo}</div>
-						</div>
-						<div class="bottom">
-							<input type="SUBMIT" name="Logowanie" value="ZALOGUJ">
-							<a href="register.html" rel="register" class="linkform"> Nie masz jeszcze konta? Zarejestruj się</a>
-							<div class="clear"></div>
-						</div>
-						</fieldset>
-					</form>
-
-				</div>
+        		<%@ include file="includes/pasekLogowania.jsp" %>
+        		<%@ include file="includes/panelLogowania.jsp" %>
         	</div>
-        	<div id='menuPoziome'>
-        		<div id='rezerwacjaB'><a href="Samochody.jsp"><p>REZERWUJ</p></a> </div>
-                        <div class='przyciskMenu'> <a href="Samochody.jsp"><p>SAMOCHODY</p></a> </div>
-        		<div class='przyciskMenu'> <a href="Samochody.jsp"><p>OFERTA</p></a> </div>
-        		<div class='przyciskMenu'> <p>LOKALIZACJA</p> </div>
-        		<div class='przyciskMenu'> <p>USŁUGI</p> </div>
-        		<div class='przyciskMenu'> <p>NAGRODY</p> </div>
-        		<div class='przyciskMenu'> <p>DLA FIRM</p> </div>
-        	</div>
+        	<%@ include file="includes/menuPoziome.jsp" %>
         	<div id="srodek">
         		<div class='linia'> </div>
 				<div id="srodekNaglowek">

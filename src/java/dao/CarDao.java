@@ -272,6 +272,22 @@ public class CarDao {
         }
         return cars;
     }
+    
+    
+    public String getMarki() {
+
+        String marki = new String();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT distinct `marka` FROM `samochod`");
+            while (rs.next()) {
+                marki =  marki + rs.getString("marka") +",";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return marki;
+    }
 
     public List<Car> getCarByBrand(String carBrand) {
 

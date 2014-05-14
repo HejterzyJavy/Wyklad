@@ -155,10 +155,8 @@ public class CarKontroler extends HttpServlet {
 
         String Edytuj = request.getParameter("edit");
         if (Edytuj != null) {
-
             cars = dao.getAllCars();
             request.setAttribute("Edit", cars);
-            
             request.setAttribute("wyswietlEdycje", 1);
             request.setAttribute("wyswietlUsun", 0);
             request.setAttribute("wyswietlanieAkceptacja", 0);
@@ -258,6 +256,7 @@ public class CarKontroler extends HttpServlet {
             request.setAttribute("ktoZalogowany", ktoZalogowany);
             request.setAttribute("idZalogowany", idZalogowany);
             request.setAttribute("wyslanoEmail", 0);
+            request.setAttribute("Marki", dao.getMarki());
             view = request.getRequestDispatcher("/Samochody.jsp");
         }
         
