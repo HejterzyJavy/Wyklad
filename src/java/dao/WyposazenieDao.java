@@ -28,7 +28,6 @@ public class WyposazenieDao {
     public void addWyposazenie(Wyposazenie wyposazenie) {
         Integer id = getLastId();
         try {
-
             PreparedStatement preparedStatement = connection
                     .prepareStatement("insert into samochod(wyposazenieId,naped4x4,centralny_zamek,czujnik_deszczu,czujnik_parkowania,el_lusterka,el_szyby,klimatyzacja,komputer_pokladowy,pod_przed_szyba,pod_fotele,radio,system_nawigacji,skorzana_tapicerka,tempomat,wsp_kierownicy,kontrola_antyposlizgowa,autoalarm,blok_skrzyni_biegow,esp,immobiliser,poduszki_powietrzne,alufelgi,bagaznik_na_dachu,hak,ksenony,przyc_szyby,szyberdach) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
@@ -177,7 +176,7 @@ public class WyposazenieDao {
         return lastId;
     }
 
-    public List<Wyposazenie> getAllCars() {
+    public List<Wyposazenie> getAllWyposazenie() {
         List<Wyposazenie> wyposazeniee = new ArrayList<Wyposazenie>();
         try {
             Statement statement = connection.createStatement();
@@ -220,7 +219,7 @@ public class WyposazenieDao {
         return wyposazeniee;
     }
     
-    public List<Wyposazenie> getCarByBrand(String carBrand) {
+    public List<Wyposazenie> getWyposazenieByBrand(String wyposazenieBrand) {
         List<Wyposazenie> wyposazeniee = new ArrayList<Wyposazenie>();
         try {
             Statement statement = connection.createStatement();
@@ -263,50 +262,7 @@ public class WyposazenieDao {
         return wyposazeniee;
     }
 
-    public List<Wyposazenie> getCarByYearInterval(Integer min, Integer max) {
-        List<Wyposazenie> wyposazeniee = new ArrayList<Wyposazenie>();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from wyposazenie");
-            while (rs.next()) {
-                Wyposazenie wyposazenie = new Wyposazenie();
-                wyposazenie.setWyposazenieId(rs.getInt("wyposazenieId"));
-                wyposazenie.setNaped4x4(rs.getInt("naped4x4"));
-                wyposazenie.setCentralny_zamek(rs.getInt("centralny_zamek"));
-                wyposazenie.setCzujnik_deszczu(rs.getInt("czujnik_deszczu"));
-                wyposazenie.setCzujnik_parkowania(rs.getInt("czujnik_parkowania"));
-                wyposazenie.setEl_lusterka(rs.getInt("el_lusterka"));
-                wyposazenie.setEl_szyby(rs.getInt("el_szyby"));
-                wyposazenie.setKlimatyzacja(rs.getInt("klimatyzacja"));
-                wyposazenie.setKomputer_pokladowy(rs.getInt("komputer_pokladowy"));
-                wyposazenie.setPod_przed_szyba(rs.getInt("pod_przed_szyba"));
-                wyposazenie.setPod_fotele(rs.getInt("pod_fotele"));
-                wyposazenie.setRadio(rs.getInt("radio"));
-                wyposazenie.setSystem_nawigacji(rs.getInt("system_nawigacji"));
-                wyposazenie.setSkorzana_tapicerka(rs.getInt("skorzana_tapicerka"));
-                wyposazenie.setTempomat(rs.getInt("tempomat"));
-                wyposazenie.setWsp_kierownicy(rs.getInt("wsp_kierownicy"));
-                wyposazenie.setKontrola_antyposlizgowa(rs.getInt("kontrola_antyposlizgowa"));
-                wyposazenie.setAutoalarm(rs.getInt("autoalarm"));
-                wyposazenie.setBlok_skrzyni_biegow(rs.getInt("blok_skrzyni_biegow"));
-                wyposazenie.setEsp(rs.getInt("esp"));
-                wyposazenie.setImmobiliser(rs.getInt("immobiliser"));
-                wyposazenie.setPoduszki_powietrzne(rs.getInt("poduszki_powietrzne"));
-                wyposazenie.setAlufelgi(rs.getInt("alufelgi"));
-                wyposazenie.setBagaznik_na_dachu(rs.getInt("bagaznik_na_dachu"));
-                wyposazenie.setHak(rs.getInt("hak"));
-                wyposazenie.setKsenony(rs.getInt("ksenony"));
-                wyposazenie.setPrzyc_szyby(rs.getInt("przyc_szyby"));
-                wyposazenie.setSzyberdach(rs.getInt("szyberdach"));
-                wyposazeniee.add(wyposazenie);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return wyposazeniee;
-    }
-
-    public List<Wyposazenie> getDontReturnedCar() {
+    public List<Wyposazenie> getDontReturnedWyposazenie() {
         List<Wyposazenie> wyposazeniee = new ArrayList<Wyposazenie>();
         try {
             Statement statement = connection.createStatement();
@@ -349,12 +305,12 @@ public class WyposazenieDao {
         return wyposazeniee;
     }
     
-    public Wyposazenie getCarById(int carId) {
+    public Wyposazenie getWyposazenieById(int wyposazenieId) {
         Wyposazenie wyposazenie = new Wyposazenie();
         try {
             PreparedStatement preparedStatement = connection.
                     prepareStatement("select * from wyposazenie where id=?");
-            preparedStatement.setInt(1, carId);
+            preparedStatement.setInt(1, wyposazenieId);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 wyposazenie.setWyposazenieId(rs.getInt("wyposazenieId"));

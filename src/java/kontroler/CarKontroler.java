@@ -49,7 +49,7 @@ public class CarKontroler extends HttpServlet {
     }
     
     private static final String SAVE_DIR = "img/samochody2";
-     private String extractFileName(Part part) {
+    private String extractFileName(Part part) {
         String contentDisp = part.getHeader("content-disposition");
         String[] items = contentDisp.split(";");
         for (String s : items) {
