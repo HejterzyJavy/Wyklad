@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import java.sql.Blob;
@@ -16,11 +11,6 @@ import java.util.List;
 import model.Car;
 import util.DbUtil;
 
-/**
- *
- * @author Adrian
- */
-//asdasdas
 public class CarDao {
 
     private Connection connection;
@@ -49,7 +39,6 @@ public class CarDao {
             preparedStatement.setInt(11, 1);
             preparedStatement.setInt(12, car.getCenaDoba());
             preparedStatement.setBlob(13, car.getZdjecie());
-
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -58,30 +47,20 @@ public class CarDao {
     }
 
     public void deleteCar(int carId) {
-
         try {
-
             PreparedStatement preparedStatement = connection
                     .prepareStatement("delete from samochod where id=?");
-
-            // Parameters start with 1  
+ 
             preparedStatement.setInt(1, carId);
-
             preparedStatement.executeUpdate();
-
         } catch (SQLException e) {
-
             e.printStackTrace();
-
         }
     }
 
     public void update(int id, Car car) {
-
         deleteCar(id);
-
         try {
-
               PreparedStatement preparedStatement = connection
                     .prepareStatement("insert into samochod(id,marka,model,rocznik,rodzaj_paliwa,moc_silnika,przebieg,pojemnosc_silnika,skrzynia_biegow,typ_nadwozia,dostepnosc,cena_doba,zdjecie) values (?, ?, ?, ?, ?,?,?,?,?,?,?,?,?)");
 
@@ -98,127 +77,81 @@ public class CarDao {
             preparedStatement.setInt(11, 1);
             preparedStatement.setInt(12, car.getCenaDoba());
             preparedStatement.setBlob(13, car.getZdjecie());
-
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
-    
-    
-    
-       public void zmienPrzebieg(int id, Integer przebieg) throws SQLException {
-            
-       String sql = "update samochod set przebieg=? where id=?";
-            
-         try {  
+    public void zmienPrzebieg(int id, Integer przebieg) throws SQLException {
+        String sql = "update samochod set przebieg=? where id=?";
+        try {  
              PreparedStatement preparedStatement = connection
                     .prepareStatement("update samochod set przebieg=? where id=?");
 
-             preparedStatement.setInt(1, przebieg);
-
+            preparedStatement.setInt(1, przebieg);
             preparedStatement.setInt(2, id);
-           
             int rowsAffected = preparedStatement.executeUpdate();
              } catch (SQLException e) {
-
-            e.printStackTrace();
-        }
-
+                e.printStackTrace();
+            }
     }
     
-              public void przyjmijSamochod(int id) throws SQLException {
-            
-       String sql = "update samochod set przebieg=? where id=?";
-            
-         try {  
+    public void przyjmijSamochod(int id) throws SQLException {
+        String sql = "update samochod set przebieg=? where id=?";
+        try {  
              PreparedStatement preparedStatement = connection
                     .prepareStatement("update samochod set dostepnosc=? where id=?");
 
-             preparedStatement.setInt(1, 1);
-
+            preparedStatement.setInt(1, 1);
             preparedStatement.setInt(2, id);
-           
             int rowsAffected = preparedStatement.executeUpdate();
              } catch (SQLException e) {
-
-            e.printStackTrace();
-        }
-
+                e.printStackTrace();
+            }
     }
        
-       
-    
-              public void wypozyczSamochod(int id) throws SQLException {
-            
-       String sql = "update samochod set przebieg=? where id=?";
-            
-         try {  
+    public void wypozyczSamochod(int id) throws SQLException {
+        String sql = "update samochod set przebieg=? where id=?"; 
+        try {  
              PreparedStatement preparedStatement = connection
                     .prepareStatement("update samochod set dostepnosc=? where id=?");
 
-             preparedStatement.setInt(1, 0);
-
+            preparedStatement.setInt(1, 0);
             preparedStatement.setInt(2, id);
-           
             int rowsAffected = preparedStatement.executeUpdate();
              } catch (SQLException e) {
-
-            e.printStackTrace();
-        }
-
+                e.printStackTrace();
+            }
     }
-    
-    
     
     public void updateCar(Car car) {
-
         try {
-
             PreparedStatement preparedStatement = connection
                     .prepareStatement("update samochod set marka=?, model=?, rocznik=?, rodzaj_paliwa=?,moc_silnika=?, przebieg=?, pojemnosc_silnika=?, skrzynia_biegow=?,typ_nadwozia=?,sciezka_zdjecie=?,dostepnosc=?,cena_doba=?"
                             + "where id=?");
-
-                // Parameters start with 1  
+ 
             preparedStatement.setString(1, car.getMarka());
-
             preparedStatement.setString(2, car.getModel());
-
             preparedStatement.setInt(3, car.getRocznik());
-
             preparedStatement.setString(4, car.getRodzajPaliwa());
-
             preparedStatement.setInt(5, car.getMocSilnika());
-
             preparedStatement.setInt(6, car.getPrzebieg());
-
             preparedStatement.setString(7, car.getPojemnoscSilnika());
-
             preparedStatement.setString(8, car.getSkrzyniaBiegow());
-
             preparedStatement.setString(9, car.getTypNadwozia());
-
             preparedStatement.setInt(10, car.getDostepnosc());
-
             preparedStatement.setInt(11, car.getCenaDoba());
-
             preparedStatement.setInt(12, car.getId());
-
             preparedStatement.executeUpdate();
-
         } catch (SQLException e) {
-
             e.printStackTrace();
         }
     }
 
     public Integer getLastId() {
-
         Integer lastId = new Integer(0);
-        //sdfsd
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("select * from samochod");
@@ -234,17 +167,11 @@ public class CarDao {
     }
 
     public List<Car> getAllCars() {
-
         List<Car> cars = new ArrayList<Car>();
-        //sdfsd
         try {
-
             Statement statement = connection.createStatement();
-
             ResultSet rs = statement.executeQuery("select * from samochod");
-
             while (rs.next()) {
-
                 Car car = new Car();
                 car.setID(rs.getInt("id"));
                 car.setMarka(rs.getString("marka"));
@@ -259,23 +186,17 @@ public class CarDao {
                 car.setDostepnosc(rs.getInt("dostepnosc"));
                 car.setCenaDoba(rs.getInt("cena_doba"));
                 //car.setZdjecie(rs.ge);
-                        
                 //car.setZdjecie(rs.getB);
                 car.setTmp(car.getId());
                 cars.add(car);
             }
-
         } catch (SQLException e) {
-
             e.printStackTrace();
-
         }
         return cars;
     }
     
-    
     public String getMarki() {
-
         String marki = new String();
         try {
             Statement statement = connection.createStatement();
@@ -290,17 +211,11 @@ public class CarDao {
     }
 
     public List<Car> getCarByBrand(String carBrand) {
-
         List<Car> cars = new ArrayList<Car>();
-
         try {
-
             Statement statement = connection.createStatement();
-
             ResultSet rs = statement.executeQuery("select * from samochod");
-
             while (rs.next()) {
-
                 Car car = new Car();
                 car.setID(rs.getInt("id"));
                 car.setMarka(rs.getString("marka"));
@@ -317,27 +232,18 @@ public class CarDao {
                     cars.add(car);
                 }
             }
-
         } catch (SQLException e) {
-
             e.printStackTrace();
-
         }
         return cars;
     }
 
     public List<Car> getCarByYearInterval(Integer min, Integer max) {
-
         List<Car> cars = new ArrayList<Car>();
-
         try {
-
             Statement statement = connection.createStatement();
-
             ResultSet rs = statement.executeQuery("select * from samochod");
-
             while (rs.next()) {
-
                 Car car = new Car();
                 car.setID(rs.getInt("id"));
                 car.setMarka(rs.getString("marka"));
@@ -354,28 +260,18 @@ public class CarDao {
                     cars.add(car);
                 }
             }
-
         } catch (SQLException e) {
-
             e.printStackTrace();
-
         }
         return cars;
     }
 
-    
-        public List<Car> getDontReturnedCar() {
-
+    public List<Car> getDontReturnedCar() {
         List<Car> cars = new ArrayList<Car>();
-
         try {
-
             Statement statement = connection.createStatement();
-
             ResultSet rs = statement.executeQuery("select * from samochod");
-
             while (rs.next()) {
-
                 Car car = new Car();
                 car.setID(rs.getInt("id"));
                 car.setMarka(rs.getString("marka"));
@@ -395,32 +291,20 @@ public class CarDao {
             }
 
         } catch (SQLException e) {
-
             e.printStackTrace();
-
         }
         return cars;
     }
     
-    
-    
-    
-    
     public Car getCarById(int carId) {
-
         Car car = new Car();
-
         try {
-
             PreparedStatement preparedStatement = connection.
                     prepareStatement("select * from samochod where id=?");
 
             preparedStatement.setInt(1, carId);
-
             ResultSet rs = preparedStatement.executeQuery();
-
             if (rs.next()) {
-
                 car.setID(rs.getInt("id"));
                 car.setMarka(rs.getString("marka"));
                 car.setModel(rs.getString("model"));
@@ -433,52 +317,28 @@ public class CarDao {
                 car.setTypNadwozia(rs.getString("typ_nadwozia"));
                 car.setDostepnosc(rs.getInt("dostepnosc"));
                 car.setCenaDoba(rs.getInt("cena_doba"));
-                
-                /////////////
-                
-                
-                
-                
             }
-
         } catch (SQLException e) {
-
             e.printStackTrace();
-
         }
-
         return car;
     }
     
     public Blob getCarImage(int carId) {
-
         Car car = new Car();
         Blob blob = null;
-
         try {
-
             PreparedStatement preparedStatement = connection.
                     prepareStatement("select * from samochod where id=?");
 
             preparedStatement.setInt(1, carId);
-
             ResultSet rs = preparedStatement.executeQuery();
-
             if (rs.next()) {
                 blob = rs.getBlob("zdjecie");
             }
-
         } catch (SQLException e) {
-
             e.printStackTrace();
-
         }
-
         return blob;
     }
-    
-    
-    
-    
-
 }

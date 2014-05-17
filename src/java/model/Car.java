@@ -1,17 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package model;
 
 import java.io.InputStream;
 
-/**
- *
- * @author Adrian
- */
 public class Car {
     
     private Integer carId;
@@ -29,8 +19,6 @@ public class Car {
     private InputStream zdjecie;
     private String tmp;
     
-    
-    
     public void setZdjecie(InputStream zdjecie)
     {
         this.zdjecie=zdjecie;
@@ -40,7 +28,6 @@ public class Car {
     {
         return this.zdjecie;
     }
-    
     
     public Integer getId()
     {
@@ -52,7 +39,6 @@ public class Car {
         this.carId=id;
     }
     
-    
     public String getTmp()
     {
         return tmp;
@@ -62,7 +48,6 @@ public class Car {
     {
         this.tmp=id.toString();
     }
-    
     
     public String getMarka()
     {
@@ -79,12 +64,12 @@ public class Car {
         return model;
     }
     
-       public void setModel(String model)
+    public void setModel(String model)
     {
         this.model=model;
     }
        
-        public Integer getRocznik()
+    public Integer getRocznik()
     {
         return rocznik;
     } 
@@ -157,7 +142,7 @@ public class Car {
     }
     
     
-     public Integer getDostepnosc()
+    public Integer getDostepnosc()
     {
         return this.dostepnosc;
     }
@@ -185,7 +170,4 @@ public class Car {
                 + przebieg + ",pojemnoscSilnika= "+pojemnoscSilnika+"cena za dobe="+cenaDoba+"]";
 
     }*/
-    
-    
-    
 }

@@ -2,28 +2,21 @@ package kontroler;
 
 import dao.CarDao;
 import dao.RentDao;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-import javax.sql.rowset.serial.SerialBlob;
 import model.Car;
 import model.Rent;
 /*import org.apache.commons.fileupload.FileItem;
@@ -35,38 +28,24 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 @MultipartConfig
 
-                                       // specifies servlet takes multipart/form-data
+// specifies servlet takes multipart/form-data
 public class CarKontroler extends HttpServlet {
-    
-
     private static final long serialVersionUID = 1L;
-
     private static String INSERT_OR_EDIT = "/user.jsp";
-
     private static String LIST_USER = "/listUser.jsp";
-
     private static String INDEX = "/index.html";
-
     private static String ZALOGOWANY = "/Zalogowany.jsp";
-
     private static String OFERTA = "/Oferta.jsp";
-
     private static String DODAWANIE = "/dodajSamochod.jsp";
-
     private static String WYPOZYCZANIE = "/Wypozyczanie.jsp";
-
     private static String panelPracownika = "/panelPracownika.jsp";
 
     private CarDao dao;
-
     private boolean czyZalogowany = false;
 
     public CarKontroler() {
-
         super();
-
         dao = new CarDao();
-
     }
     
     private static final String SAVE_DIR = "img/samochody2";
@@ -84,18 +63,13 @@ public class CarKontroler extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String forward = "";
-
         RequestDispatcher view = request.getRequestDispatcher(forward);
-
         view.forward(request, response);
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         Car car = new Car();
         List<Car> cars = new ArrayList<Car>();
         RequestDispatcher view = request.getRequestDispatcher("/panelPracownika.jsp");
@@ -120,28 +94,21 @@ public class CarKontroler extends HttpServlet {
             int x;
   
            car.setZdjecie(isr);
-       
             dao.addCar(car);
-
         }
-
         String dodajSamochod = request.getParameter("dodaj");
         if (dodajSamochod != null) {
             view = request.getRequestDispatcher(DODAWANIE);
             //  view.forward(request, response); 
         }
 
-        
-         String wypozyczenie = request.getParameter("wypozyczenie");
-        if(wypozyczenie !=null)
-        {
-                     cars = dao.getAllCars();
-                     request.setAttribute("Cars", cars);
-                     view = request.getRequestDispatcher("/Samochody.jsp");
+        String wypozyczenie = request.getParameter("wypozyczenie");
+        if(wypozyczenie !=null) {
+            cars = dao.getAllCars();
+            request.setAttribute("Cars", cars);
+            view = request.getRequestDispatcher("/Samochody.jsp");
         }
          
-         
-        
         String usunSamochod = request.getParameter("usun");
         if (usunSamochod != null) {
             cars = dao.getAllCars();
@@ -195,9 +162,7 @@ public class CarKontroler extends HttpServlet {
             test = dao.getAllCars();
 
             for (int i = 0; i < test.size(); i++) {
-
                 przebieg = request.getParameter(test.get(i).getId().toString());
-
                 if (przebieg != null) {
                     if (Integer.parseInt(przebieg) != test.get(i).getPrzebieg()) {
 
@@ -207,8 +172,6 @@ public class CarKontroler extends HttpServlet {
                         } catch (SQLException ex) {
                             Logger.getLogger(CarKontroler.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                      
-
                     }
                 }
             }
@@ -230,24 +193,17 @@ public class CarKontroler extends HttpServlet {
             String ktoZalogowany=new String();
             String idZalogowany=new String();
             HttpSession session = request.getSession(true);
-            try 
-            {
-            czyZalogowany = session.getAttribute("czyZalogowany1").toString();
-            idZalogowany = session.getAttribute("jakieId").toString();
+            try {
+                czyZalogowany = session.getAttribute("czyZalogowany1").toString();
+                idZalogowany = session.getAttribute("jakieId").toString();
+            } catch(NullPointerException e) {
+                czyZalogowany="0";
+                idZalogowany="0";
             }
-            catch(NullPointerException e)
-            {
-             czyZalogowany="0";
-             idZalogowany="0";
-            }
-            
-             try 
-            {
-            ktoZalogowany = session.getAttribute("ktoZalogowany").toString();
-            }
-            catch(NullPointerException e)
-            {
-             ktoZalogowany="-1";
+            try {
+                ktoZalogowany = session.getAttribute("ktoZalogowany").toString();
+            } catch(NullPointerException e) {
+                ktoZalogowany="-1";
             }
             
             cars = dao.getAllCars();
@@ -275,18 +231,12 @@ public class CarKontroler extends HttpServlet {
                  wyswietlPrzyjmij=1;
             
             request.setAttribute("wyswietlPrzyjmij", wyswietlPrzyjmij);
-            
-           
-            
-                
             request.setAttribute("przyjmij", cars);
             view = request.getRequestDispatcher(panelPracownika);
         }
         
-        
         String zatwierdzPrzyjmij = request.getParameter("zatwierdzPrzyjmij");
         if (zatwierdzPrzyjmij != null) {
-            
             List<Car> test = new ArrayList<Car>();
             Car tmp = new Car();
             String zwrocony, idSamochod;
@@ -296,9 +246,7 @@ public class CarKontroler extends HttpServlet {
             RentDao rentdao=new RentDao();
             
             for (int i = 0; i < test.size(); i++) {
-
                 zwrocony = request.getParameter(test.get(i).getId().toString());
-
                 if (zwrocony != null) {
                         try {
                             dao.przyjmijSamochod(Integer.parseInt(zwrocony));
@@ -307,43 +255,29 @@ public class CarKontroler extends HttpServlet {
                         } catch (SQLException ex) {
                             Logger.getLogger(CarKontroler.class.getName()).log(Level.SEVERE, null, ex);
                         }
-             
                 }
             }
-            
         }
-        
-        
-        
         
         String wyswietlMarke = request.getParameter("marka");
         if (wyswietlMarke != null) {
             String marka = request.getParameter("pole");
-  
-          
-            
             String czyZalogowany=new String();
             String ktoZalogowany=new String();
             String idZalogowany=new String();
             HttpSession session = request.getSession(true);
-            try 
-            {
-            czyZalogowany = session.getAttribute("czyZalogowany1").toString();
-            idZalogowany = session.getAttribute("jakieId").toString();
-            }
-            catch(NullPointerException e)
-            {
-             czyZalogowany="0";
-             idZalogowany="0";
+            try {
+                czyZalogowany = session.getAttribute("czyZalogowany1").toString();
+                idZalogowany = session.getAttribute("jakieId").toString();
+            } catch(NullPointerException e) {
+                czyZalogowany="0";
+                idZalogowany="0";
             }
             
-             try 
-            {
-            ktoZalogowany = session.getAttribute("ktoZalogowany").toString();
-            }
-            catch(NullPointerException e)
-            {
-             ktoZalogowany="-1";
+            try {
+                ktoZalogowany = session.getAttribute("ktoZalogowany").toString();
+            } catch(NullPointerException e) {
+                ktoZalogowany="-1";
             }
       
             cars = dao.getCarByBrand(marka);
@@ -353,9 +287,6 @@ public class CarKontroler extends HttpServlet {
             request.setAttribute("idZalogowany", idZalogowany);
             request.setAttribute("wyslanoEmail", 0);
             view = request.getRequestDispatcher("/Samochody.jsp");
-            
-            
-            
         }
         String wyswietlRok = request.getParameter("rocznik");
         if (wyswietlRok != null) {
@@ -363,33 +294,23 @@ public class CarKontroler extends HttpServlet {
             Integer rokDo = Integer.parseInt(request.getParameter("rokDo"));
             cars = dao.getCarByYearInterval(rokOd, rokDo);
             
-            
-            
             String czyZalogowany=new String();
             String ktoZalogowany=new String();
             String idZalogowany=new String();
             HttpSession session = request.getSession(true);
-            try 
-            {
-            czyZalogowany = session.getAttribute("czyZalogowany1").toString();
-            idZalogowany = session.getAttribute("jakieId").toString();
+            try {
+                czyZalogowany = session.getAttribute("czyZalogowany1").toString();
+                idZalogowany = session.getAttribute("jakieId").toString();
+            } catch(NullPointerException e) {
+                czyZalogowany="0";
+                idZalogowany="0";
             }
-            catch(NullPointerException e)
-            {
-             czyZalogowany="0";
-             idZalogowany="0";
-            }
-            
-             try 
-            {
-            ktoZalogowany = session.getAttribute("ktoZalogowany").toString();
-            }
-            catch(NullPointerException e)
-            {
-             ktoZalogowany="-1";
+            try {
+                ktoZalogowany = session.getAttribute("ktoZalogowany").toString();
+            } catch(NullPointerException e) {
+                ktoZalogowany="-1";
             }
 
-            
             request.setAttribute("Cars", cars);
             request.setAttribute("czyZalogowany", czyZalogowany);
             request.setAttribute("ktoZalogowany", ktoZalogowany);
@@ -397,9 +318,7 @@ public class CarKontroler extends HttpServlet {
             request.setAttribute("wyslanoEmail", 0);
             view = request.getRequestDispatcher("/Samochody.jsp");
         }
-
         view.forward(request, response);
-
     }
 
 }
