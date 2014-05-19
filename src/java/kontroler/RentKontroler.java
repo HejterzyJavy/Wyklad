@@ -373,7 +373,7 @@ public class RentKontroler extends HttpServlet {
             
             request.setAttribute("wyswietlEdycje", 0);
             request.setAttribute("wyswietlUsun", 0);
-            request.setAttribute("wyswietlanieAkceptacja", 1);
+           // request.setAttribute("wyswietlanieAkceptacja", 1);
             request.setAttribute("wyswietlanieAkceptacja", wyswietlZatwierdzAkceptacja);
             request.setAttribute("Rents", rents);
             request.setAttribute("Cars2", cars);

@@ -96,7 +96,7 @@
           <td>&nbsp &nbsp ${rents.getTmpMarka()}</td><td>&nbsp &nbsp ${rents.getTmpModel()}</td>
           <td>&nbsp &nbsp ${rents.getDoZaplaty()}</td><td>&nbsp &nbsp akceptuje<input type="radio" value="zaakceptowane" name="akc${rents.getIdWypozyczenie()}"</td>
           <td>&nbsp &nbsp nie akceptuje<input type="radio" value="odrzucone" name="akc${rents.getIdWypozyczenie()}"</td>
-           <td><input type="text" value="${rents.getOpis()}" name="${rents.getIdWypozyczenie()}"></td>
+          <td><input type="text" value="${rents.getOpis()}" name="${rents.getIdWypozyczenie()}"></td>
           </tr>
           <c:set var="wyswietlanieAkceptacja" scope="session" value="${wyswietlanieAkceptacja}"/>
           </c:forEach>
