@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.Car;
+import model.Oplaty;
+import model.Wyposazenie;
 import util.DbUtil;
 
 public class CarDao {
@@ -19,7 +21,7 @@ public class CarDao {
         connection = DbUtil.getConnection();
     }
 
-    public void addCar(Car car) {
+    public void addCar(Car car,Wyposazenie wyposazenie,Oplaty oplaty) {
         Integer id = getLastId();
         try {
 

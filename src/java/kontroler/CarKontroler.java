@@ -18,7 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import model.Car;
+import model.Oplaty;
 import model.Rent;
+import model.Wyposazenie;
 /*import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
@@ -71,6 +73,9 @@ public class CarKontroler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Car car = new Car();
+        Wyposazenie wyposazenie=new Wyposazenie();
+        Oplaty oplaty=new Oplaty();
+        
         List<Car> cars = new ArrayList<Car>();
         RequestDispatcher view = request.getRequestDispatcher("/panelPracownika.jsp");
        
@@ -88,13 +93,13 @@ public class CarKontroler extends HttpServlet {
             car.setTypNadwozia(request.getParameter("typNadwozia"));
             car.setCenaDoba(Integer.parseInt(request.getParameter("cenaDoba")));
             final Part filePart = request.getPart("pliczek");
-            
+            wyposazenie.setAlufelgi(request.getParameter("immobiliser"));
             String daneZPliku="";
             InputStream isr = filePart.getInputStream();
             int x;
   
            car.setZdjecie(isr);
-            dao.addCar(car);
+           dao.addCar(car,wyposazenie,oplaty);
         }
         String dodajSamochod = request.getParameter("dodaj");
         if (dodajSamochod != null) {

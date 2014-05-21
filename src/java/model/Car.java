@@ -5,6 +5,8 @@ import java.io.InputStream;
 public class Car {
     
     private Integer carId;
+    private Integer idWyposazenie;
+    private Integer idOplaty;
     private String marka;
     private String model;
     private Integer rocznik;
@@ -18,6 +20,25 @@ public class Car {
     private Integer cenaDoba;
     private InputStream zdjecie;
     private String tmp;
+    
+    
+    
+   public void setIdWyposazenie(Integer idWyposazenie) {
+        this.idWyposazenie = idWyposazenie;
+    }
+
+    public void setIdOplaty(Integer idOplaty) {
+        this.idOplaty = idOplaty;
+    }
+    
+    
+    public Integer getIdWyposazenie() {
+        return idWyposazenie;
+    }
+
+    public Integer getIdOplaty() {
+        return idOplaty;
+    }
     
     public void setZdjecie(InputStream zdjecie)
     {
