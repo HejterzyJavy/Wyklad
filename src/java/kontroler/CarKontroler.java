@@ -93,7 +93,23 @@ public class CarKontroler extends HttpServlet {
             car.setTypNadwozia(request.getParameter("typNadwozia"));
             car.setCenaDoba(Integer.parseInt(request.getParameter("cenaDoba")));
             final Part filePart = request.getPart("pliczek");
-            wyposazenie.setAlufelgi(request.getParameter("immobiliser"));
+            wyposazenie.setNaped4x4("naped");
+           /* wyposazenie.setCentralny_zamek(INSERT_OR_EDIT);
+            wyposazenie.setCzujnik_deszczu();
+            wyposazenie.setCzujnik_deszczu();
+            wyposazenie.setCzujnik_parkowania(panelPracownika);
+            wyposazenie.setEl_lusterka(LIST_USER);
+            wyposazenie.setEl_szyby(INDEX);
+            wyposazenie.setKlimatyzacja(LIST_USER);
+            wyposazenie.setKomputer_pokladowy(zatwierdzSamochod);
+            wyposazenie.setPod_przed_szyba(panelPracownika);
+            wyposazenie.setPod_fotele(LIST_USER);
+            wyposazenie.setRadio(INDEX);
+            wyposazenie.setSystem_nawigacji(panelPracownika);
+            wyposazenie.setSkorzana_tapicerka(panelPracownika);
+            wyposazenie.setTempomat(INDEX);
+            */
+            
             String daneZPliku="";
             InputStream isr = filePart.getInputStream();
             int x;
