@@ -397,7 +397,28 @@ public class CarKontroler extends HttpServlet {
             request.setAttribute("wyslanoEmail", 0);
             view = request.getRequestDispatcher("/Samochody.jsp");
         }
+        
+        
+          String wyswietlRozliczenia = request.getParameter("rozliczenia");
+        if(wyswietlRozliczenia!=null)
+        {
+            List<Oplaty> listaOplat = new ArrayList<Oplaty>();
+            request.setAttribute("wyswietlEdycje", 0);
+            request.setAttribute("wyswietlUsun", 0);
+            request.setAttribute("wyswietlanieAkceptacja", 0);
+            request.setAttribute("wyswietlanieRozliczenia", 1);
+            listaOplat=oplatydao.getAllFee();
+            request.setAttribute("listaOplat", listaOplat);
+            view = request.getRequestDispatcher(panelPracownika);
+        }
+        
+        
+        
         view.forward(request, response);
     }
 
+  
+    
+    
+    
 }

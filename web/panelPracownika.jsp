@@ -82,6 +82,12 @@
              <br>
              <br>
              <input type="submit" value="przyjmij samochody"  name="przyjmijSamochody" style="height: 45px; width: 300px">
+             <br>
+             <br>
+             <input type="submit" value="przedluz OC/AC"  name="przedluzenie" style="height: 45px; width: 300px">
+             <br>
+             <br>
+             <input type="submit" value="okresy rozliczeniowe"  name="rozliczenia" style="height: 45px; width: 300px">
         </form>
                <br>
                <br>                     
@@ -174,9 +180,26 @@
            
         </form>
         
+           
+          
+        <form action="CarKontroler" method="POST">    
+            <c:set var="wyswietlanieRozliczenia" scope="session" value="${wyswietlanieRozliczenia}"/>
+              
+          <table align="center" >
+          <c:forEach var="listaOplat" items="${listaOplat}" >
+          <tr>
+          <td>${listaOplat.getIdOplaty()}</td><td>${listaOplat.getRozpoczecieOc}</td><td>${listaOplat.getZakonczenieOc}</td>
+          <td>${listaOplat.getRozpoczecieAc}</td><td>${listaOplat.getZakonczenieAc}</td>
+          </tr>
+          </c:forEach>
+          </table>
+         
+            
+         </form>
         
-        
-        
+          
+          
+          
         <form action="CarKontroler" method="POST">    
         <table align="center" >
           <c:forEach var="cars" items="${Cars}" >
