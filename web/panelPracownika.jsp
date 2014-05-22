@@ -184,17 +184,16 @@
           
         <form action="CarKontroler" method="POST">    
             <c:set var="wyswietlanieRozliczenia" scope="session" value="${wyswietlanieRozliczenia}"/>
-              
+            <br>
           <table align="center" >
           <c:forEach var="listaOplat" items="${listaOplat}" >
           <tr>
-          <td>${listaOplat.getIdOplaty()}</td><td>${listaOplat.getRozpoczecieOc}</td><td>${listaOplat.getZakonczenieOc}</td>
-          <td>${listaOplat.getRozpoczecieAc}</td><td>${listaOplat.getZakonczenieAc}</td>
+          <td>&nbsp &nbsp${listaOplat.getIdOplaty()}</td><td>&nbsp &nbsp${listaOplat.getRozpoczecieOc()}</td><td>&nbsp &nbsp${listaOplat.getZakonczenieOc()}</td>
+          <td>&nbsp &nbsp${listaOplat.getRozpoczecieAc()}</td><td>&nbsp &nbsp${listaOplat.getZakonczenieAc()}</td>
           </tr>
           </c:forEach>
           </table>
-         
-            
+
          </form>
         
           
