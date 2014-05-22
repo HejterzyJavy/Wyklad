@@ -1,11 +1,17 @@
 package kontroler;
 
 import dao.CarDao;
+import dao.OplatyDao;
 import dao.RentDao;
+import dao.WyposazenieDao;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,10 +50,14 @@ public class CarKontroler extends HttpServlet {
 
     private CarDao dao;
     private boolean czyZalogowany = false;
-
+    private OplatyDao oplatydao;
+    private WyposazenieDao wyposazeniedao;
+    
     public CarKontroler() {
         super();
         dao = new CarDao();
+        oplatydao=new OplatyDao();
+        wyposazeniedao=new WyposazenieDao();
     }
     
     private static final String SAVE_DIR = "img/samochody2";
@@ -82,6 +92,14 @@ public class CarKontroler extends HttpServlet {
         String zatwierdzSamochod = request.getParameter("zatwierdzSamochod");
         if (zatwierdzSamochod != null) {
 
+            DateFormat dateFrm = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date myDate = new java.util.Date();
+            java.sql.Date dataRozpoczeciaOc;
+            java.sql.Date dataZakonczeniaOc;
+            java.sql.Date dataRozpoczeciaAc;
+            java.sql.Date dataZakonczeniaAc;
+           
+            car.setRejestracja("rejestracja");
             car.setMarka(request.getParameter("firma"));
             car.setModel(request.getParameter("model"));
             car.setRocznik(Integer.parseInt(request.getParameter("rokProdukcji")));
@@ -122,12 +140,40 @@ public class CarKontroler extends HttpServlet {
             wyposazenie.setPrzyc_szyby(request.getParameter("przyc_szyby"));
             wyposazenie.setSzyberdach(request.getParameter("szyberdach"));
             
+            
+     try {
+           myDate = dateFrm.parse(request.getParameter("rozpoczecieOc"));
+           dataRozpoczeciaOc = new java.sql.Date(myDate.getTime());
+           myDate = dateFrm.parse(request.getParameter("ZakonczenieOc"));
+           dataZakonczeniaOc = new java.sql.Date(myDate.getTime());
+           
+           myDate = dateFrm.parse(request.getParameter("rozpoczecieAc"));
+           dataRozpoczeciaAc = new java.sql.Date(myDate.getTime());
+           myDate = dateFrm.parse(request.getParameter("ZakonczenieAc"));
+           dataZakonczeniaAc = new java.sql.Date(myDate.getTime());
+
+        }       catch (Exception e)
+               {
+               dataRozpoczeciaOc = null;
+               dataZakonczeniaOc = null;
+               dataRozpoczeciaAc = null;
+               dataZakonczeniaAc = null;
+               }
+            
+            
+            oplaty.setRozpoczecieOc(dataRozpoczeciaOc);
+            oplaty.setZakonczenieOc(dataZakonczeniaOc);
+            oplaty.setRozpoczecieAc(dataRozpoczeciaAc);
+            oplaty.setZakonczenieAc(dataZakonczeniaAc);
+            
             String daneZPliku="";
             InputStream isr = filePart.getInputStream();
             int x;
   
            car.setZdjecie(isr);
            dao.addCar(car,wyposazenie,oplaty);
+           wyposazeniedao.addWyposazenie(wyposazenie);
+           oplatydao.addFee(oplaty);
         }
         String dodajSamochod = request.getParameter("dodaj");
         if (dodajSamochod != null) {

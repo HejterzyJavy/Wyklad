@@ -7,6 +7,7 @@ public class Car {
     private Integer carId;
     private Integer idWyposazenie;
     private Integer idOplaty;
+    private String rejestracja;
     private String marka;
     private String model;
     private Integer rocznik;
@@ -39,6 +40,15 @@ public class Car {
     public Integer getIdOplaty() {
         return idOplaty;
     }
+    
+        public String getRejestracja() {
+        return rejestracja;
+    }
+
+    public void setRejestracja(String rejestracja) {
+        this.rejestracja = rejestracja;
+    }
+    
     
     public void setZdjecie(InputStream zdjecie)
     {

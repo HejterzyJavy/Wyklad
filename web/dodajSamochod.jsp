@@ -15,6 +15,8 @@
         <div align="center">
             <form  action="CarKontroler" method="POST" enctype="multipart/form-data">
                 <div>
+                 <h3>Rejestracja: <input type="text" name="rejestracja"></h3>
+                    
                 <h3>marka samochodu: <input type="text"  name="firma"></h3>
                 
                 </div>
@@ -38,6 +40,8 @@
                 <h3>Typ Nadwozia: <input type="text" name="typNadwozia"></h3>
                 
                 <h3>Cena za dobe: <input type="text" name="cenaDoba"></h3>
+                
+                
                 <br>
             
                 <input type="checkbox" name="naped" value="4x4">Naped 4 x 4

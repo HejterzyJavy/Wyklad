@@ -16,9 +16,13 @@ import util.DbUtil;
 public class CarDao {
 
     private Connection connection;
+    private OplatyDao oplatydao;
+    private WyposazenieDao wyposazeniedao;
 
     public CarDao() {
         connection = DbUtil.getConnection();
+        oplatydao=new OplatyDao();
+        wyposazeniedao=new WyposazenieDao();
     }
 
     public void addCar(Car car,Wyposazenie wyposazenie,Oplaty oplaty) {
@@ -26,21 +30,24 @@ public class CarDao {
         try {
 
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("insert into samochod(id,marka,model,rocznik,rodzaj_paliwa,moc_silnika,przebieg,pojemnosc_silnika,skrzynia_biegow,typ_nadwozia,dostepnosc,cena_doba,zdjecie) values (?, ?, ?, ?, ?,?,?,?,?,?,?,?,?)");
+                    .prepareStatement("insert into samochod(id,id_wyposazenie,id_oplaty,rejestracja,marka,model,rocznik,rodzaj_paliwa,moc_silnika,przebieg,pojemnosc_silnika,skrzynia_biegow,typ_nadwozia,dostepnosc,cena_doba,zdjecie) values (?, ?, ?, ?, ?,?,?,?,?,?,?,?,?)");
 
             preparedStatement.setInt(1, id);
-            preparedStatement.setString(2, car.getMarka());
-            preparedStatement.setString(3, car.getModel());
-            preparedStatement.setInt(4, car.getRocznik());
-            preparedStatement.setString(5, car.getRodzajPaliwa());
-            preparedStatement.setInt(6, car.getMocSilnika());
-            preparedStatement.setInt(7, car.getPrzebieg());
-            preparedStatement.setString(8, car.getPojemnoscSilnika());
-            preparedStatement.setString(9, car.getSkrzyniaBiegow());
-            preparedStatement.setString(10, car.getTypNadwozia());
-            preparedStatement.setInt(11, 1);
-            preparedStatement.setInt(12, car.getCenaDoba());
-            preparedStatement.setBlob(13, car.getZdjecie());
+            preparedStatement.setInt(2, wyposazeniedao.getLastId());
+            preparedStatement.setInt(3, oplatydao.getLastId());
+            preparedStatement.setString(4, car.getRejestracja());
+            preparedStatement.setString(5, car.getMarka());
+            preparedStatement.setString(6, car.getModel());
+            preparedStatement.setInt(7, car.getRocznik());
+            preparedStatement.setString(8, car.getRodzajPaliwa());
+            preparedStatement.setInt(9, car.getMocSilnika());
+            preparedStatement.setInt(10, car.getPrzebieg());
+            preparedStatement.setString(11, car.getPojemnoscSilnika());
+            preparedStatement.setString(12, car.getSkrzyniaBiegow());
+            preparedStatement.setString(13, car.getTypNadwozia());
+            preparedStatement.setInt(14, 1);
+            preparedStatement.setInt(15, car.getCenaDoba());
+            preparedStatement.setBlob(16, car.getZdjecie());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
