@@ -284,7 +284,7 @@ public class WyposazenieDao {
     public void deleteWyposazenie(int wyposazenieId) {
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("delete from wyposazenie where id=?");
+                    .prepareStatement("delete from wyposazenie where wyposazenieId=?");
 
             preparedStatement.setInt(1, wyposazenieId);
             preparedStatement.executeUpdate();

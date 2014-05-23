@@ -20,7 +20,35 @@ public class Oplaty {
     private Date zakonczenieOc;
     private Date rozpoczecieAc;
     private Date zakonczenieAc;
-    
+    private String tmpMarkaSamochodu;
+    private String tmpModelSamochodu;
+    private String tmpRejestracjaSamochodu;
+
+    public String getTmpMarkaSamochodu() {
+        return tmpMarkaSamochodu;
+    }
+
+    public void setTmpMarkaSamochodu(String tmpMarkaSamochodu) {
+        this.tmpMarkaSamochodu = tmpMarkaSamochodu;
+    }
+
+    public String getTmpModelSamochodu() {
+        return tmpModelSamochodu;
+    }
+
+    public void setTmpModelSamochodu(String tmpModelSamochodu) {
+        this.tmpModelSamochodu = tmpModelSamochodu;
+    }
+
+    public String getTmpRejestracjaSamochodu() {
+        return tmpRejestracjaSamochodu;
+    }
+
+    public void setTmpRejestracjaSamochodu(String tmpRejestracjaSamochodu) {
+        this.tmpRejestracjaSamochodu = tmpRejestracjaSamochodu;
+    }
+
+  
     
     public Integer getIdOplaty() {
         return idOplaty;

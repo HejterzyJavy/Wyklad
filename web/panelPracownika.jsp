@@ -151,15 +151,7 @@
            
         </form>
           
-          
-          
-          
-          
-          
-          
-        
-        
-        
+ 
         <form action="CarKontroler" method="POST">    
         <table align="center" >
           <c:forEach var="cars" items="${Edit}" >
@@ -182,14 +174,26 @@
         
            
           
-        <form action="CarKontroler" method="POST">    
+        <form action="CarKontroler" method="POST">
+            <c:set var="wyswietlNaglowki" scope="session" value="${1}"/>
             <c:set var="wyswietlanieRozliczenia" scope="session" value="${wyswietlanieRozliczenia}"/>
             <br>
-          <table align="center" >
-          <c:forEach var="listaOplat" items="${listaOplat}" >
+          <table align="center" border="3" >
+            
+          <c:forEach var="listaOplat"  items="${listaOplat}"  >
+          
+           <c:choose>
+              <c:when test="${wyswietlNaglowki > 0}">
+                <tr><td> &nbsp ID Oplaty </td> <td> &nbsp Rozpoczecie OC </td> <td> &nbsp Zakonczenie OC </td><td> &nbsp Rozpoczecie AC </td>
+                  <td> &nbsp Zakonczenie AC </td><td> &nbsp&nbsp Marka </td><td> &nbsp&nbsp Model </td><td> &nbsp&nbsp Rejestracja </td></tr>
+                  <c:set var="wyswietlNaglowki" scope="session" value="${0}"/>
+              </c:when>
+         </c:choose>
+              
           <tr>
           <td>&nbsp &nbsp${listaOplat.getIdOplaty()}</td><td>&nbsp &nbsp${listaOplat.getRozpoczecieOc()}</td><td>&nbsp &nbsp${listaOplat.getZakonczenieOc()}</td>
-          <td>&nbsp &nbsp${listaOplat.getRozpoczecieAc()}</td><td>&nbsp &nbsp${listaOplat.getZakonczenieAc()}</td>
+          <td>&nbsp &nbsp${listaOplat.getRozpoczecieAc()}</td>  <td>&nbsp &nbsp${listaOplat.getZakonczenieAc()}</td><td>&nbsp &nbsp${listaOplat.getTmpMarkaSamochodu()}</td>
+          <td>&nbsp &nbsp${listaOplat.getTmpModelSamochodu()}</td><td>&nbsp &nbsp${listaOplat.getTmpRejestracjaSamochodu()}</td>
           </tr>
           </c:forEach>
           </table>

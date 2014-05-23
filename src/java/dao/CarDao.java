@@ -184,6 +184,9 @@ public class CarDao {
             while (rs.next()) {
                 Car car = new Car();
                 car.setID(rs.getInt("id"));
+                car.setIdOplaty(rs.getInt("id_oplaty"));
+                car.setIdWyposazenie(rs.getInt("id_wyposazenie"));
+                car.setRejestracja(rs.getString("rejestracja"));
                 car.setMarka(rs.getString("marka"));
                 car.setModel(rs.getString("model"));
                 car.setRocznik(rs.getInt("rocznik"));
@@ -333,6 +336,44 @@ public class CarDao {
         }
         return car;
     }
+    
+        public List<Car> getListCarById(List<Oplaty> listaOplat ) {
+        List<Car> cars = new ArrayList<Car>();
+        Car car=new Car();
+        
+        for (int i=0;i<cars.size();i++)
+        {
+        try {
+            PreparedStatement preparedStatement = connection.
+                    prepareStatement("select * from samochod where id_oplaty=?");
+
+            preparedStatement.setInt(1, listaOplat.get(i).getIdOplaty());
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                car.setID(rs.getInt("id"));
+                car.setMarka(rs.getString("marka"));
+                car.setModel(rs.getString("model"));
+                car.setRocznik(rs.getInt("rocznik"));
+                car.setRodzajPaliwa(rs.getString("rodzaj_paliwa"));
+                car.setMocSilnika(rs.getInt("moc_silnika"));
+                car.setPrzebieg(rs.getInt("przebieg"));
+                car.setPojemnoscSilnika(rs.getString("pojemnosc_silnika"));
+                car.setSkrzyniaBiegow(rs.getString("skrzynia_biegow"));
+                car.setTypNadwozia(rs.getString("typ_nadwozia"));
+                car.setDostepnosc(rs.getInt("dostepnosc"));
+                car.setCenaDoba(rs.getInt("cena_doba"));
+                
+                cars.add(car);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        }
+        
+        return cars;
+    }
+    
+    
     
     public Blob getCarImage(int carId) {
         Car car = new Car();

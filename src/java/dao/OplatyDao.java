@@ -86,6 +86,19 @@ public class OplatyDao {
     } 
         
     
+               public void deleteFee(int feeId) {
+        try {
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("delete from oplaty where id_oplaty=?");
+
+            preparedStatement.setInt(1, feeId);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+           
            
        public Oplaty getFeeById(int feeId) {
         Oplaty oplata = new Oplaty();
@@ -110,5 +123,7 @@ public class OplatyDao {
        return oplata;
     }
     
+       
+
                      
 }

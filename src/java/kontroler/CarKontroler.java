@@ -214,6 +214,7 @@ public class CarKontroler extends HttpServlet {
         if (zatwierdzUsun != null) {
             List<Car> test = new ArrayList<Car>();
             Car tmp = new Car();
+            
 
             test = dao.getAllCars();
             for (int i = 0; i < test.size(); i++) {
@@ -221,6 +222,8 @@ public class CarKontroler extends HttpServlet {
                 String index = request.getParameter(tmp.getId().toString());
 
                 if (index != null) {
+                    oplatydao.deleteFee(tmp.getIdOplaty());
+                    wyposazeniedao.deleteWyposazenie(tmp.getIdWyposazenie());
                     dao.deleteCar(Integer.parseInt(index));
                 }
 
@@ -403,11 +406,23 @@ public class CarKontroler extends HttpServlet {
         if(wyswietlRozliczenia!=null)
         {
             List<Oplaty> listaOplat = new ArrayList<Oplaty>();
+            List<Car> listaSamochodow = new ArrayList<Car>();
             request.setAttribute("wyswietlEdycje", 0);
             request.setAttribute("wyswietlUsun", 0);
             request.setAttribute("wyswietlanieAkceptacja", 0);
             request.setAttribute("wyswietlanieRozliczenia", 1);
             listaOplat=oplatydao.getAllFee();
+            listaSamochodow=dao.getAllCars();
+            
+            for (int i=0;i<listaOplat.size();i++)
+            {
+                listaOplat.get(i).setTmpMarkaSamochodu(listaSamochodow.get(i).getMarka());
+                listaOplat.get(i).setTmpModelSamochodu(listaSamochodow.get(i).getModel());
+                listaOplat.get(i).setTmpRejestracjaSamochodu(listaSamochodow.get(i).getRejestracja());
+                //listaOplat.get(i).setTmpRejestracjaSamochodu("asd");
+            }
+            
+            //request.setAttribute("listaSamochodow", listaSamochodow);
             request.setAttribute("listaOplat", listaOplat);
             view = request.getRequestDispatcher(panelPracownika);
         }
