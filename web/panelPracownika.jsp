@@ -84,7 +84,9 @@
              <input type="submit" value="przyjmij samochody"  name="przyjmijSamochody" style="height: 45px; width: 300px">
              <br>
              <br>
-             <input type="submit" value="przedluz OC/AC"  name="przedluzenie" style="height: 45px; width: 300px">
+             <input type="submit" value="przedluz OC"  name="przedluzenieOC" style="height: 45px; width: 300px">
+             <br>
+             <input type="submit" value="przedluz AC"  name="przedluzenieAC" style="height: 45px; width: 300px">
              <br>
              <br>
              <input type="submit" value="okresy rozliczeniowe"  name="rozliczenia" style="height: 45px; width: 300px">

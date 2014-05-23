@@ -427,6 +427,23 @@ public class CarKontroler extends HttpServlet {
             view = request.getRequestDispatcher(panelPracownika);
         }
         
+       String przedluzenieOC = request.getParameter("przedluzenieOC");
+        if(przedluzenieOC!=null)
+        {
+        List<Oplaty> listaOplat = new ArrayList<Oplaty>();
+        List<Car> listaSamochodow = new ArrayList<Car>();
+            
+            request.setAttribute("wyswietlEdycje", 0);
+            request.setAttribute("wyswietlUsun", 0);
+            request.setAttribute("wyswietlanieAkceptacja", 0);
+            request.setAttribute("wyswietlanieRozliczenia", 1);
+            listaOplat=oplatydao.getAllFee();
+            listaSamochodow=dao.getAllCars();
+            
+            request.setAttribute("listaOC", listaOplat);
+            view = request.getRequestDispatcher(panelPracownika);
+        }
+        
         
         
         view.forward(request, response);
