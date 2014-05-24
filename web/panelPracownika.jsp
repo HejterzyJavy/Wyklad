@@ -203,7 +203,42 @@
          </form>
         
           
+            <form action="CarKontroler" method="POST">
+            <c:set var="wyswietlNaglowkiOC" scope="session" value="${1}"/>
+            <c:set var="listaOC" scope="session" value="${listaOC}"/>
+            <c:set var="wyswietlZmianaOC" scope="session" value="${wyswietlZmianaOC}"/>
+            <br>
+          <table align="center" border="3" >
+            
+          <c:forEach var="listaOplat"  items="${listaOC}"  >
           
+           <c:choose>
+              <c:when test="${wyswietlNaglowkiOC > 0}">
+                <tr><td> &nbsp ID Oplaty </td> <td> &nbsp Rozpoczecie OC </td> <td> &nbsp Zakonczenie OC </td>
+                  <td> &nbsp&nbsp Marka </td><td> &nbsp&nbsp Model </td><td> &nbsp&nbsp Rejestracja </td>
+                <td> &nbsp&nbsp Nowy Poczatek OC </td><td> &nbsp&nbsp Nowy Koniec OC </td></tr>
+                  <c:set var="wyswietlNaglowkiOC" scope="session" value="${0}"/>
+              </c:when>
+         </c:choose>
+              
+          <tr>
+          <td>&nbsp &nbsp${listaOplat.getIdOplaty()}</td><td>&nbsp &nbsp${listaOplat.getRozpoczecieOc()}</td><td>&nbsp &nbsp${listaOplat.getZakonczenieOc()}</td>
+          <td>&nbsp &nbsp${listaOplat.getTmpMarkaSamochodu()}</td><td>&nbsp &nbsp${listaOplat.getTmpModelSamochodu()}</td><td>&nbsp &nbsp${listaOplat.getTmpRejestracjaSamochodu()}</td>
+          <td>&nbsp &nbsp<input type="date" value="${listaOplat.getZakonczenieOc()}" style="width:165px;" name="pocz+${listaOplat.getIdOplaty()}"></td><td> &nbsp<input type="date" style="width:165px;" name="kon+${listaOplat.getIdOplaty()}"></td>
+          </tr>
+          </c:forEach>
+          </table>
+          
+            <div align="center">
+           <c:choose>
+              <c:when test="${wyswietlZmianaOC > 0}">
+             <div align="center">
+                  <input type="submit" value="zatwierdz"  name="zatwierdzZmianaOC">
+            </div>  
+            </c:when>
+         </c:choose>
+            </div>
+         </form>
           
         <form action="CarKontroler" method="POST">    
         <table align="center" >

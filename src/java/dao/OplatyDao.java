@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import model.Oplaty;
 import model.User;
@@ -123,7 +124,20 @@ public class OplatyDao {
        return oplata;
     }
     
-       
+          public void zmienDateOC(int id, Date nowyPoczatekOc,Date nowyKoniecOc) throws SQLException {
+        
+        try {  
+             PreparedStatement preparedStatement = connection
+                    .prepareStatement("update oplaty set rozpoczecie_oc=?,zakonczenie_oc=? where id=?");
+
+            preparedStatement.setDate(1,new java.sql.Date(nowyPoczatekOc.getTime()) );
+            preparedStatement.setDate(2,new java.sql.Date(nowyKoniecOc.getTime()) );
+            preparedStatement.setInt(3, id);
+            int rowsAffected = preparedStatement.executeUpdate();
+             } catch (SQLException e) {
+                e.printStackTrace();
+            }
+    } 
 
                      
 }
