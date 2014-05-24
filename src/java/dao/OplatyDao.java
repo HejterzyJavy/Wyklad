@@ -128,7 +128,7 @@ public class OplatyDao {
         
         try {  
              PreparedStatement preparedStatement = connection
-                    .prepareStatement("update oplaty set rozpoczecie_oc=?,zakonczenie_oc=? where id=?");
+                    .prepareStatement("update oplaty set rozpoczecie_oc=?,zakonczenie_oc=? where id_oplaty=?");
 
             preparedStatement.setDate(1,new java.sql.Date(nowyPoczatekOc.getTime()) );
             preparedStatement.setDate(2,new java.sql.Date(nowyKoniecOc.getTime()) );
