@@ -23,7 +23,26 @@ public class Oplaty {
     private String tmpMarkaSamochodu;
     private String tmpModelSamochodu;
     private String tmpRejestracjaSamochodu;
+    private long doKoncaAc;
+    private long doKoncaOc;
 
+    public long getDoKoncaAc() {
+        return doKoncaAc;
+    }
+
+    public void setDoKoncaAc(long doKoncaAc) {
+        this.doKoncaAc = doKoncaAc;
+    }
+
+    public long getDoKoncaOc() {
+        return doKoncaOc;
+    }
+
+    public void setDoKoncaOc(long doKoncaOc) {
+        this.doKoncaOc = doKoncaOc;
+    }
+    
+    
     public String getTmpMarkaSamochodu() {
         return tmpMarkaSamochodu;
     }

@@ -139,5 +139,22 @@ public class OplatyDao {
             }
     } 
 
+          
+                public void zmienDateAC(int id, Date nowyPoczatekAc,Date nowyKoniecAc) throws SQLException {
+        
+        try {  
+             PreparedStatement preparedStatement = connection
+                    .prepareStatement("update oplaty set rozpoczecie_ac=?,zakonczenie_ac=? where id_oplaty=?");
+
+            preparedStatement.setDate(1,new java.sql.Date(nowyPoczatekAc.getTime()) );
+            preparedStatement.setDate(2,new java.sql.Date(nowyKoniecAc.getTime()) );
+            preparedStatement.setInt(3, id);
+            int rowsAffected = preparedStatement.executeUpdate();
+             } catch (SQLException e) {
+                e.printStackTrace();
+            }
+    } 
+          
+          
                      
 }

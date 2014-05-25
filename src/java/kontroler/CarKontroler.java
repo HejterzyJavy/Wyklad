@@ -11,7 +11,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -427,6 +429,62 @@ public class CarKontroler extends HttpServlet {
             view = request.getRequestDispatcher(panelPracownika);
         }
         
+        
+             String koniecUbezpieczen = request.getParameter("koniecUbezpieczen");
+        if(koniecUbezpieczen!=null)
+        {
+            GregorianCalendar calendar= new GregorianCalendar();
+       
+            DateFormat dateFrm = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date myDate = new java.util.Date();
+            java.sql.Date dataWypozyczenia;
+            java.sql.Date aktualnaData=null;
+            /*aktualnaData.setYear(calendar.get(Calendar.YEAR));
+            aktualnaData.setMonth(calendar.get(Calendar.MONTH));
+            aktualnaData.setDate(calendar.get(Calendar.DATE));
+            */
+            
+            List<Oplaty> listaOplat = new ArrayList<Oplaty>();
+            List<Car> listaSamochodow = new ArrayList<Car>();
+            request.setAttribute("wyswietlEdycje", 0);
+            request.setAttribute("wyswietlUsun", 0);
+            request.setAttribute("wyswietlanieAkceptacja", 0);
+            request.setAttribute("wyswietlanieRozliczenia", 0);
+            request.setAttribute("wyswietlZmianaOC", 0);
+            request.setAttribute("wyswietlListeOC", 0);
+            request.setAttribute("wyswietlListeAC", 0);
+            request.setAttribute("wyswietlZmianaAC", 0);
+            request.setAttribute("wyswietlListeKoniec", 1);
+            
+            listaOplat=oplatydao.getAllFee();
+            listaSamochodow=dao.getAllCars();
+            
+            for (int i=0;i<listaOplat.size();i++)
+            {
+                listaOplat.get(i).setTmpMarkaSamochodu(listaSamochodow.get(i).getMarka());
+                listaOplat.get(i).setTmpModelSamochodu(listaSamochodow.get(i).getModel());
+                listaOplat.get(i).setTmpRejestracjaSamochodu(listaSamochodow.get(i).getRejestracja());
+                //listaOplat.get(i).setTmpRejestracjaSamochodu("asd");
+                
+               listaOplat.get(i).setDoKoncaOc(Math.abs(listaOplat.get(i).getZakonczenieOc().getTime() - (listaOplat.get(i).getRozpoczecieOc().getTime())));
+            }
+       
+            
+            
+            //listaOplat.get(1).getRozpoczecieAc().ge
+            //request.setAttribute("listaSamochodow", listaSamochodow);
+            request.setAttribute("listaUbezpieczen", listaOplat);
+            Integer tablica=0;
+            for(int i=0;i<listaOplat.size();i++)
+            {
+               tablica=i;
+               request.setAttribute(tablica.toString(), listaOplat.get(i).getTmpMarkaSamochodu()); 
+            }
+            
+            view = request.getRequestDispatcher(panelPracownika);
+        }
+        
+        
        String przedluzenieOC = request.getParameter("przedluzenieOC");
         if(przedluzenieOC!=null)
         {
@@ -540,10 +598,10 @@ public class CarKontroler extends HttpServlet {
                 {
                 jestZmiana=false;    
                 tmp=wszystkieOplaty.get(i);
-                tmp.setRozpoczecieAc(nowyPoczatekOc);
-                tmp.setZakonczenieAc(nowyKoniecOc);
+                tmp.setRozpoczecieOc(nowyPoczatekOc);
+                tmp.setZakonczenieOc(nowyKoniecOc);
                     try {
-                        oplatydao.zmienDateOC(tmp.getIdOplaty(), tmp.getRozpoczecieAc(), tmp.getZakonczenieAc());
+                        oplatydao.zmienDateOC(tmp.getIdOplaty(), tmp.getRozpoczecieOc(), tmp.getZakonczenieOc());
                     } catch (SQLException ex) {
                         Logger.getLogger(CarKontroler.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -563,6 +621,78 @@ public class CarKontroler extends HttpServlet {
             }
             
             request.setAttribute("listaOC", listaOplat);
+            view = request.getRequestDispatcher(panelPracownika);
+        }
+        
+        
+        String zatwierdzZmianaAC = request.getParameter("zatwierdzZmianaAC");
+        if(zatwierdzZmianaAC!=null)
+        {
+            List<Oplaty> wszystkieOplaty = new ArrayList<Oplaty>();
+            Oplaty tmp = new Oplaty();
+            String test=new String();
+            wszystkieOplaty=oplatydao.getAllFee();
+            DateFormat dateFrm = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date myDate = new java.util.Date();
+            java.sql.Date nowyPoczatekAc=null;
+            java.sql.Date nowyKoniecAc=null;
+            boolean jestZmiana=false;
+            List<Oplaty> listaOplat = new ArrayList<Oplaty>();
+            List<Car> listaSamochodow = new ArrayList<Car>();
+            
+            
+            for (int i = 0; i < wszystkieOplaty.size(); i++)
+            {
+                try {
+                    myDate=dateFrm.parse(request.getParameter("pocz+"+wszystkieOplaty.get(i).getIdOplaty()));
+                    nowyPoczatekAc = new java.sql.Date(myDate.getTime());
+             
+                } catch (ParseException ex ) {
+                    Logger.getLogger(CarKontroler.class.getName()).log(Level.SEVERE, null, ex);
+                    nowyPoczatekAc=null;
+                }
+                
+                try {
+                    test=request.getParameter("kon+"+wszystkieOplaty.get(i).getIdOplaty());
+                    if(!test.isEmpty())
+                    {
+                    myDate=dateFrm.parse(test);
+                    nowyKoniecAc = new java.sql.Date(myDate.getTime());
+                    jestZmiana=true;
+                    }
+                } catch (ParseException ex) {
+                    Logger.getLogger(CarKontroler.class.getName()).log(Level.SEVERE, null, ex);
+                    nowyKoniecAc=null;
+                }
+                    
+                
+                if(jestZmiana)
+                {
+                jestZmiana=false;    
+                tmp=wszystkieOplaty.get(i);
+                tmp.setRozpoczecieAc(nowyPoczatekAc);
+                tmp.setZakonczenieAc(nowyKoniecAc);
+                    try {
+                        oplatydao.zmienDateAC(tmp.getIdOplaty(), tmp.getRozpoczecieAc(), tmp.getZakonczenieAc());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(CarKontroler.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                
+                }
+            }
+            
+            listaOplat=oplatydao.getAllFee();
+            listaSamochodow=dao.getAllCars();
+            
+            for (int i=0;i<listaOplat.size();i++)
+            {
+                listaOplat.get(i).setTmpMarkaSamochodu(listaSamochodow.get(i).getMarka());
+                listaOplat.get(i).setTmpModelSamochodu(listaSamochodow.get(i).getModel());
+                listaOplat.get(i).setTmpRejestracjaSamochodu(listaSamochodow.get(i).getRejestracja());
+                //listaOplat.get(i).setTmpRejestracjaSamochodu("asd");
+            }
+            
+            request.setAttribute("listaAC", listaOplat);
             view = request.getRequestDispatcher(panelPracownika);
         }
         

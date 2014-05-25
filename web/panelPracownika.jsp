@@ -88,8 +88,9 @@
              <br>
              <input type="submit" value="przedluz AC"  name="przedluzenieAC" style="height: 45px; width: 300px">
              <br>
-             <br>
              <input type="submit" value="okresy rozliczeniowe"  name="rozliczenia" style="height: 45px; width: 300px">
+              <br>
+             <input type="submit" value="konczace ubezpieczenia"  name="koniecUbezpieczen" style="height: 45px; width: 300px">
         </form>
                <br>
                <br>                     
@@ -290,6 +291,45 @@
             </div>
          </form>  
             
+            
+           
+            
+            <form action="CarKontroler" method="POST">
+            <c:set var="wyswietlNaglowkiUbezpieczenia" scope="session" value="${1}"/>
+            <c:set var="listaAC" scope="session" value="${listaAC}"/>
+            <c:set var="wyswietlListeKoniec" scope="session" value="${wyswietlListeKoniec}"/>
+            
+            <c:set var="count" value="0" scope="page" />
+            <br>
+          <table align="center" border="3" >
+            
+          <c:forEach var="listaUbezpieczen"  items="${listaUbezpieczen}"  >
+              <c:set var="count" value="${count + 1}" scope="page"/>
+               <c:set var="jakasZmienna" scope="session" value="${count}"/> 
+           <c:choose>
+              <c:when test="${wyswietlListeKoniec > 0}">
+              
+           <c:choose>
+              <c:when test="${wyswietlNaglowkiUbezpieczenia > 0}">
+                <tr><td> &nbsp&nbsp Marka </td><td> &nbsp&nbsp Model </td><td> &nbsp&nbsp Rejestracja </td>
+                <td> &nbsp&nbsp Koniec OC  </td><td> &nbsp&nbsp Koniec AC </td></tr>
+                  <c:set var="wyswietlNaglowkiUbezpieczenia" scope="session" value="${0}"/>
+              </c:when>
+         </c:choose>
+             
+          <tr>
+          <td>&nbsp &nbsp${listaUbezpieczen.getTmpMarkaSamochodu()}</td>
+          <td>&nbsp &nbsp${listaUbezpieczen.getTmpModelSamochodu()}</td>
+          <td>&nbsp &nbsp${listaUbezpieczen.getTmpRejestracjaSamochodu()}</td>
+          <td>&nbsp &nbsp${listaUbezpieczen.getDoKoncaOc()}
+      
+          </td>
+          </tr>
+         </c:when>
+         </c:choose>
+          </c:forEach>
+          </table>
+         </form>  
             
             
             
