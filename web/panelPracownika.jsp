@@ -96,7 +96,7 @@
                         </table>
                         <c:choose>
                             <c:when test="${wyswietlanieAkceptacja >0}">
-                                <div id=zatwierdz_przycisk'>
+                                 <div class=zatwierdz_przycisk'>
                                     <input  type="submit" value="zatwierdz"  name="akceptuj">
                                 </div>
                             </c:when>
@@ -151,7 +151,7 @@
                         </table>
                         <c:choose>
                             <c:when test="${wyswietlEdycje > 0}">
-                                <div align="center">
+                                 <div class=zatwierdz_przycisk'>
                                     <input type="submit" value="zatwierdz"  name="zatwierdzEdytuj">
                                 </div>  
                             </c:when>
@@ -223,7 +223,7 @@
                         <div align="center">
                             <c:choose>
                                 <c:when test="${wyswietlZmianaOC > 0}">
-                                    <div align="center">
+                                     <div class=zatwierdz_przycisk'>
                                         <input type="submit" value="zatwierdz"  name="zatwierdzZmianaOC">
                                     </div>  
                                 </c:when>
@@ -267,7 +267,7 @@
                         <div align="center">
                             <c:choose>
                                 <c:when test="${wyswietlZmianaAC > 0}">
-                                    <div align="center">
+                                    <div class=zatwierdz_przycisk'>
                                         <input type="submit" value="zatwierdz"  name="zatwierdzZmianaAC">
                                     </div>  
                                 </c:when>
@@ -355,7 +355,7 @@
 
                         <c:choose>
                             <c:when test="${wyswietlPrzyjmij > 0}">
-                                <div align="center">
+                                <div class=zatwierdz_przycisk'>
                                     <input type="submit" value="zatwierdz"  name="zatwierdzPrzyjmij">
                                 </div>  
                             </c:when>
