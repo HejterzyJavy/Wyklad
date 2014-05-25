@@ -124,13 +124,14 @@ public class RentKontroler extends HttpServlet {
             
             request.setAttribute("wyswietlEdycje", 0);
             request.setAttribute("wyswietlUsun", 0);
-            request.setAttribute("wyswietlanieAkceptacja", 1);
+          //  request.setAttribute("wyswietlanieAkceptacja", 1);
+            request.setAttribute("wyswietlPrzyjmij", 0);
             request.setAttribute("wyswietlanieRozliczenia", 0);
             request.setAttribute("wyswietlZmianaOC", 0);
             request.setAttribute("wyswietlListeOC", 0);
             request.setAttribute("wyswietlListeAC", 0);
             request.setAttribute("wyswietlZmianaAC", 0);
-            request.setAttribute("wyswietlListeKoniec", 1);
+            request.setAttribute("wyswietlListeKoniec", 0);
             
             
             
@@ -308,7 +309,7 @@ public class RentKontroler extends HttpServlet {
             request.setAttribute("wyswietlListeAC", 0);
             request.setAttribute("wyswietlZmianaAC", 0);
             request.setAttribute("wyswietlListeKoniec", 0);
-            
+            request.setAttribute("wyswietlPrzyjmij", 0);
             request.setAttribute("Historia", rents);
             request.setAttribute("Cars2", cars);
             request.setAttribute("Users", users);
@@ -395,6 +396,7 @@ public class RentKontroler extends HttpServlet {
             request.setAttribute("wyswietlListeAC", 0);
             request.setAttribute("wyswietlZmianaAC", 0);
             request.setAttribute("wyswietlListeKoniec", 0);
+            request.setAttribute("wyswietlPrzyjmij", 0);
            // request.setAttribute("wyswietlanieAkceptacja", 1);
             request.setAttribute("wyswietlanieAkceptacja", wyswietlZatwierdzAkceptacja);
             request.setAttribute("Rents", rents);

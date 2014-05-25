@@ -193,6 +193,13 @@ public class CarKontroler extends HttpServlet {
         String usunSamochod = request.getParameter("usun");
         if (usunSamochod != null) {
             cars = dao.getAllCars();
+            request.setAttribute("wyswietlPrzyjmij", 0);
+            request.setAttribute("wyswietlanieRozliczenia", 0);
+            request.setAttribute("wyswietlZmianaOC", 0);
+            request.setAttribute("wyswietlListeOC", 0);
+            request.setAttribute("wyswietlListeAC", 0);
+            request.setAttribute("wyswietlZmianaAC", 0);
+            request.setAttribute("wyswietlListeKoniec", 0);
             request.setAttribute("Cars", cars);
             request.setAttribute("wyswietlEdycje", 0);
             request.setAttribute("wyswietlUsun", 1);
@@ -207,7 +214,7 @@ public class CarKontroler extends HttpServlet {
             request.setAttribute("Edit", cars);
                  
      
-
+            request.setAttribute("wyswietlPrzyjmij", 0);
             request.setAttribute("wyswietlanieRozliczenia", 0);
             request.setAttribute("wyswietlZmianaOC", 0);
             request.setAttribute("wyswietlListeOC", 0);
@@ -376,6 +383,7 @@ public class CarKontroler extends HttpServlet {
             request.setAttribute("wyswietlListeAC", 0);
             request.setAttribute("wyswietlZmianaAC", 0);
             request.setAttribute("wyswietlListeKoniec", 0);
+            request.setAttribute("wyswietlPrzyjmij", 0);
             
             Rent rent=new Rent();
             RentDao rentdao=new RentDao();
@@ -507,6 +515,7 @@ public class CarKontroler extends HttpServlet {
             request.setAttribute("wyswietlListeAC", 0);
             request.setAttribute("wyswietlZmianaAC", 0);
             request.setAttribute("wyswietlListeKoniec", 1);
+            request.setAttribute("wyswietlPrzyjmij", 0);
             
             listaOplat=oplatydao.getAllFee();
             listaSamochodow=dao.getAllCars();
@@ -551,6 +560,7 @@ public class CarKontroler extends HttpServlet {
             request.setAttribute("wyswietlListeOC", 1);
             request.setAttribute("wyswietlListeAC", 0);
             request.setAttribute("wyswietlZmianaAC", 0);
+            request.setAttribute("wyswietlPrzyjmij", 0);
             
             listaOplat=oplatydao.getAllFee();
             listaSamochodow=dao.getAllCars();
@@ -583,7 +593,7 @@ public class CarKontroler extends HttpServlet {
             request.setAttribute("wyswietlListeOC", 0);
             request.setAttribute("wyswietlListeAC", 1);
             request.setAttribute("wyswietlZmianaAC", 1);
-            
+            request.setAttribute("wyswietlPrzyjmij", 0);
              
              
             listaOplat=oplatydao.getAllFee();
@@ -753,9 +763,5 @@ public class CarKontroler extends HttpServlet {
         
         view.forward(request, response);
     }
-
   
-    
-    
-    
 }
