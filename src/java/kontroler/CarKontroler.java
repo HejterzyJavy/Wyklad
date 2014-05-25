@@ -205,6 +205,15 @@ public class CarKontroler extends HttpServlet {
         if (Edytuj != null) {
             cars = dao.getAllCars();
             request.setAttribute("Edit", cars);
+                 
+     
+
+            request.setAttribute("wyswietlanieRozliczenia", 0);
+            request.setAttribute("wyswietlZmianaOC", 0);
+            request.setAttribute("wyswietlListeOC", 0);
+            request.setAttribute("wyswietlListeAC", 0);
+            request.setAttribute("wyswietlZmianaAC", 0);
+            request.setAttribute("wyswietlListeKoniec", 0);
             request.setAttribute("wyswietlEdycje", 1);
             request.setAttribute("wyswietlUsun", 0);
             request.setAttribute("wyswietlanieAkceptacja", 0);
@@ -232,6 +241,15 @@ public class CarKontroler extends HttpServlet {
             }
             cars = dao.getAllCars();
             request.setAttribute("Cars", cars);
+                 request.setAttribute("wyswietlPrzyjmij", 0);
+            request.setAttribute("wyswietlanieAkceptacja", 0);
+            request.setAttribute("wyswietlanieRozliczenia", 0);
+            request.setAttribute("wyswietlZmianaOC", 0);
+            request.setAttribute("wyswietlListeOC", 0);
+            request.setAttribute("wyswietlListeAC", 0);
+            request.setAttribute("wyswietlZmianaAC", 0);
+            request.setAttribute("wyswietlListeKoniec", 0);
+            
             request.setAttribute("wyswietlEdycje", 0);
             request.setAttribute("wyswietlUsun", 1);
             request.setAttribute("wyswietlanieAkceptacja", 0);
@@ -262,6 +280,16 @@ public class CarKontroler extends HttpServlet {
 
             cars = dao.getAllCars();
             request.setAttribute("Edit", cars);
+                 request.setAttribute("wyswietlPrzyjmij", 0);
+             
+            request.setAttribute("wyswietlanieAkceptacja", 0);
+            request.setAttribute("wyswietlanieRozliczenia", 0);
+            request.setAttribute("wyswietlZmianaOC", 0);
+            request.setAttribute("wyswietlListeOC", 0);
+            request.setAttribute("wyswietlListeAC", 0);
+            request.setAttribute("wyswietlZmianaAC", 0);
+            request.setAttribute("wyswietlListeKoniec", 0);
+            
             request.setAttribute("wyswietlEdycje", 1);
             request.setAttribute("wyswietlUsun", 0);
             request.setAttribute("wyswietlanieAkceptacja", 0);
@@ -309,6 +337,18 @@ public class CarKontroler extends HttpServlet {
             request.setAttribute("wyswietlEdycje", 0);
             request.setAttribute("wyswietlUsun", 0);
             request.setAttribute("wyswietlanieAkceptacja", 0);
+                 request.setAttribute("wyswietlPrzyjmij", 0);
+                  request.setAttribute("wyswietlEdycje", 0);
+            request.setAttribute("wyswietlUsun", 0);
+            request.setAttribute("wyswietlanieAkceptacja", 0);
+            request.setAttribute("wyswietlanieAkceptacja", 0);
+            request.setAttribute("wyswietlanieRozliczenia", 0);
+            request.setAttribute("wyswietlZmianaOC", 0);
+            request.setAttribute("wyswietlListeOC", 0);
+            request.setAttribute("wyswietlListeAC", 0);
+            request.setAttribute("wyswietlZmianaAC", 0);
+            request.setAttribute("wyswietlListeKoniec", 0);
+            
              if (cars.isEmpty())
                  wyswietlPrzyjmij=0;
              if (!cars.isEmpty())
@@ -326,6 +366,17 @@ public class CarKontroler extends HttpServlet {
             String zwrocony, idSamochod;
             test = dao.getAllCars();
             request.setAttribute("wyswietlPrzyjmij", 0);
+                  request.setAttribute("wyswietlEdycje", 0);
+            request.setAttribute("wyswietlUsun", 0);
+            request.setAttribute("wyswietlanieAkceptacja", 0);
+            request.setAttribute("wyswietlanieAkceptacja", 0);
+            request.setAttribute("wyswietlanieRozliczenia", 0);
+            request.setAttribute("wyswietlZmianaOC", 0);
+            request.setAttribute("wyswietlListeOC", 0);
+            request.setAttribute("wyswietlListeAC", 0);
+            request.setAttribute("wyswietlZmianaAC", 0);
+            request.setAttribute("wyswietlListeKoniec", 0);
+            
             Rent rent=new Rent();
             RentDao rentdao=new RentDao();
             
@@ -443,6 +494,7 @@ public class CarKontroler extends HttpServlet {
             aktualnaData.setMonth(calendar.get(Calendar.MONTH));
             aktualnaData.setDate(calendar.get(Calendar.DATE));
             */
+            long roznica=0;
             
             List<Oplaty> listaOplat = new ArrayList<Oplaty>();
             List<Car> listaSamochodow = new ArrayList<Car>();
@@ -465,8 +517,8 @@ public class CarKontroler extends HttpServlet {
                 listaOplat.get(i).setTmpModelSamochodu(listaSamochodow.get(i).getModel());
                 listaOplat.get(i).setTmpRejestracjaSamochodu(listaSamochodow.get(i).getRejestracja());
                 //listaOplat.get(i).setTmpRejestracjaSamochodu("asd");
-                
-               listaOplat.get(i).setDoKoncaOc(Math.abs(listaOplat.get(i).getZakonczenieOc().getTime() - (listaOplat.get(i).getRozpoczecieOc().getTime())));
+                roznica=Math.abs(listaOplat.get(i).getZakonczenieOc().getTime() - (listaOplat.get(i).getRozpoczecieOc().getTime()));
+               listaOplat.get(i).setDoKoncaOc(roznica);
             }
        
             

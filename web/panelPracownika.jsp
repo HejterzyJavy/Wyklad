@@ -87,8 +87,7 @@
              <input type="submit" value="przedluz OC"  name="przedluzenieOC" style="height: 45px; width: 300px">
              <br>
              <input type="submit" value="przedluz AC"  name="przedluzenieAC" style="height: 45px; width: 300px">
-             <br>
-             <input type="submit" value="okresy rozliczeniowe"  name="rozliczenia" style="height: 45px; width: 300px">
+             
               <br>
              <input type="submit" value="konczace ubezpieczenia"  name="koniecUbezpieczen" style="height: 45px; width: 300px">
         </form>
@@ -356,7 +355,9 @@
           
           
           <c:set var="wyswietlPrzyjmij" scope="session" value="${wyswietlPrzyjmij}"/>
-          <form action="CarKontroler" method="POST">    
+          <form action="CarKontroler" method="POST"> 
+              <br>
+              <br>
           <table align="center" >
           <c:forEach var="przyjmij" items="${przyjmij}" >
           <tr>
