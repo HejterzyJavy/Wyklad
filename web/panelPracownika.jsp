@@ -381,11 +381,21 @@
 
 
                     <c:set var="wyswietlPrzyjmij" scope="session" value="${wyswietlPrzyjmij}"/>
+                    <c:set var="wyswietlNaglowkiPrzyjmij" scope="session" value="${1}"/>
                     <form action="CarKontroler" method="POST"> 
                         <br>
                         <br>
                         <table align="center" >
                             <c:forEach var="przyjmij" items="${przyjmij}" >
+                                
+                                   <c:choose>  
+                                <c:when test="${wyswietlNaglowkiPrzyjmij > 0}">      
+                                                <tr><td>&nbsp &nbsp &nbsp &nbsp</td><td>  Marka &nbsp &nbsp &nbsp &nbsp</td><td>  Model &nbsp &nbsp &nbsp &nbsp</td><td>  Rocznik &nbsp &nbsp &nbsp &nbsp</td>
+                                                    <td>&nbsp Rejestracja  </td></tr>
+                                                    <c:set var="wyswietlNaglowkiPrzyjmij" scope="session" value="${0}"/>
+                                          </c:when>
+                                          </c:choose> 
+                                
                                 <tr>
                                     <td><input type="checkbox" value="${przyjmij.getId()}" name="${przyjmij.getId()}"></td>
                                     <td>${przyjmij.getMarka()}&nbsp &nbsp &nbsp &nbsp</td><td>${przyjmij.getModel()}&nbsp &nbsp &nbsp &nbsp</td><td>${przyjmij.getRocznik()}&nbsp &nbsp &nbsp &nbsp</td>
