@@ -64,7 +64,7 @@
                 
                     <form action="RentKontroler" method="POST">
                         <input type="submit" value="akceptuj wypozyczenia" name="akceptujWypozyczenia" style="height: 45px; width: 300px">   
-                        <input type="submit" value="wyswietl nie zwrocone samochody"  name="nieZwrocone" style="height: 45px; width: 300px">
+                        <input type="submit" value="Historia firmy"  name="nieZwrocone" style="height: 45px; width: 300px">
                     </form>
                     
                     <c:set var="ilosc" scope="session" value="${0}"/>   
@@ -81,10 +81,17 @@
                     <form action="RentKontroler" method="POST">    
                         <table align="center" >
                             <c:set var="daneSamochod" scope="session" value="${Cars2}"/>
+                            <c:set var="wyswietlNaglowkiAkceptacja" scope="session" value="${0}"/>
                             <c:set var="daneUzytkownicy" scope="session" value="${Users}"/>
-                            <c:forEach var="rents" items="${Rents}" >
-
-                                <tr>             
+                            <c:forEach var="rents" items="${Rents}" >           
+                                    <c:choose>
+                                        <c:when test="${wyswietlNaglowkiAkceptacja<1}">
+                                            <tr> <td>Numer Zlec. &nbsp &nbsp</td><td>Imie &nbsp &nbsp</td><td>&nbsp &nbsp Nazwisko</td><td>&nbsp &nbsp Marka</td><td>&nbsp &nbsp Model</td><td>&nbsp &nbsp Do zaplaty</td>
+                                               </tr>
+                                                <c:set var="wyswietlNaglowkiAkceptacja" scope="session" value="${1}"/>
+                                    </c:when>
+                                    </c:choose> 
+                                    <tr>  
                                     <td>${rents.getIdWypozyczenie()} &nbsp &nbsp</td><td>${rents.getTmpImie()}&nbsp &nbsp </td><td>&nbsp &nbsp ${rents.getTmpNazwisko()}</td>
                                     <td>&nbsp &nbsp ${rents.getTmpMarka()}</td><td>&nbsp &nbsp ${rents.getTmpModel()}</td>
                                     <td>&nbsp &nbsp ${rents.getDoZaplaty()}</td><td>&nbsp &nbsp akceptuje<input type="radio" value="zaakceptowane" name="akc${rents.getIdWypozyczenie()}"</td>
@@ -109,9 +116,19 @@
                     <form action="RentKontroler" method="POST">    
                         <table align="center" >
                             <c:set var="daneSamochod" scope="session" value="${Cars2}"/>
+                            <c:set var="wyswietlNaglowkiHistoria" scope="session" value="${0}"/>
                             <c:set var="daneUzytkownicy" scope="session" value="${Users}"/>
                             <c:forEach var="historia" items="${Historia}" >
-
+                                
+                                     <c:choose>
+                                        <c:when test="${wyswietlNaglowkiHistoria<1}">
+                                            <tr> <td>Numer Zlec. &nbsp &nbsp</td><td>Imie &nbsp &nbsp</td><td>&nbsp &nbsp Nazwisko</td><td>&nbsp &nbsp Marka</td><td>&nbsp &nbsp Model</td>
+                                                <td>&nbsp &nbsp Do zaplaty</td><td>&nbsp &nbsp Data Wypozyczenia</td><td>&nbsp &nbsp Data Zwrotu</td><td>&nbsp &nbsp Status</td>
+                                               </tr>
+                                                <c:set var="wyswietlNaglowkiHistoria" scope="session" value="${1}"/>
+                                    </c:when>
+                                    </c:choose> 
+                                
                                 <tr>             
                                     <td>${historia.getIdWypozyczenie()} &nbsp &nbsp</td><td>${historia.getTmpImie()}&nbsp &nbsp </td>
                                     <td>&nbsp &nbsp ${historia.getTmpNazwisko()}</td>
@@ -140,18 +157,32 @@
 
 
                     <form action="CarKontroler" method="POST">    
+                        <c:set var="wyswietlNaglowkiEdycja" scope="session" value="${0}"/>
                         <table align="center" >
                             <c:forEach var="cars" items="${Edit}" >
+                                
+                                 <c:choose>
+                                        <c:when test="${wyswietlNaglowkiEdycja<1}">
+                                            <tr> <td>Marka</td><td> Model</td><td>Rocznik</td><td>&nbsp &nbsp &nbsp &nbsp Rejestracja</td>
+                                                <td>&nbsp &nbsp &nbsp &nbsp  Aktualny Przebieg</td>
+                                               </tr>
+                                                <c:set var="wyswietlNaglowkiEdycja" scope="session" value="${1}"/>
+                                    </c:when>
+                                    </c:choose> 
+                                
+                                
+                                
                                 <tr>
-                                    <td>${cars.getMarka()}</td><td>${cars.model}</td><td>${cars.rocznik}</td>
-                                    <td><input type="text" value="${cars.getPrzebieg()}" name="${cars.getId()}"></td>
+                                    <td>${cars.getMarka()}&nbsp &nbsp &nbsp &nbsp</td><td>${cars.model}&nbsp &nbsp &nbsp &nbsp</td><td>${cars.rocznik}</td>
+                                    <td>&nbsp &nbsp &nbsp &nbsp ${cars.rejestracja}</td>
+                                    <td>&nbsp &nbsp &nbsp &nbsp<input type="text" value="${cars.getPrzebieg()}" name="${cars.getId()}"></td>
                                 </tr>
                                 <c:set var="wyswietlEdycje" scope="session" value="${wyswietlEdycje}"/>
                             </c:forEach>
                         </table>
                         <c:choose>
                             <c:when test="${wyswietlEdycje > 0}">
-                                <div align="center">
+                                <div class ='zatwierdz_przycisk'>
                                     <input type="submit" value="zatwierdz"  name="zatwierdzEdytuj">
                                 </div>  
                             </c:when>
@@ -223,7 +254,7 @@
                         <div align="center">
                             <c:choose>
                                 <c:when test="${wyswietlZmianaOC > 0}">
-                                    <div align="center">
+                                    <div class ='zatwierdz_przycisk'>
                                         <input type="submit" value="zatwierdz"  name="zatwierdzZmianaOC">
                                     </div>  
                                 </c:when>
@@ -267,7 +298,7 @@
                         <div align="center">
                             <c:choose>
                                 <c:when test="${wyswietlZmianaAC > 0}">
-                                    <div align="center">
+                                    <div class ='zatwierdz_przycisk'>
                                         <input type="submit" value="zatwierdz"  name="zatwierdzZmianaAC">
                                     </div>  
                                 </c:when>
@@ -320,11 +351,21 @@
 
 
                     <form action="CarKontroler" method="POST">    
+                        <c:set var="wyswietlNaglowkiUsun" scope="session" value="${1}"/>
                         <table align="center" >
                             <c:forEach var="cars" items="${Cars}" >
+                                <c:choose>  
+                                <c:when test="${wyswietlNaglowkiUsun > 0}">      
+                                                <tr><td>&nbsp &nbsp &nbsp &nbsp</td><td>  Marka &nbsp &nbsp &nbsp &nbsp</td><td>  Model &nbsp &nbsp &nbsp &nbsp</td><td>  Rocznik &nbsp &nbsp &nbsp &nbsp</td>
+                                                    <td>&nbsp Rejestracja  </td></tr>
+                                                    <c:set var="wyswietlNaglowkiUsun" scope="session" value="${0}"/>
+                                          </c:when>
+                                          </c:choose> 
+                                            
                                 <tr>
                                     <td><input type="checkbox" value="${cars.getId()}" name="${cars.getId()}"></td>
-                                    <td>${cars.getMarka()}</td><td>${cars.model}</td><td>${cars.rocznik}</td>
+                                    <td>${cars.getMarka()} &nbsp &nbsp &nbsp &nbsp</td><td>${cars.model}&nbsp &nbsp &nbsp &nbsp</td><td>${cars.rocznik}</td>
+                                    <td>&nbsp &nbsp &nbsp  ${cars.getRejestracja()}</td>
                                 </tr>
                                 <c:set var="wyswietlUsun" scope="session" value="${wyswietlUsun}"/>
                             </c:forEach>
@@ -347,7 +388,8 @@
                             <c:forEach var="przyjmij" items="${przyjmij}" >
                                 <tr>
                                     <td><input type="checkbox" value="${przyjmij.getId()}" name="${przyjmij.getId()}"></td>
-                                    <td>${przyjmij.getMarka()}&nbsp &nbsp &nbsp &nbsp</td><td>${przyjmij.model}&nbsp &nbsp &nbsp &nbsp</td><td>${przyjmij.rocznik}</td>
+                                    <td>${przyjmij.getMarka()}&nbsp &nbsp &nbsp &nbsp</td><td>${przyjmij.getModel()}&nbsp &nbsp &nbsp &nbsp</td><td>${przyjmij.getRocznik()}&nbsp &nbsp &nbsp &nbsp</td>
+                                    <td>${przyjmij.getRejestracja()}</td>
                                 </tr>
 
                             </c:forEach>
@@ -355,7 +397,7 @@
 
                         <c:choose>
                             <c:when test="${wyswietlPrzyjmij > 0}">
-                                <div align="center">
+                                <div class ='zatwierdz_przycisk'>
                                     <input type="submit" value="zatwierdz"  name="zatwierdzPrzyjmij">
                                 </div>  
                             </c:when>

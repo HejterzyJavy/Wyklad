@@ -134,7 +134,7 @@ public class RentKontroler extends HttpServlet {
             request.setAttribute("wyswietlListeKoniec", 0);
             
             
-            
+       
             request.setAttribute("Rents", rents);
             request.setAttribute("Cars2", cars);
             request.setAttribute("Users", users);

@@ -287,6 +287,7 @@ public class CarDao {
             while (rs.next()) {
                 Car car = new Car();
                 car.setID(rs.getInt("id"));
+                car.setRejestracja(rs.getString("rejestracja"));
                 car.setMarka(rs.getString("marka"));
                 car.setModel(rs.getString("model"));
                 car.setRocznik(rs.getInt("rocznik"));
