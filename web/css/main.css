@@ -526,6 +526,8 @@ img {
     -moz-box-shadow: 0px 0px 2px #fff inset;
     -webkit-box-shadow: 0px 0px 2px #fff inset;
     box-shadow: 0px 0px 2px #fff inset;
+    display:block;
+    margin:0px auto;
   }
   
   
@@ -549,4 +551,9 @@ img {
     -moz-box-shadow: 0px 0px 2px #fff inset;
     -webkit-box-shadow: 0px 0px 2px #fff inset;
     box-shadow: 0px 0px 2px #fff inset;
+  }
+  
+  
+  form{
+      margin-left: 20px;
   }

@@ -125,3 +125,10 @@
     color:#D74820;
     padding-top:10px;
 }
+
+.zatwierdz_przycisk { 
+display:block;
+        margin:0px auto;
+        float:none;
+        width:150px;
+}
