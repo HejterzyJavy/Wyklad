@@ -103,7 +103,7 @@
                         </table>
                         <c:choose>
                             <c:when test="${wyswietlanieAkceptacja >0}">
-                                <div id=zatwierdz_przycisk'>
+                                 <div class=zatwierdz_przycisk'>
                                     <input  type="submit" value="zatwierdz"  name="akceptuj">
                                 </div>
                             </c:when>
