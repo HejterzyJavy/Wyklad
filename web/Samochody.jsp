@@ -72,7 +72,7 @@
 
                 <c:choose>
                     <c:when test="${czyZalogowany == 0}">
-                           <%@ include file="includes/panelLogowania.jsp" %>
+                          
                     </c:when>
                 </c:choose>
 
@@ -81,7 +81,7 @@
 
 
             </div>
-            <%@ include file="includes/menuPoziome.jsp" %>
+           
             <div id="srodek">
                 <div class='linia'> </div>
                 <div id="srodekNaglowek">
