@@ -28,7 +28,11 @@
         
     </head>
     <body>
-
+        <c:set var="wyswietlWypozycz" scope="session" value="${1}"/>
+        <c:set var="wyswietlWyborRoku" scope="session" value="${1}"/>
+        <c:set var="wyswietlZakresRoku" scope="session" value="${0}"/>
+        <c:set var="wyswietlMarke" scope="session" value="${1}"/>
+        <c:set var="wyswietlWyborMarki" scope="session" value="${0}"/>
         <c:set var="czyZalogowany" scope="session" value="${czyZalogowany}"/>
         <div id = 'container'>
         	<div id='header'>
@@ -61,17 +65,67 @@
 
                              
                               <form align="center" action="CarKontroler" method="POST">
-                              
-                              <div id="paczka">
-                              <input id="usun" type="button" value="Wyswietl wybrana marke" onclick="dodaj_element('paczka');"  />
-                              </div>
-            
-                              <div id='paczka2'>
-                              <input id="usun2" type="button" value="Wyswietl wybrany rocznik" onclick="dodaj_element2('paczka2');" />
-                              </div>
-                              
+                                <c:set var="wyswietlWyborRoku" scope="session" value="${wyswietlWyborRoku}"/>
+                                <c:set var="wyswietlZakresRocznika" scope="session" value="${wyswietlZakresRocznika}"/>
+                                <c:set var="wyswietlMarke" scope="session" value="${wyswietlMarke}"/>
+                                <c:set var="wyswietlWyborMarki" scope="session" value="${wyswietlWyborMarki}"/>  
+                                <c:set var="wyswietlWypozycz" scope="session" value="${wyswietlWypozycz}"/>  
+                                         
+                              <c:choose>
+                              <c:when test="${wyswietlWypozycz==1}">    
                               <input type="submit" value="Wypożycz samochód" name="oferta">    
+                              </c:when>
+                              </c:choose>  
+                              
+                                     <c:choose>
+                                      <c:when test="${wyswietlMarke==1}">
+                                  <input type="submit" value="Wybrano Marke" name="wybranoMarke">  
+                                     </c:when>
+                                    </c:choose> 
+                              
                                   
+                                       <c:choose>
+                                      <c:when test="${wyswietlWyborMarki==1}">
+                                          <br>
+                                          <br>       
+                                   <div class="daneMarka">
+                                          <form  action="CarKontroler" method="POST">
+                             <label > Wybierz marke: </label>
+                             <select name="Lista">
+                                <c:forTokens items="${Marki}" delims="," var="dana">
+                                       <option> ${dana} </option>
+                                 </c:forTokens>
+                             </select>
+                                      </form>
+                                       <input type="text"  name="pole" value="tutaj wpisz marke">  
+                                   </div>
+                                          <div class="zatwierdzKlient">
+                                  <input type="submit" value="zatwierdz" name="marka">  
+                                         </div>
+                                     </c:when>
+                                    </c:choose> 
+                                  
+                              
+                                       <c:choose>
+                                      <c:when test="${wyswietlWyborRoku==1}">
+                                  <input type="submit" value="Wybrany rocznik" name="wybranoRocznik">  
+                                     </c:when>
+                                    </c:choose> 
+                                  
+                                    <c:choose>
+                                      <c:when test="${wyswietlZakresRocznika==1}">
+                                          <br>
+                                          <br>
+                                          <div class="daneMarka">
+                                  <input type="text" value="OD" name="rokOd">           
+                                  <input type="text" value="DO" name="rokDo">   
+                                  </div>
+                                  <div class="zatwierdzKlient">
+                                  <input type="submit" value="zatwierdz" name="rocznik">  
+                                  </div>
+                                     </c:when>
+                                    </c:choose> 
+                              
                               </form>
             
                              <form align="center" action="RentKontroler" method="POST">

@@ -336,6 +336,65 @@ public class CarKontroler extends HttpServlet {
         }
         
         
+         String wybranoRocznik = request.getParameter("wybranoRocznik");
+        if (wybranoRocznik != null) {
+            
+           request.setAttribute("wyswietlWypozycz",0); 
+           request.setAttribute("wyswietlZakresRocznika",1); 
+           request.setAttribute("wyswietlWyborRoku",0); 
+            request.setAttribute("wyswietlMarke",0); 
+           request.setAttribute("wyswietlWyborMarki",0); 
+           view = request.getRequestDispatcher(OFERTA);
+        }
+        
+            String wybranoMarke = request.getParameter("wybranoMarke");
+        if (wybranoMarke != null) {
+            request.setAttribute("wyswietlWypozycz",0); 
+           request.setAttribute("wyswietlMarke",0); 
+           request.setAttribute("wyswietlWyborMarki",1); 
+              request.setAttribute("wyswietlZakresRocznika",0); 
+           request.setAttribute("wyswietlWyborRoku",0); 
+           view = request.getRequestDispatcher(OFERTA);
+        }
+        
+        
+             String zatwierdzZakresRocznik = request.getParameter("zatwierdzRocznik");
+        if (zatwierdzZakresRocznik != null) {
+           List<Car> test = new ArrayList<Car>();
+           String poczatekRocznik=new String();
+           String koniecRocznik=new String();
+            String czyZalogowany=new String();
+            String ktoZalogowany=new String();
+            String idZalogowany=new String();
+           
+           request.setAttribute("wyswietlZakresRocznika",0); 
+           request.setAttribute("wyswietlWyborRoku",0); 
+           poczatekRocznik=request.getParameter("rocznikPoczatek");
+           koniecRocznik=request.getParameter("rocznikKoniec");
+  
+            HttpSession session = request.getSession(true);
+            try {
+                czyZalogowany = session.getAttribute("czyZalogowany1").toString();
+                idZalogowany = session.getAttribute("jakieId").toString();
+            } catch(NullPointerException e) {
+                czyZalogowany="0";
+                idZalogowany="0";
+            }
+            try {
+                ktoZalogowany = session.getAttribute("ktoZalogowany").toString();
+            } catch(NullPointerException e) {
+                ktoZalogowany="-1";
+            }
+            test=dao.getCarByYearInterval(Integer.parseInt(poczatekRocznik),Integer.parseInt(koniecRocznik));
+            request.setAttribute("Cars", test);
+            request.setAttribute("czyZalogowany", czyZalogowany);
+            request.setAttribute("ktoZalogowany", ktoZalogowany);
+            request.setAttribute("idZalogowany", idZalogowany);
+            request.setAttribute("wyslanoEmail", 0);
+            view = request.getRequestDispatcher("/Samochody.jsp");
+        }
+        
+        
         String przyjmijSamochody = request.getParameter("przyjmijSamochody");
         if (przyjmijSamochody != null) {
             int wyswietlPrzyjmij=0;

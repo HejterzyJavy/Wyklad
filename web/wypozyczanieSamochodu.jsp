@@ -107,28 +107,34 @@
                          
             <h2 align="center">${wypozyczanySamochod.getMarka()} ${wypozyczanySamochod.getModel()} Cena za dzien: ${wypozyczanySamochod.getCenaDoba()} zl</h2>
        
-            <div class ='zatwierdz_przycisk'>
-                   <c:forEach var="wyposazenie" items="${wyposazenie}" >           
+            <div class ='wyposazenie'>
+                   <c:forEach var="wyposazenie" items="${wyposazenie}" >     
+                       <br>
                      ${wyposazenie}
                     </c:forEach>
             </div>  
             
         
-            <c:choose>
-              <c:when test="${doZaplaty != null}">
-               <h2>Aktualnie do zaplaty mamy ${doZaplaty}</h2>  
-            </c:when>
-         </c:choose>
-            <br>
+         
         
             <c:choose>
             <c:when test="${obliczanieKwoty == 0}">
         <form action="RentKontroler" method="POST">
-      
+      <div class ='wypozyczanie'>
+          <br>
+          <br>
+             <c:choose>
+              <c:when test="${doZaplaty != null}">
+               <h2>Aktualnie do zaplaty mamy ${doZaplaty}</h2>  
+            </c:when>
+         </c:choose>
+          <br>
+          <br>
             <input type="date" name="dataWypozyczenia" value="${dataWypozyczenia}">
             <input type="date" name="dataZwrotu"  value="${dataZwrotu}">
             <input type="submit" name="obliczKwote" value="Oblicz Kwote">
             <input type="submit" name="wypozyczSamochod" value="Zatwierdz">
+             </div>
         </form>
          </c:when>
          </c:choose>                      

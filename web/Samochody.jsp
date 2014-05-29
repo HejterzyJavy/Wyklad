@@ -91,18 +91,9 @@
                 <div class='linia'> </div>
                 <div id="srodekTresc">
                     <div id="srodekPrzyciski">
-                        <form  action="CarKontroler" method="POST">
-                            <input type="submit" value="Wyswietl wszystkie " name="oferta">
-                        </form>
+                   
                         
-                         <form  action="CarKontroler" method="POST">
-                             <label > Wybierz marke: </label>
-                             <select name="Lista">
-                                <c:forTokens items="${Marki}" delims="," var="dana">
-                                       <option> ${dana} </option>
-                                 </c:forTokens>
-                             </select>
-                        </form>
+                      
                     </div>
                 
                     <div class='linia'> </div>

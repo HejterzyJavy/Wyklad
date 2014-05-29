@@ -245,6 +245,11 @@ public class RentKontroler extends HttpServlet {
         {
             HttpSession session = request.getSession(true);
             String idSamochod=session.getAttribute("idSamochodu").toString();
+            
+            List<String> Equipment = new ArrayList<String>();
+            Equipment=cardao.specifyEquipment(Integer.parseInt(idSamochod));
+           // System.out.println("TO JEST MIEJSCE W KTORYM JEST BLAD juz sam kontroler" +Integer.parseInt(jakiSamochod));
+            
             DateFormat dateFrm = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date myDate = new java.util.Date();
             java.sql.Date dataWypozyczenia;
@@ -283,6 +288,7 @@ public class RentKontroler extends HttpServlet {
                request.setAttribute("wypozyczanySamochod", samochod);
                request.setAttribute("dataWypozyczenia", tmpDataWyp);
                request.setAttribute("dataZwrotu", tmpDataZak);
+               request.setAttribute("wyposazenie", Equipment);
                
                view=request.getRequestDispatcher(wypozyczanieSamochodu);
             
