@@ -234,7 +234,7 @@
 
                                         <c:choose>
                                             <c:when test="${wyswietlNaglowkiOC > 0}">
-                                                <tr><td> &nbsp ID Oplaty </td> <td> &nbsp Rozpoczecie OC </td> <td> &nbsp Zakonczenie OC </td>
+                                                <tr><td> &nbsp ID </td> <td> &nbsp Rozpoczecie OC </td> <td> &nbsp Zakonczenie OC </td>
                                                     <td> &nbsp&nbsp Marka </td><td> &nbsp&nbsp Model </td><td> &nbsp&nbsp Rejestracja </td>
                                                     <td> &nbsp&nbsp Nowy Poczatek OC </td><td> &nbsp&nbsp Nowy Koniec OC </td></tr>
                                                     <c:set var="wyswietlNaglowkiOC" scope="session" value="${0}"/>
@@ -278,7 +278,7 @@
 
                                         <c:choose>
                                             <c:when test="${wyswietlNaglowkiAC > 0}">
-                                                <tr><td> &nbsp ID Oplaty </td> <td> &nbsp Rozpoczecie AC </td> <td> &nbsp Zakonczenie AC </td>
+                                                <tr><td> &nbsp ID</td> <td> &nbsp Rozpoczecie AC </td> <td> &nbsp Zakonczenie AC </td>
                                                     <td> &nbsp&nbsp Marka </td><td> &nbsp&nbsp Model </td><td> &nbsp&nbsp Rejestracja </td>
                                                     <td> &nbsp&nbsp Nowy Poczatek AC </td><td> &nbsp&nbsp Nowy Koniec AC </td></tr>
                                                     <c:set var="wyswietlNaglowkiAC" scope="session" value="${0}"/>

@@ -114,7 +114,10 @@
                             <c:choose>
                                 <c:when test="${czyZalogowany == 1}">
                                     <form method="POST" action="RentKontroler" >
-                                        <input type="image" name="jakiSamochod" value="${cars.id}" src="ZdjecieZBazy?id=${cars.id}" alt="Submit" width="250" height="250">
+                                        <input type="image" name="jakiSamochod" value="${cars.id}" src="ZdjecieZBazy?id=${cars.id}" alt="Submit" width="250" height="200">
+                                    <div class ='zatwierdz_przycisk'>   
+                                        <h3> ${cars.marka} ${cars.model} </h3>
+                                    </div>
                                     </form>
                                 </c:when>
                             </c:choose>

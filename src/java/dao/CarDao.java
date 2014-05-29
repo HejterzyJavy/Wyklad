@@ -176,6 +176,22 @@ public class CarDao {
         return lastId;
     }
 
+    public List<String> specifyEquipment(Integer idCar) 
+    {
+       Integer carId=idCar;
+       List<String> Equipment = new ArrayList<String>();
+       Car car=new Car();
+       car=getCarById(carId);
+        System.out.println("TO JEST MIEJSCE W KTORYM JEST BLAD krok wczesniej" +car.getIdWyposazenie());
+       Integer idWyposazenie = new Integer(0);
+       idWyposazenie=car.getIdWyposazenie();
+      
+       Equipment=wyposazeniedao.getWyposazenieById(idWyposazenie);   
+       
+       return Equipment;
+    }
+    
+    
     public List<Car> getAllCars() {
         List<Car> cars = new ArrayList<Car>();
         try {
@@ -279,6 +295,11 @@ public class CarDao {
         return cars;
     }
 
+
+    
+    
+    
+    
     public List<Car> getDontReturnedCar() {
         List<Car> cars = new ArrayList<Car>();
         try {
@@ -320,6 +341,8 @@ public class CarDao {
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 car.setID(rs.getInt("id"));
+                car.setIdWyposazenie(rs.getInt("id_wyposazenie"));
+                car.setIdOplaty(rs.getInt("id_oplaty"));
                 car.setMarka(rs.getString("marka"));
                 car.setModel(rs.getString("model"));
                 car.setRocznik(rs.getInt("rocznik"));

@@ -199,6 +199,9 @@ public class RentKontroler extends HttpServlet {
         if(jakiSamochod!=null)
         {
             Car wypozyczanySamochod=cardao.getCarById(Integer.parseInt(jakiSamochod));
+            List<String> Equipment = new ArrayList<String>();
+            Equipment=cardao.specifyEquipment(Integer.parseInt(jakiSamochod));
+            System.out.println("TO JEST MIEJSCE W KTORYM JEST BLAD juz sam kontroler" +Integer.parseInt(jakiSamochod));
             Integer obliczanieKwoty=0;
             Calendar calendar= Calendar.getInstance();
             Integer dzien=calendar.get(Calendar.DATE);
@@ -220,6 +223,7 @@ public class RentKontroler extends HttpServlet {
             if(dzien<10 && miesiac<10)
             aktualnaData=rok+"-0"+miesiac+"-0"+dzien;  
             
+            request.setAttribute("wyposazenie", Equipment);
             request.setAttribute("obliczanieKwoty", obliczanieKwoty);
             request.setAttribute("ostatniId", rentdao.getLastId());
             request.setAttribute("daneKlient", klient);

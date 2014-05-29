@@ -105,9 +105,14 @@
         
                               
                          
-            <h1 align="center">a tutaj imie ${daneKlient.getImie()}  Marka: ${wypozyczanySamochod.getMarka()} Model:  ${wypozyczanySamochod.getModel()} Cena za dzien: ${wypozyczanySamochod.getCenaDoba()}</h1>
+            <h2 align="center">${wypozyczanySamochod.getMarka()} ${wypozyczanySamochod.getModel()} Cena za dzien: ${wypozyczanySamochod.getCenaDoba()} zl</h2>
        
-       
+            <div class ='zatwierdz_przycisk'>
+                   <c:forEach var="wyposazenie" items="${wyposazenie}" >           
+                     ${wyposazenie}
+                    </c:forEach>
+            </div>  
+            
         
             <c:choose>
               <c:when test="${doZaplaty != null}">
