@@ -61,7 +61,7 @@
         		<div class='linia'> </div>
 				<div id="srodekNaglowek">
 					<div id="srodekZnacznik"> </div>
-					<p>PANEL KLIENTA</p>
+					<p>PANEL KLIENTA edytowany</p>
 
                              
                               <form align="center" action="CarKontroler" method="POST">
@@ -73,13 +73,13 @@
                                          
                               <c:choose>
                               <c:when test="${wyswietlWypozycz==1}">    
-                              <input type="submit" value="Wypożycz samochód" name="oferta">    
+                              <input type="submit" value="Wyswietl Wszystkie samochody" name="oferta">    
                               </c:when>
                               </c:choose>  
                               
                                      <c:choose>
                                       <c:when test="${wyswietlMarke==1}">
-                                  <input type="submit" value="Wybrano Marke" name="wybranoMarke">  
+                                  <input type="submit" value="Wyswietl Wybrana Marke" name="wybranoMarke">  
                                      </c:when>
                                     </c:choose> 
                               
@@ -89,26 +89,23 @@
                                           <br>
                                           <br>       
                                    <div class="daneMarka">
-                                          <form  action="CarKontroler" method="POST">
-                             <label > Wybierz marke: </label>
-                             <select name="Lista">
-                                <c:forTokens items="${Marki}" delims="," var="dana">
-                                       <option> ${dana} </option>
-                                 </c:forTokens>
-                             </select>
-                                      </form>
-                                       <input type="text"  name="pole" value="tutaj wpisz marke">  
+                                   <form  action="CarKontroler" method="POST">
+                                   <label > Wybierz marke: </label>
+                                   <input type="text"  name="pole" value="tutaj wpisz marke">  
                                    </div>
-                                          <div class="zatwierdzKlient">
-                                  <input type="submit" value="zatwierdz" name="marka">  
-                                         </div>
+                                   <div class="zatwierdzKlient">
+                                   <input type="submit" value="zatwierdz" name="marka">  
+                                   </div>
+                                          </form>
                                      </c:when>
                                     </c:choose> 
+                                      
+                                     
                                   
                               
                                        <c:choose>
                                       <c:when test="${wyswietlWyborRoku==1}">
-                                  <input type="submit" value="Wybrany rocznik" name="wybranoRocznik">  
+                                  <input type="submit" value="Wyswietl Wybrany rocznik" name="wybranoRocznik">  
                                      </c:when>
                                     </c:choose> 
                                   

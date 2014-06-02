@@ -255,9 +255,10 @@ public class CarDao {
                 car.setPrzebieg(rs.getInt("przebieg"));
                 car.setPojemnoscSilnika(rs.getString("pojemnosc_silnika"));
                 car.setSkrzyniaBiegow(rs.getString("skrzynia_biegow"));
+                car.setDostepnosc(rs.getInt("dostepnosc"));
                 car.setTypNadwozia(rs.getString("typ_nadwozia"));
                 car.setCenaDoba(rs.getInt("cena_doba"));
-                if (car.getMarka().equalsIgnoreCase(carBrand)) {
+                if (car.getMarka().equalsIgnoreCase(carBrand) && car.getDostepnosc()==1) {
                     cars.add(car);
                 }
             }
@@ -281,11 +282,12 @@ public class CarDao {
                 car.setRodzajPaliwa(rs.getString("rodzaj_paliwa"));
                 car.setMocSilnika(rs.getInt("moc_silnika"));
                 car.setPrzebieg(rs.getInt("przebieg"));
+                car.setDostepnosc(rs.getInt("dostepnosc"));
                 car.setPojemnoscSilnika(rs.getString("pojemnosc_silnika"));
                 car.setSkrzyniaBiegow(rs.getString("skrzynia_biegow"));
                 car.setTypNadwozia(rs.getString("typ_nadwozia"));
                 car.setCenaDoba(rs.getInt("cena_doba"));
-                if (car.getRocznik() >= min && car.getRocznik() <= max) {
+                if (car.getRocznik() >= min && car.getRocznik() <= max && car.getDostepnosc()==1) {
                     cars.add(car);
                 }
             }

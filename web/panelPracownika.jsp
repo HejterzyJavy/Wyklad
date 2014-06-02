@@ -103,7 +103,7 @@
                         </table>
                         <c:choose>
                             <c:when test="${wyswietlanieAkceptacja >0}">
-                                 <div class=zatwierdz_przycisk'>
+                                 <div class='zatwierdzPracownik'>
                                     <input  type="submit" value="zatwierdz"  name="akceptuj">
                                 </div>
                             </c:when>
@@ -182,7 +182,7 @@
                         </table>
                         <c:choose>
                             <c:when test="${wyswietlEdycje > 0}">
-                                <div class ='zatwierdz_przycisk'>
+                                <div class ='zatwierdzPracownik'>
                                     <input type="submit" value="zatwierdz"  name="zatwierdzEdytuj">
                                 </div>  
                             </c:when>
@@ -254,7 +254,7 @@
                         <div align="center">
                             <c:choose>
                                 <c:when test="${wyswietlZmianaOC > 0}">
-                                    <div class ='zatwierdz_przycisk'>
+                                    <div class ='zatwierdzPracownik'>
                                         <input type="submit" value="zatwierdz"  name="zatwierdzZmianaOC">
                                     </div>  
                                 </c:when>
@@ -298,7 +298,7 @@
                         <div align="center">
                             <c:choose>
                                 <c:when test="${wyswietlZmianaAC > 0}">
-                                    <div class ='zatwierdz_przycisk'>
+                                    <div class ='zatwierdzPracownik'>
                                         <input type="submit" value="zatwierdz"  name="zatwierdzZmianaAC">
                                     </div>  
                                 </c:when>
@@ -372,7 +372,7 @@
                         </table>
                         <c:choose>
                             <c:when test="${wyswietlUsun > 0}">
-                                <div class ='zatwierdz_przycisk'>
+                                <div class ='zatwierdzPracownik'>
                                     <input type="submit" value="zatwierdz"  name="zatwierdzUsun">
                                 </div>
                             </c:when>
@@ -407,7 +407,7 @@
 
                         <c:choose>
                             <c:when test="${wyswietlPrzyjmij > 0}">
-                                <div class ='zatwierdz_przycisk'>
+                                <div class ='zatwierdzPracownik'>
                                     <input type="submit" value="zatwierdz"  name="zatwierdzPrzyjmij">
                                 </div>  
                             </c:when>

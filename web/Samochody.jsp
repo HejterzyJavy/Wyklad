@@ -64,17 +64,17 @@
 
                 <c:choose>
                     <c:when test="${czyZalogowany == 1}">
-                       
+                         <div class='przyciskG' id='pLogowania' name="wyloguj"> 
+                                <form action="UserKontroler" method="POST">
+                                <input type="submit" name="wylogowanie" value="WYLOGUJ"> 
+                                </form>
+                                </div>  
 
                     </c:when>
                 </c:choose>
 
 
-                <c:choose>
-                    <c:when test="${czyZalogowany == 0}">
-                          
-                    </c:when>
-                </c:choose>
+           
 
 
 

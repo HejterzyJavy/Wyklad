@@ -133,11 +133,10 @@
         float:left;
         width:220px;
         height: 30px;
-        background-color: #fbcb09;
         color:#333;
-        margin-top: 5px;
-        padding-left: 30px; 
-        padding-top:10px;
+        margin-top: 115px;
+        padding-left: 230px; 
+        padding-top:110px;
         font-size: 24px;
         font-weight: lighter;
 }
@@ -164,4 +163,15 @@ padding-left: 360px;
  width: 20%;
 padding-left: 415px; 
  
+}
+
+.zatwierdzPracownik { 
+ width: 20%;
+padding-right: 50px; 
+ 
+}
+
+.formularzDodawania { 
+ width: 20%;
+margin: 0 auto;
 }
