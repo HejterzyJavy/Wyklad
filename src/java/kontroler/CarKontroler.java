@@ -101,7 +101,7 @@ public class CarKontroler extends HttpServlet {
             java.sql.Date dataRozpoczeciaAc;
             java.sql.Date dataZakonczeniaAc;
            
-            car.setRejestracja("rejestracja");
+            car.setRejestracja(request.getParameter("rejestracja"));
             car.setMarka(request.getParameter("firma"));
             car.setModel(request.getParameter("model"));
             car.setRocznik(Integer.parseInt(request.getParameter("rokProdukcji")));

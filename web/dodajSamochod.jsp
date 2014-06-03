@@ -74,11 +74,6 @@
                 </c:choose>
 
 
-           
-
-
-
-
 
             </div>
            
@@ -98,9 +93,9 @@
                 
                     <div class='linia'> </div>
           <form  action="CarKontroler" method="POST" enctype="multipart/form-data">
-                <div >
+                <div class='formularzDodawania'>
                     <table>
-                        <col width="180">
+                        <col width="380">
                         <tr>
                             <td> <h3>Rejestracja: </h3></td><td><input type="text" name="rejestracja"></td>
                       </tr>
@@ -191,23 +186,26 @@
                     <td><input type="checkbox" name="przyc_szyby" value="przyc_szyby">przyciemniane szyby </td>
                     <td><input type="checkbox" name="szyberdach" value="szyberdach">szyberdach </td>
                 </tr>
-                <tr>
-                    
-                    <td><input type="date" name="rozpoczecieOc" value="rozpoczecieOc">rozpoczecia OC </td>
-                    <td><input type="date" name="ZakonczenieOc" value="ZakonczenieOc">zakonczenia OC </td>
-                </tr>
-                <tr>
-                    <td><input type="date" name="rozpoczecieAc" value="rozpoczecieAc">rozpoczecia AC </td>
-                    <td><input type="date" name="ZakonczenieAc" value="ZakonczenieAc">zakonczenia AC </td>
-                </tr>
-             
+                    <tr>
+                    <td> Rozpoczecia OC:</td><td> <input type="date" name="rozpoczecieOc" value="rozpoczecieOc"></td>
+                    </tr>
+                    <tr>
+                    <td> Zakonczenia OC:</td><td> <input type="date" name="ZakonczenieOc" value="ZakonczenieOc"></td>
+                    </tr>
+                    <tr>
+                    <td>Rozpoczecia AC: </td><td><input type="date" name="rozpoczecieAc" value="rozpoczecieAc"></td>
+                    </tr>
+                    <tr>
+                    <td>Zakonczenia AC: </td><td><input type="date" name="ZakonczenieAc" value="ZakonczenieAc"></td>
+                    </tr>
+            
                 
                 <tr>
-                    <td> <input type="file" name="pliczek" /> </td>
+                   <td> </td> <td> <input type="file" name="pliczek" /> </td>
                 </tr>
           
                   <tr>
-                    <td><input type="submit" name="zatwierdzSamochod" value="zatwierdz"></td>
+                   <td> </td><td><input type="submit" name="zatwierdzSamochod" value="zatwierdz"></td>
                 </tr>
                 
             </form>

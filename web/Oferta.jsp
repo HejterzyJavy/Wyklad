@@ -28,6 +28,7 @@
         
     </head>
     <body>
+        OFERTA
         <c:set var="wyswietlWypozycz" scope="session" value="${1}"/>
         <c:set var="wyswietlWyborRoku" scope="session" value="${1}"/>
         <c:set var="wyswietlZakresRoku" scope="session" value="${0}"/>
