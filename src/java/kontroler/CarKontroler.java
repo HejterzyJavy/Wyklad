@@ -769,7 +769,7 @@ public class CarKontroler extends HttpServlet {
             for (int i = 0; i < wszystkieOplaty.size(); i++)
             {
                 try {
-                    myDate=dateFrm.parse(request.getParameter("pocz+"+wszystkieOplaty.get(i).getIdOplaty()));
+                    myDate=dateFrm.parse(request.getParameter("pocz"+wszystkieOplaty.get(i).getIdOplaty()));
                     nowyPoczatekAc = new java.sql.Date(myDate.getTime());
              
                 } catch (ParseException ex ) {
@@ -778,7 +778,7 @@ public class CarKontroler extends HttpServlet {
                 }
                 
                 try {
-                    test=request.getParameter("kon+"+wszystkieOplaty.get(i).getIdOplaty());
+                    test=request.getParameter("kon"+wszystkieOplaty.get(i).getIdOplaty());
                     if(!test.isEmpty())
                     {
                     myDate=dateFrm.parse(test);

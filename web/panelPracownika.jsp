@@ -74,6 +74,7 @@
                         <input type="submit" value="edytuj przebieg samochodu"  name="edit"  >
                         <input type="submit" value="przyjmij samochody"  name="przyjmijSamochody"  >
                         <input type="submit" value="przedluz OC"  name="przedluzenieOC"  >
+                        <input type="submit" value="przedluz AC"  name="przedluzenieAC"  >
                         <input type="submit" value="konczace ubezpieczenia"  name="koniecUbezpieczen"  >
                     </form>
                     <br>
@@ -244,8 +245,8 @@
                                         <tr>
                                             <td>&nbsp &nbsp${listaOplat.getIdOplaty()}</td><td>&nbsp &nbsp${listaOplat.getRozpoczecieOc()}</td><td>&nbsp &nbsp${listaOplat.getZakonczenieOc()}</td>
                                             <td>&nbsp &nbsp${listaOplat.getTmpMarkaSamochodu()}</td><td>&nbsp &nbsp${listaOplat.getTmpModelSamochodu()}</td><td>&nbsp &nbsp${listaOplat.getTmpRejestracjaSamochodu()}</td>
-                                            <td>&nbsp &nbsp<input type="date" style="width:150px;" name="pocz${listaOplat.getIdOplaty()}" value="${listaOplat.getZakonczenieOc()}"  ></td>
-                                            <td>&nbsp &nbsp<input type="date" style="width:150px;" name="kon${listaOplat.getIdOplaty()}" ></td>
+                                            <td>&nbsp &nbsp<input type="date" style="width:170px;" name="pocz${listaOplat.getIdOplaty()}" value="${listaOplat.getZakonczenieOc()}"  ></td>
+                                            <td>&nbsp &nbsp<input type="date" style="width:170px;" name="kon${listaOplat.getIdOplaty()}" ></td>
                                            
                                         </tr>
                                     </c:when>
@@ -290,7 +291,8 @@
                                         <tr>
                                             <td>&nbsp &nbsp${listaOplat.getIdOplaty()}</td><td>&nbsp &nbsp${listaOplat.getRozpoczecieAc()}</td><td>&nbsp &nbsp${listaOplat.getZakonczenieAc()}</td>
                                             <td>&nbsp &nbsp${listaOplat.getTmpMarkaSamochodu()}</td><td>&nbsp &nbsp${listaOplat.getTmpModelSamochodu()}</td><td>&nbsp &nbsp${listaOplat.getTmpRejestracjaSamochodu()}</td>
-                                            <td>&nbsp &nbsp<input type="date" value="${listaOplat.getZakonczenieAc()}"  ></td>
+                                            <td>&nbsp &nbsp<input type="date" style="width:170px;" name="pocz${listaOplat.getIdOplaty()}" value="${listaOplat.getZakonczenieAc()}"></td>
+                                            <td>&nbsp &nbsp<input type="date" style="width:170px;" name="kon${listaOplat.getIdOplaty()}" ></td>
                                         </tr>
                                     </c:when>
                                 </c:choose>
