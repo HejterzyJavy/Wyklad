@@ -146,6 +146,52 @@ public class UserDao {
         return jakieId;
     }
     
+    public boolean sprawdzLogin (String login)
+    {
+        boolean sprawdzLogin=false;
+        String loginBaza=new String();
+            try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select * from users");
+            while (rs.next()) {
+                loginBaza=rs.getString("login");
+              if(loginBaza.equalsIgnoreCase(login))
+              {
+                  sprawdzLogin=true;
+                  break;
+              }
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return sprawdzLogin;
+    }
+    
+   
+       public boolean sprawdzHaslo (String haslo)
+    {
+        boolean sprawdzHaslo=false;
+        String hasloBaza=new String();
+            try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select * from users");
+            while (rs.next()) {
+                hasloBaza=rs.getString("haslo");
+              if(hasloBaza.equalsIgnoreCase(haslo))
+              {
+                  sprawdzHaslo=true;
+                  break;
+              }
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return sprawdzHaslo;
+    }
+    
+    
     public int zaloguj(String login,String haslo) {
         List<User> users = new ArrayList<User>();
         int jakieStanowisko=-1;

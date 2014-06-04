@@ -72,7 +72,7 @@
         		  <div class='przyciskMenu'> <a href="Samochody.jsp"><p>SAMOCHODY</p></a> </div>
         		<div class='przyciskMenu'>  <a href="Samochody.jsp"><p>OFERTA</p></a> </div>
         		<div class='przyciskMenu'> <p>LOKALIZACJA</p> </div>
-        		<div class='przyciskMenu'> <p>US?UGI</p> </div>
+        		<div class='przyciskMenu'> <p>USLUGI</p> </div>
         		<div class='przyciskMenu'> <p>NAGRODY</p> </div>
         		<div class='przyciskMenu'> <p>DLA FIRM</p> </div>
         	</div>
