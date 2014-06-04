@@ -28,6 +28,21 @@ $(document).ready(function() {
 		$( "#panelLogowania" ).toggle( "fold", 700 );
 	});
         
+        $(".bSamochod").mouseover(function() {
+		$(this).animate({
+			opacity : '0.2'
+		}, 100);
+		$(this).css("background-color", "#6c361d");
+                $(this).parent().find(".bSamochod_napis").show();
+	});
+        $(".bSamochod").mouseleave(function() {
+		$(this).animate({
+			opacity : '1'
+		}, 200);
+		$(this).css("background-color", "");
+                $(this).parent().find(".bSamochod_napis").hide();
+	});
+        
         
 
         $(document).tooltip({
