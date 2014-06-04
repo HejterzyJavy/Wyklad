@@ -39,7 +39,7 @@
         <div id = 'container'>
         	<div id='header'>
         		<div id= 'logo'> </div>
-        		<%@ include file="includes/pasekLogowania.jsp" %>
+        		<%@ include file="includes/pasekLogowaniaLog.jsp" %>
         		<%@ include file="includes/panelLogowania.jsp" %>
         	</div>
         	<%@ include file="includes/menuPoziome.jsp" %>
