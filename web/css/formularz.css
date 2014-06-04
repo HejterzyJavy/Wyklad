@@ -203,3 +203,8 @@ margin: 0 auto;
  text-align: center;
  margin: 0 auto 0 auto;
 }
+
+.panelPracownik { 
+ padding-top:  1cm;
+ padding-left: 180px;
+}

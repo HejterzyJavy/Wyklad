@@ -61,7 +61,7 @@
                 </div>
                 <div class='linia'> </div>
                 <div align="center" id="srodekTresc"> 
-                
+                <div class="panelPracownik">
                     <form action="RentKontroler" method="POST">
                         <input type="submit" value="akceptuj wypozyczenia" name="akceptujWypozyczenia"  >   
                         <input type="submit" value="Historia firmy"  name="nieZwrocone"  >
@@ -69,6 +69,7 @@
                     
                     <c:set var="ilosc" scope="session" value="${0}"/>   
                     <form action="CarKontroler" method="POST">    
+                        
                         <input type="submit" value="dodaj samochod" name="dodaj"   >
                         <input type="submit" value="usun samochod"  name="usun"  >
                         <input type="submit" value="edytuj przebieg samochodu"  name="edit"  >
@@ -76,7 +77,10 @@
                         <input type="submit" value="przedluz OC"  name="przedluzenieOC"  >
                         <input type="submit" value="przedluz AC"  name="przedluzenieAC"  >
                         <input type="submit" value="konczace ubezpieczenia"  name="koniecUbezpieczen"  >
+                        
                     </form>
+                    </div>
+                    
                     <br>
                     <br>                     
                     <form action="RentKontroler" method="POST">    
@@ -124,7 +128,7 @@
                                      <c:choose>
                                         <c:when test="${wyswietlNaglowkiHistoria<1}">
                                             <tr> <td>Numer Zlec. &nbsp &nbsp</td><td>Imie &nbsp &nbsp</td><td>&nbsp &nbsp Nazwisko</td><td>&nbsp &nbsp Marka</td><td>&nbsp &nbsp Model</td>
-                                                <td>&nbsp &nbsp Do zaplaty</td><td>&nbsp &nbsp Data Wypozyczenia</td><td>&nbsp &nbsp Data Zwrotu</td><td>&nbsp &nbsp Status</td>
+                                                <td>&nbsp &nbsp Należność</td><td>&nbsp &nbsp Data Wyp.</td><td>&nbsp &nbsp Data Zwrot</td><td>&nbsp &nbsp Status</td>
                                                </tr>
                                                 <c:set var="wyswietlNaglowkiHistoria" scope="session" value="${1}"/>
                                     </c:when>
