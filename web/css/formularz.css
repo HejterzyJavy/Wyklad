@@ -143,31 +143,28 @@
 }
 
 .wyposazenie { 
- width: 50%;
-padding-left: 300px; 
+    float:left;
+    width: 1024px;
  
 }
 
 .wypozyczanie { 
- width: 50%;
-padding-left: 360px; 
+    float:right;
+    width:600px;
  
 }
 
 .daneMarka { 
- width: 20%;
 padding-left: 360px; 
  
 }
 
 .zatwierdzKlient { 
- width: 20%;
 padding-left: 415px; 
  
 }
 
 .zatwierdzPracownik { 
- width: 20%;
 padding-right: 50px; 
  
 }
@@ -188,7 +185,6 @@ padding-right: 50px;
 }
 
 .tytulRejestracja { 
- width: 50%;
  text-align: center;
  margin: 0 auto 0 auto;
 }
