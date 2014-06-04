@@ -9,7 +9,9 @@
      
       <div class='przyciskG' id='pLogowania'> LOGOWANIE </div>
       <div class='przyciskG' id='pRejestracja'> REJESTRACJA </div>
-
+ <form action="UserKontroler" method="POST">
+                                    <input class="przyciskWyloguj" type="submit"  name="wylogowanie" value="WYLOGUJ"> 
+                                </form>
                           
 
 

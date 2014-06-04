@@ -28,7 +28,6 @@
         
     </head>
     <body>
-        OFERTA
         <c:set var="wyswietlWypozycz" scope="session" value="${1}"/>
         <c:set var="wyswietlWyborRoku" scope="session" value="${1}"/>
         <c:set var="wyswietlZakresRoku" scope="session" value="${0}"/>
@@ -40,11 +39,11 @@
         		<div id= 'logo'> </div>
         		<div id='pasekLogowania'>
                             
-                            <div class='przyciskG' id='pLogowania' name="wyloguj"> 
+   
                                 <form action="UserKontroler" method="POST">
-                                <input type="submit" name="wylogowanie" value="WYLOGUJ"> 
+                                    <input class="przyciskWyloguj" type="submit"  name="wylogowanie" value="WYLOGUJ"> 
                                 </form>
-                                </div>                            
+                                              
         		</div>
         	
         	</div>

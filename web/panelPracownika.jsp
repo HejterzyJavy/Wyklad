@@ -63,18 +63,18 @@
                 <div align="center" id="srodekTresc"> 
                 
                     <form action="RentKontroler" method="POST">
-                        <input type="submit" value="akceptuj wypozyczenia" name="akceptujWypozyczenia" style="height: 45px; width: 300px">   
-                        <input type="submit" value="Historia firmy"  name="nieZwrocone" style="height: 45px; width: 300px">
+                        <input type="submit" value="akceptuj wypozyczenia" name="akceptujWypozyczenia"  >   
+                        <input type="submit" value="Historia firmy"  name="nieZwrocone"  >
                     </form>
                     
                     <c:set var="ilosc" scope="session" value="${0}"/>   
                     <form action="CarKontroler" method="POST">    
-                        <input type="submit" value="dodaj samochod" name="dodaj"  style="height: 45px; width: 300px">
-                        <input type="submit" value="usun samochod"  name="usun" style="height: 45px; width: 300px">
-                        <input type="submit" value="edytuj przebieg samochodu"  name="edit" style="height: 45px; width: 300px">
-                        <input type="submit" value="przyjmij samochody"  name="przyjmijSamochody" style="height: 45px; width: 300px">
-                        <input type="submit" value="przedluz OC"  name="przedluzenieOC" style="height: 45px; width: 300px">             <input type="submit" value="przedluz AC"  name="przedluzenieAC" style="height: 45px; width: 300px">
-                        <input type="submit" value="konczace ubezpieczenia"  name="koniecUbezpieczen" style="height: 45px; width: 300px">
+                        <input type="submit" value="dodaj samochod" name="dodaj"   >
+                        <input type="submit" value="usun samochod"  name="usun"  >
+                        <input type="submit" value="edytuj przebieg samochodu"  name="edit"  >
+                        <input type="submit" value="przyjmij samochody"  name="przyjmijSamochody"  >
+                        <input type="submit" value="przedluz OC"  name="przedluzenieOC"  >
+                        <input type="submit" value="konczace ubezpieczenia"  name="koniecUbezpieczen"  >
                     </form>
                     <br>
                     <br>                     
@@ -244,7 +244,7 @@
                                         <tr>
                                             <td>&nbsp &nbsp${listaOplat.getIdOplaty()}</td><td>&nbsp &nbsp${listaOplat.getRozpoczecieOc()}</td><td>&nbsp &nbsp${listaOplat.getZakonczenieOc()}</td>
                                             <td>&nbsp &nbsp${listaOplat.getTmpMarkaSamochodu()}</td><td>&nbsp &nbsp${listaOplat.getTmpModelSamochodu()}</td><td>&nbsp &nbsp${listaOplat.getTmpRejestracjaSamochodu()}</td>
-                                            <td>&nbsp &nbsp<input type="date" value="${listaOplat.getZakonczenieOc()}" style="width:165px;" name="pocz+${listaOplat.getIdOplaty()}"></td><td> &nbsp<input type="date" style="width:165px;" name="kon+${listaOplat.getIdOplaty()}"></td>
+                                            <td>&nbsp &nbsp<input type="date" value="${listaOplat.getZakonczenieOc()}"  ></td>
                                         </tr>
                                     </c:when>
                                 </c:choose>
@@ -288,7 +288,7 @@
                                         <tr>
                                             <td>&nbsp &nbsp${listaOplat.getIdOplaty()}</td><td>&nbsp &nbsp${listaOplat.getRozpoczecieAc()}</td><td>&nbsp &nbsp${listaOplat.getZakonczenieAc()}</td>
                                             <td>&nbsp &nbsp${listaOplat.getTmpMarkaSamochodu()}</td><td>&nbsp &nbsp${listaOplat.getTmpModelSamochodu()}</td><td>&nbsp &nbsp${listaOplat.getTmpRejestracjaSamochodu()}</td>
-                                            <td>&nbsp &nbsp<input type="date" value="${listaOplat.getZakonczenieAc()}" style="width:165px;" name="pocz+${listaOplat.getIdOplaty()}"></td><td> &nbsp<input type="date" style="width:165px;" name="kon+${listaOplat.getIdOplaty()}"></td>
+                                            <td>&nbsp &nbsp<input type="date" value="${listaOplat.getZakonczenieAc()}"  ></td>
                                         </tr>
                                     </c:when>
                                 </c:choose>

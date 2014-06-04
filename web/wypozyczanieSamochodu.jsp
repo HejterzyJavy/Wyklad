@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html class="no-js">
     <head>
@@ -106,12 +107,16 @@
                               
                          
             <h2 align="center">${wypozyczanySamochod.getMarka()} ${wypozyczanySamochod.getModel()} Cena za dzien: ${wypozyczanySamochod.getCenaDoba()} zl</h2>
-       
+
             <div class ='wyposazenie'>
-                   <c:forEach var="wyposazenie" items="${wyposazenie}" >     
-                       <br>
-                     ${wyposazenie}
-                    </c:forEach>
+
+                <ol class="rectangle-list">
+                    
+                    <c:forEach items="${wyposazenie}" var="item">
+                        <li><a href="#">${item}</a><li>
+                        </c:forEach>
+                </ol>
+
             </div>  
             
         

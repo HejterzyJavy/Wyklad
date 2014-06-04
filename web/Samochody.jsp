@@ -34,7 +34,6 @@
 
     </head>
     <body>
-        Samochody
         <c:set var="czyZalogowany" scope="session" value="${czyZalogowany}"/>
         <c:set var="ktoZalogowany" scope="session" value="${ktoZalogowany}"/>
         <c:set var="wyslanoEmail" scope="session" value="${wyslanoEmail}"/>
@@ -73,12 +72,6 @@
 
                     </c:when>
                 </c:choose>
-
-
-           
-
-
-
 
 
             </div>
