@@ -4,8 +4,10 @@ import dao.UserDao;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.User;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UserKontroler extends HttpServlet {
 
@@ -29,6 +33,8 @@ public class UserKontroler extends HttpServlet {
     
     private static String LOGOWANIE="/Log.jsp";
     
+    private static String REJESTRACJA="/Rej.jsp";
+    
     private static String zalogowanyPRACOWNIK="/panelPracownika.jsp";
     
     private static String OFERTA = "/Oferta.jsp";
@@ -38,6 +44,15 @@ public class UserKontroler extends HttpServlet {
     private boolean czyZalogowany=false;
     
     private Integer logowanie=new Integer(0);
+    
+    private Pattern pattern;
+    
+    private Matcher matcher;
+    
+    private static final String EMAIL_PATTERN = 
+		"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    
     
     public UserKontroler() {
 
@@ -163,8 +178,15 @@ public class UserKontroler extends HttpServlet {
         String Rejestruj=request.getParameter("Rejestruj");
         if(Rejestruj!=null)
         {
+            
+            List<String> bledyRejestracja = new ArrayList<String>();
+            boolean danePoprawne=true;
+            String powtorzHaslo=new String();
+            pattern = Pattern.compile(EMAIL_PATTERN);
+            
         user.setLogin(request.getParameter("login"));
         user.setHaslo(request.getParameter("haslo"));
+        powtorzHaslo=request.getParameter("powtorzHaslo");
         user.setAdres(request.getParameter("adres"));
         user.setKodPocztowy(request.getParameter("kodPocztowy"));
         user.setTelefon(request.getParameter("telefon"));
@@ -186,7 +208,42 @@ public class UserKontroler extends HttpServlet {
 
         user.setEmail(request.getParameter("email"));
         String userid = request.getParameter("userid");
-
+        matcher = pattern.matcher(user.getEmail());
+        
+        if(user.getImie().length()<=2)
+        {
+            danePoprawne=false;
+            bledyRejestracja.add("Imie jest za krótkie");
+        }
+        if(user.getNazwisko().length()<=2)
+        {
+            danePoprawne=false;
+            bledyRejestracja.add("Nazwisko jest za krótkie");
+        }
+        if(!user.getHaslo().equals(powtorzHaslo))
+        {
+            danePoprawne=false;
+            bledyRejestracja.add("Hasla różnią się od siebie");
+        }
+        if(!matcher.matches())
+        {
+            danePoprawne=false;
+            bledyRejestracja.add("Niepoprawny Adres E-mail");
+        }
+        if(dao.sprawdzLogin(user.getLogin()))
+        {
+            danePoprawne=false;
+            bledyRejestracja.add("Konto z podanym Loginem juz istnieje");
+        }
+         if(dao.sprawdzHaslo(user.getHaslo()))
+        {
+            danePoprawne=false;
+            bledyRejestracja.add("Konto z podanym Haslem juz istnieje");
+        }
+        
+                
+        if(danePoprawne)
+        {
         if (userid == null || userid.isEmpty()) {
             dao.addUser(user);
         } else {
@@ -194,6 +251,14 @@ public class UserKontroler extends HttpServlet {
             dao.updateUser(user);
         }
         view = request.getRequestDispatcher(INDEX);
+        }
+        else if(!danePoprawne)
+        {
+            request.setAttribute("bledyRejestracja", bledyRejestracja);
+            view = request.getRequestDispatcher(REJESTRACJA);
+        }
+        
+        
         }
         //}
         

@@ -52,10 +52,18 @@
                 <tr>
                 <td>Haslo :</td> 
                 <td><input  
-                    type="text" name="haslo"  
+                    type="password" name="haslo"  
                     value="<c:out value="${user.haslo}" />" /> 
                 </td> 
                 </tr>
+                
+                <tr>
+                <td>Powtórz Haslo :</td> 
+                <td>
+                    <input type="password" name="powtorzHaslo" /> 
+                </td> 
+                </tr>
+                
                 <tr>
                     <td>Adres :</td> 
                 <td><input  
@@ -117,6 +125,18 @@
                </div>
         </form>  
 </div>
+               
+               <div class ='bledyRejestracja'>
+
+                <ol class="rectangle-list">
+                    
+                    <c:forEach items="${bledyRejestracja}" var="item">
+                        <li><a href="#">${item}</a><li>
+                        </c:forEach>
+                </ol>
+
+            </div>  
+               
     </body>  
 
 </html>  

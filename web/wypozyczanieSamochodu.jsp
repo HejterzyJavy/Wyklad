@@ -46,8 +46,6 @@
                 <div id="panelLogowania">
                     <div id="panelLogowaniaNaglowek"><p>Logowanie</p></div>
 
-                    <form class="formularzLogowania"  method="POST" action="UserKontroler">
-                        <fieldset>
 
                             <div>
                                 <label>Login:</label>
