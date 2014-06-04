@@ -176,3 +176,19 @@ padding-right: 50px;
  padding-left: 115px; 
 
 }
+
+.formularzRejestracji { 
+ padding-left: 510px; 
+}
+
+.zakonczRejestracje { 
+ padding-top:  1cm;
+ padding-left: 80px; 
+
+}
+
+.tytulRejestracja { 
+ width: 50%;
+ text-align: center;
+ margin: 0 auto 0 auto;
+}

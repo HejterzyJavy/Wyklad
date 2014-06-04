@@ -20,22 +20,41 @@ public class UserDao {
     public void addUser(User user) {
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("insert into users(login,haslo,adres,kod_pocztowy,telefon,imie,nazwisko,pesel,dob,email) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
-            preparedStatement.setString(1, user.getLogin());
-            preparedStatement.setString(2, user.getHaslo());
-            preparedStatement.setString(3, user.getAdres());
-            preparedStatement.setString(4, user.getKodPocztowy());
-            preparedStatement.setString(5, user.getTelefon());
-            preparedStatement.setString(6, user.getImie());
-            preparedStatement.setString(7, user.getNazwisko());
-            preparedStatement.setString(8, user.getPesel());
-            preparedStatement.setDate(9, new java.sql.Date(user.getDob().getTime()));
-            preparedStatement.setString(10, user.getEmail());
+                    .prepareStatement("insert into users(userid,login,haslo,adres,kod_pocztowy,telefon,imie,nazwisko,pesel,dob,email,stanowisko) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
+            preparedStatement.setInt(1, getLastId());           
+            preparedStatement.setString(2, user.getLogin());
+            preparedStatement.setString(3, user.getHaslo());
+            preparedStatement.setString(4, user.getAdres());
+            preparedStatement.setString(5, user.getKodPocztowy());
+            preparedStatement.setString(6, user.getTelefon());
+            preparedStatement.setString(7, user.getImie());
+            preparedStatement.setString(8, user.getNazwisko());
+            preparedStatement.setString(9, user.getPesel());
+            preparedStatement.setDate(10, new java.sql.Date(user.getDob().getTime()));
+            preparedStatement.setString(11, user.getEmail());
+            preparedStatement.setInt(12, 0);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    
+        public Integer getLastId() {
+        Integer lastId = new Integer(0);
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select * from users");
+            while (rs.next()) {
+                lastId = rs.getInt("userid");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        lastId++;
+        return lastId;
+    }
+    
 
     public void deleteUser(int userId) {
         try {
