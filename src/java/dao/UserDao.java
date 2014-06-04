@@ -20,7 +20,7 @@ public class UserDao {
     public void addUser(User user) {
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("insert into users(userid,login,haslo,adres,kod_pocztowy,telefon,imie,nazwisko,pesel,dob,email,stanowisko) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
+                    .prepareStatement("insert into users(userid,login,haslo,adres,kod_pocztowy,telefon,imie,nazwisko,pesel,dob,email,stanowisko) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,? )");
             preparedStatement.setInt(1, getLastId());           
             preparedStatement.setString(2, user.getLogin());
             preparedStatement.setString(3, user.getHaslo());
