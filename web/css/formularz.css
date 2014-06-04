@@ -179,7 +179,8 @@ padding-left: 415px;
 }
 
 .zatwierdzPracownik { 
-padding-right: 50px; 
+display: inline-block;
+margin: 0 auto;
  
 }
 

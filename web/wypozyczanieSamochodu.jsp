@@ -35,13 +35,10 @@
 
     </head>
     <body>
-        wypozyczanieSamochodu
         <div id = 'container'>
             <div id='header'>
                 <div id= 'logo'> </div>
                 <div id='pasekLogowania'>
-                    <div class='przyciskG' id='pLogowania'> <a href="Log.jsp">LOGOWANIE</a> </div>
-                    <div class='przyciskG' id='pRejestracja'> REJESTRACJA </div>
                 </div>
                 <div id="panelLogowania">
                     <div id="panelLogowaniaNaglowek"><p>Logowanie</p></div>

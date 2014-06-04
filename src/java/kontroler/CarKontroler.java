@@ -680,6 +680,7 @@ public class CarKontroler extends HttpServlet {
             List<Oplaty> wszystkieOplaty = new ArrayList<Oplaty>();
             Oplaty tmp = new Oplaty();
             String test=new String();
+            String test2=new String();
             wszystkieOplaty=oplatydao.getAllFee();
             DateFormat dateFrm = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date myDate = new java.util.Date();
@@ -693,16 +694,19 @@ public class CarKontroler extends HttpServlet {
             for (int i = 0; i < wszystkieOplaty.size(); i++)
             {
                 try {
-                    myDate=dateFrm.parse(request.getParameter("pocz+"+wszystkieOplaty.get(i).getIdOplaty()));
+                    test2=request.getParameter("pocz"+wszystkieOplaty.get(i).getIdOplaty());
+                    if(!test2.isEmpty())
+                    {
+                    myDate=dateFrm.parse(test2);
                     nowyPoczatekOc = new java.sql.Date(myDate.getTime());
-             
+                    }
                 } catch (ParseException ex ) {
                     Logger.getLogger(CarKontroler.class.getName()).log(Level.SEVERE, null, ex);
                     nowyPoczatekOc=null;
                 }
                 
                 try {
-                    test=request.getParameter("kon+"+wszystkieOplaty.get(i).getIdOplaty());
+                    test=request.getParameter("kon"+wszystkieOplaty.get(i).getIdOplaty());
                     if(!test.isEmpty())
                     {
                     myDate=dateFrm.parse(test);

@@ -244,7 +244,9 @@
                                         <tr>
                                             <td>&nbsp &nbsp${listaOplat.getIdOplaty()}</td><td>&nbsp &nbsp${listaOplat.getRozpoczecieOc()}</td><td>&nbsp &nbsp${listaOplat.getZakonczenieOc()}</td>
                                             <td>&nbsp &nbsp${listaOplat.getTmpMarkaSamochodu()}</td><td>&nbsp &nbsp${listaOplat.getTmpModelSamochodu()}</td><td>&nbsp &nbsp${listaOplat.getTmpRejestracjaSamochodu()}</td>
-                                            <td>&nbsp &nbsp<input type="date" value="${listaOplat.getZakonczenieOc()}"  ></td>
+                                            <td>&nbsp &nbsp<input type="date" style="width:150px;" name="pocz${listaOplat.getIdOplaty()}" value="${listaOplat.getZakonczenieOc()}"  ></td>
+                                            <td>&nbsp &nbsp<input type="date" style="width:150px;" name="kon${listaOplat.getIdOplaty()}" ></td>
+                                           
                                         </tr>
                                     </c:when>
                                 </c:choose>

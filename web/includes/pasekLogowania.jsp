@@ -8,10 +8,10 @@
  <div id='pasekLogowania'>
      
       <div class='przyciskG' id='pLogowania'> LOGOWANIE </div>
-      <div class='przyciskG' id='pRejestracja'> REJESTRACJA </div>
- <form action="UserKontroler" method="POST">
-                                    <input class="przyciskWyloguj" type="submit"  name="wylogowanie" value="WYLOGUJ"> 
-                                </form>
+      <div class='przyciskG' id='pRejestracja'> <a href="Rej.jsp">REJESTRACJA</a> </div>
+      <form action="UserKontroler" method="POST">
+      <input class="przyciskWyloguj" type="submit"  name="wylogowanie" value="WYLOGUJ"> 
+       </form>
                           
 
 
