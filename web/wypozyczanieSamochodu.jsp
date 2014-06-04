@@ -105,7 +105,14 @@
 
 
                     <h2 align="center">${wypozyczanySamochod.getMarka()} ${wypozyczanySamochod.getModel()} </h2>
+                    <div class="imgSamochodu">
+                        <img src="ZdjecieZBazy?id=${wypozyczanySamochod.getId()}">
+                        
+                    </div>
+                         <div id="cenaKolo">
+                        <div id="cena">${wypozyczanySamochod.getCenaDoba()}</div> <img src="img/zl24.png">
 
+                    </div>
                     <div class ='wyposazenie'>
 
                         <ol class="rectangle-list">
@@ -116,13 +123,11 @@
                         </ol>
 
                     </div>  
-                    <div id="cenaKolo">
-                        <div id="cena">${wypozyczanySamochod.getCenaDoba()}</div> <img src="img/zl24.png">
 
-                    </div>
+                   
 
 
-
+                        <div id="ramkaWypozyczenie">
                     <div class ='wypozyczanie'>
                         <c:choose>
                             <c:when test="${obliczanieKwoty == 0}">
@@ -137,11 +142,12 @@
                                     <input type="date" name="dataZwrotu"  value="${dataZwrotu}">
                                     <input type="submit" name="obliczKwote" value="Oblicz Kwote">
                                     <input type="submit" name="wypozyczSamochod" value="Zatwierdz">
-                                    </div>
+                                   
                                 </form>
                             </c:when>
-                        </c:choose>                      
-
+                        </c:choose>   
+                         </div>
+                        </div>
                     </div>	
                 </div>
             </div>

@@ -156,9 +156,16 @@ padding-left: 300px;
 
 
 .wypozyczanie { 
-    float:right;
-    width:600px;
+    width:500px;
+    margin:0 auto;
  
+}
+
+
+
+#ramkaWypozyczenie{
+    width: 1000px;
+    float:left;
 }
 
 .daneMarka { 
