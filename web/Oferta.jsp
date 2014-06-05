@@ -63,19 +63,23 @@
 					<div id="srodekZnacznik"> </div>
 					<p>PANEL KLIENTA edytowany</p>
 
-                             
+                              
                               <form align="center" action="CarKontroler" method="POST">
                                 <c:set var="wyswietlWyborRoku" scope="session" value="${wyswietlWyborRoku}"/>
                                 <c:set var="wyswietlZakresRocznika" scope="session" value="${wyswietlZakresRocznika}"/>
                                 <c:set var="wyswietlMarke" scope="session" value="${wyswietlMarke}"/>
                                 <c:set var="wyswietlWyborMarki" scope="session" value="${wyswietlWyborMarki}"/>  
                                 <c:set var="wyswietlWypozycz" scope="session" value="${wyswietlWypozycz}"/>  
-                                         
+                              
+                                
+                                    
+                                <div class="panelKlienta">
                               <c:choose>
                               <c:when test="${wyswietlWypozycz==1}">    
                               <input type="submit" value="Wyswietl Wszystkie samochody" name="oferta">    
                               </c:when>
                               </c:choose>  
+                                </div>
                               
                                      <c:choose>
                                       <c:when test="${wyswietlMarke==1}">
@@ -124,9 +128,11 @@
                                     </c:choose> 
                               
                               </form>
-            
+                              
+                                
                              <form align="center" action="RentKontroler" method="POST">
                              </form>
+                                
                              </div>
                                         
                                          <c:forEach var="cars" items="${Cars}" >
