@@ -250,7 +250,7 @@ public class UserKontroler extends HttpServlet {
             user.setUserid(Integer.parseInt(userid));
             dao.updateUser(user);
         }
-        view = request.getRequestDispatcher(INDEX);
+        view = request.getRequestDispatcher(LOGOWANIE);
         }
         else if(!danePoprawne)
         {

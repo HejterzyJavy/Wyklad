@@ -91,7 +91,7 @@
                             <c:forEach var="rents" items="${Rents}" >           
                                     <c:choose>
                                         <c:when test="${wyswietlNaglowkiAkceptacja<1}">
-                                            <tr> <td>Numer Zlec. &nbsp &nbsp</td><td>Imie &nbsp &nbsp</td><td>&nbsp &nbsp Nazwisko</td><td>&nbsp &nbsp Marka</td><td>&nbsp &nbsp Model</td><td>&nbsp &nbsp Do zaplaty</td>
+                                            <tr> <td>Numer  &nbsp &nbsp</td><td>Imie &nbsp &nbsp</td><td>&nbsp &nbsp Nazwisko</td><td>&nbsp &nbsp Marka</td><td>&nbsp &nbsp Model</td><td>&nbsp &nbsp Do zaplaty</td>
                                                </tr>
                                                 <c:set var="wyswietlNaglowkiAkceptacja" scope="session" value="${1}"/>
                                     </c:when>

@@ -325,7 +325,7 @@ public class CarKontroler extends HttpServlet {
                 ktoZalogowany="-1";
             }
             
-            cars = dao.getAllCars();
+            cars = dao.getReturnedCar();
             request.setAttribute("Cars", cars);
             request.setAttribute("czyZalogowany", czyZalogowany);
             request.setAttribute("ktoZalogowany", ktoZalogowany);
