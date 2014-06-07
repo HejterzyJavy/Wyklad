@@ -183,12 +183,20 @@
 
                                          </div>
                                      </c:forEach>
+                     
+             
                                                                         
         </div>
         </div>
         </div>
-
-
-
+        
+        <div class="infoKlient" >
+  <c:choose>
+    <c:when test="${wyslanoEmail == 1}">
+         <h2 align="center">Na adres e-mail podany przy rejestracji zostanie przeslana informacja na temat zlecenia.</h2> 
+    </c:when>
+ </c:choose>
+       </div>
+         
     </body>
 </html>

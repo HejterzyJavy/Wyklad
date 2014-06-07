@@ -45,7 +45,7 @@ public class RentKontroler extends HttpServlet {
      
      private static String wypozyczanieSamochodu="/wypozyczanieSamochodu.jsp";
      
-     private static String OFERTA="/Samochody.jsp";
+     private static String OFERTA="/Oferta.jsp";
      
      private CarDao cardao;
      
@@ -188,8 +188,10 @@ public class RentKontroler extends HttpServlet {
             wypozyczenie.setZakonczono(0);
           
             rentdao.addRent(wypozyczenie);
-
             request.setAttribute("wyslanoEmail", 1);
+            request.setAttribute("wyswietlMarke", 1);
+            request.setAttribute("wyswietlWyborRoku", 1);
+            request.setAttribute("wyswietlWypozycz", 1);
             
             view=request.getRequestDispatcher(OFERTA);
         }
@@ -374,8 +376,12 @@ public class RentKontroler extends HttpServlet {
                     
                     if(tmp.getStatus().equalsIgnoreCase("odrzucone"))
                     {
-                       
                         tmp=test.get(i);
+                        try {
+                            rentdao.endRent(test.get(i).getIdWypozyczenie());
+                        } catch (SQLException ex) {
+                            Logger.getLogger(RentKontroler.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                         samochod=cardao.getCarById(tmp.getIdSamochod());
                         klient=userdao.getUserById(tmp.getIdUser());
                         email.wyslijOdrzucenie(tmp.getOpis(),klient.getEmail(),samochod.getMarka(),samochod.getModel());
