@@ -489,8 +489,12 @@ public class CarKontroler extends HttpServlet {
                 zwrocony = request.getParameter(test.get(i).getId().toString());
                 if (zwrocony != null) {
                         try {
+                            System.out.println("to co odebralem w zwoconym"+zwrocony+"--------------------------------------");
                             dao.przyjmijSamochod(Integer.parseInt(zwrocony));
+                
                             rent=rentdao.getRentByCarId(Integer.parseInt(zwrocony));
+                            System.out.println("to z rentado "+rent.getIdWypozyczenie());
+                            
                             rentdao.endRent(rent.getIdWypozyczenie());
                         } catch (SQLException ex) {
                             Logger.getLogger(CarKontroler.class.getName()).log(Level.SEVERE, null, ex);

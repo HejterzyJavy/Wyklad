@@ -195,9 +195,10 @@ public class RentDao {
         try {
 
             PreparedStatement preparedStatement = connection.
-                    prepareStatement("select * from wypozyczenie where id=?");
+                    prepareStatement("select * from wypozyczenie where id=? and zakonczono=?");
 
             preparedStatement.setInt(1, carId);
+            preparedStatement.setInt(2, 0);
 
             ResultSet rs = preparedStatement.executeQuery();
 

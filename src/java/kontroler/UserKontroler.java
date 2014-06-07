@@ -132,6 +132,16 @@ public class UserKontroler extends HttpServlet {
         if(wylogowanie!=null)
         {
             logowanie=0;
+            request.setAttribute("wyswietlEdycje", 0);
+            request.setAttribute("wyswietlUsun", 0);
+            request.setAttribute("wyswietlPrzyjmij", 0);
+            request.setAttribute("wyswietlanieRozliczenia", 0);
+            request.setAttribute("wyswietlZmianaOC", 0);
+            request.setAttribute("wyswietlListeOC", 0);
+            request.setAttribute("wyswietlListeAC", 0);
+            request.setAttribute("wyswietlZmianaAC", 0);
+            request.setAttribute("wyswietlListeKoniec", 0);
+            
             HttpSession session = request.getSession(true);
             session.setAttribute("czyZalogowany1", logowanie);
             view = request.getRequestDispatcher(LOGOWANIE);
@@ -174,7 +184,6 @@ public class UserKontroler extends HttpServlet {
             
             request.setAttribute("wyswietlEdycje", 0);
             request.setAttribute("wyswietlUsun", 0);
-          //  request.setAttribute("wyswietlanieAkceptacja", 1);
             request.setAttribute("wyswietlPrzyjmij", 0);
             request.setAttribute("wyswietlanieRozliczenia", 0);
             request.setAttribute("wyswietlZmianaOC", 0);
@@ -300,6 +309,18 @@ public class UserKontroler extends HttpServlet {
                 session.setAttribute("czyZalogowany1", logowanie);
                 session.setAttribute("ktoZalogowany", 1);
                 session.setAttribute("jakieId", dao.jakieId(user.getLogin(), user.getHaslo()));
+                request.setAttribute("wyswietlEdycje", 0);
+                request.setAttribute("wyswietlUsun", 0);
+                request.setAttribute("wyswietlPrzyjmij", 0);
+                request.setAttribute("wyswietlanieRozliczenia", 0);
+                request.setAttribute("wyswietlZmianaOC", 0);
+                request.setAttribute("wyswietlListeOC", 0);
+                request.setAttribute("wyswietlListeAC", 0);
+                request.setAttribute("wyswietlZmianaAC", 0);
+                request.setAttribute("wyswietlListeKoniec", 0);
+                request.setAttribute("wyswietlanieAkceptacja", 0);
+                
+                
                 view = request.getRequestDispatcher(zalogowanyPRACOWNIK);
             } 
             else if (dao.zaloguj(user.getLogin(), user.getHaslo())==-1) {

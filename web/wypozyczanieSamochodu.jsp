@@ -135,11 +135,22 @@
                                             <h2>Aktualnie do zaplaty mamy ${doZaplaty}</h2>  
                                         </c:when>
                                     </c:choose>
-                                    <input type="date" name="dataWypozyczenia" value="${dataWypozyczenia}">
-                                    <input type="date" name="dataZwrotu"  value="${dataZwrotu}">
-                                    <input type="submit" name="obliczKwote" value="Oblicz Kwote">
-                                    <input type="submit" name="wypozyczSamochod" value="Zatwierdz">
                                    
+                                    <div class="datyWypozyczenieSamochodu">
+                                    <table>
+                                        <tr>
+                                            <td>Wypozyczenie: </td><td><input type="date" name="dataWypozyczenia" value="${dataWypozyczenia}"></td>
+                                        </tr>
+                                       
+                                        <tr>  
+                                            <td>Zwrot: </td><td><input type="date" name="dataZwrotu"  value="${dataZwrotu}"></td>
+                                        </tr>
+                                    </table>
+                                    </div>
+                                        
+                                    <div class="zatwierdzWypozyczenieSamochodu">
+                                    <input type="submit" name="wypozyczSamochod" value="Zatwierdz">
+                                    </div>
                                 </form>
                             </c:when>
                         </c:choose>   
