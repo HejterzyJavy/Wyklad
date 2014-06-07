@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div id='menuPoziome'>
-        		<div id='rezerwacjaB'><a href="Samochody.jsp"><p>REZERWUJ</p></a> </div>
+        		<div id='rezerwacjaB'><a href="Log.jsp"><p>REZERWUJ</p></a> </div>
                         <div class='przyciskMenu'> <a href="filtrSamochod.jsp"><p>SAMOCHODY</p></a> </div>
         		<div class='przyciskMenu'> <a href="Samochody.jsp"><p>OFERTA</p></a> </div>
         		<div class='przyciskMenu'> <p>LOKALIZACJA</p> </div>

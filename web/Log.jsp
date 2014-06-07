@@ -42,7 +42,7 @@
         		<%@ include file="includes/pasekLogowaniaLog.jsp" %>
         		<%@ include file="includes/panelLogowania.jsp" %>
         	</div>
-        	<%@ include file="includes/menuPoziome.jsp" %>
+        	<%@ include file="includes/menuPoziomeNiezalogowany.jsp" %>
         	<div id="srodek">
         		<div class='linia'> </div>
 				<div id="srodekNaglowek">

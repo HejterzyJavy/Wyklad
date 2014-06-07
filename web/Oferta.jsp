@@ -34,15 +34,28 @@
         <c:set var="wyswietlMarke" scope="session" value="${1}"/>
         <c:set var="wyswietlWyborMarki" scope="session" value="${0}"/>
         <c:set var="czyZalogowany" scope="session" value="${czyZalogowany}"/>
+        <c:set var="ktoZalogowany" scope="session" value="${ktoZalogowany}"/>
+        
         <div id = 'container'>
         	<div id='header'>
         		<div id= 'logo'> </div>
         		<div id='pasekLogowania'>
-                            
+                         
+                              <c:choose>
+                              <c:when test="${ktoZalogowany==1}">  
+                                   <form action="UserKontroler" method="POST">
+                                    <input class="przyciskWyloguj" type="submit"  name="panelPracownika" value="PANEL"> 
+                                </form>  
+                                   </c:when>
+                                    </c:choose> 
    
+                             <c:choose>
+                              <c:when test="${czyZalogowany==1}">  
                                 <form action="UserKontroler" method="POST">
                                     <input class="przyciskWyloguj" type="submit"  name="wylogowanie" value="WYLOGUJ"> 
                                 </form>
+                                  </c:when>
+                                    </c:choose> 
                                               
         		</div>
         	
@@ -62,7 +75,7 @@
 				<div id="srodekNaglowek">
 					<div id="srodekZnacznik"> </div>
 					<p>PANEL KLIENTA edytowany</p>
-
+                                  
                               
                               <form align="center" action="CarKontroler" method="POST">
                                 <c:set var="wyswietlWyborRoku" scope="session" value="${wyswietlWyborRoku}"/>
