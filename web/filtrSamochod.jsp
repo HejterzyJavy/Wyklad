@@ -69,7 +69,7 @@
         		<div class='linia'> </div>
 				<div id="srodekNaglowek">
 					<div id="srodekZnacznik"> </div>
-					<p>PANEL KLIENTA edytowany</p>
+					<p>Przegląd Samochodów</p>
                                   
                               
                               <form align="center" action="CarKontroler" method="POST">
@@ -84,14 +84,14 @@
                                 <div class="panelKlienta">
                               <c:choose>
                               <c:when test="${wyswietlWypozycz==1}">    
-                              <input type="submit" value="Wyswietl Wszystkie samochody" name="ofertaPrzeglad">    
+                              <input type="submit" value="Wyświetl Wszystkie Samochody" name="ofertaPrzeglad" style="width: 250px; height: 45px">    
                               </c:when>
                               </c:choose>  
                                 </div>
                               
                                      <c:choose>
                                       <c:when test="${wyswietlMarke==1}">
-                                  <input type="submit" value="Wyswietl Wybrana Marke" name="wybranoMarke">  
+                                  <input type="submit" value="Wyświetl Wybraną Marke" name="wybranoMarke" style="width: 250px; height: 45px">  
                                      </c:when>
                                     </c:choose> 
                               
@@ -117,7 +117,7 @@
                               
                                        <c:choose>
                                       <c:when test="${wyswietlWyborRoku==1}">
-                                  <input type="submit" value="Wyswietl Wybrany rocznik" name="wybranoRocznik">  
+                                  <input type="submit" value="Wyświetl Wybrany Rocznik" name="wybranoRocznik" style="width: 250px; height: 45px">  
                                      </c:when>
                                     </c:choose> 
                                   

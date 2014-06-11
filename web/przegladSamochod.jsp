@@ -80,7 +80,7 @@
                 <div class='linia'> </div>
                 <div id="srodekNaglowek">
                     <div id="srodekZnacznik"> </div>
-                    <p>SAMOCHODY</p>
+                    <p>PRZEGLĄD SAMOCHODÓW</p>
                 </div>
                 <div class='linia'> </div>
                 <div id="srodekTresc">
