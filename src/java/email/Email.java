@@ -42,6 +42,20 @@ e.printStackTrace();
 }
 }
  
+public  void przypomnijHaslo(String email,String haslo) {
+try {
+    String gdzieWyslac=email;
+    String przypomnijHaslo=haslo;
+   //dd TO=emailOdbiorcy;
+    
+new Email().sendPassword(gdzieWyslac,przypomnijHaslo);
+System.out.println("Wiadomość wysłana");
+} catch (MessagingException e) {
+// TODO Auto-generated catch block
+e.printStackTrace();
+}
+}
+
 
 
 void sendAccept(String gdzieWyslac) throws MessagingException {
@@ -134,7 +148,36 @@ void sendDontAccept(String gdzieWyslac,String opis,String marka, String model) t
  }
  
  
+ void sendPassword(String gdzieWyslac,String haslo) throws MessagingException {
  
+  this.SUBJECT="PRZYPOMNIENIE HASLA - AUTORENT";  
+  this.TO=gdzieWyslac;  
+  this.CONTENT="Twoje hasło do konta Autorent to: "+haslo;
+  Properties props = new Properties();
+  props.put("mail.transport.protocol", "smtps");
+  props.put("mail.smtps.auth", "true");
+
+  // Inicjalizacja sesji
+  Session mailSession = Session.getDefaultInstance(props);
+
+  // ustawienie debagowania, jeśli nie chcesz oglądać logów to usuń
+  // linijkę poniżej lub zmień wartość na false
+  mailSession.setDebug(true);
+
+  // Tworzenie wiadomości email
+  MimeMessage message = new MimeMessage(mailSession);
+  message.setSubject(SUBJECT);
+  message.setContent(CONTENT, "text/plain; charset=ISO-8859-2");
+  message.addRecipient(Message.RecipientType.TO, new InternetAddress(TO));
+
+  Transport transport = mailSession.getTransport();
+  transport.connect(HOST, PORT, FROM, PASSWORD);
+
+  // wysłanie wiadomości
+  transport.sendMessage(message, message
+    .getRecipients(Message.RecipientType.TO));
+  transport.close();
+ }
  
 
 

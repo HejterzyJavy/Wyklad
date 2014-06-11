@@ -168,6 +168,52 @@ public class UserDao {
         return sprawdzLogin;
     }
     
+        public boolean sprawdzEmail (String email)
+    {
+        boolean sprawdzEmail=false;
+        String emailBaza=new String();
+            try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select * from users");
+            while (rs.next()) {
+                emailBaza=rs.getString("email");
+              if(emailBaza.equalsIgnoreCase(email))
+              {
+                  sprawdzEmail=true;
+                  break;
+              }
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return sprawdzEmail;
+    }
+    
+    public String getPasswordByLogin (String login)
+    {
+        String haslo=new String();
+        String podanyLogin=login;
+        String loginBaza=new String();
+        
+                 try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select * from users");
+            while (rs.next()) {
+                loginBaza=rs.getString("login");
+              if(podanyLogin.equals(loginBaza))
+              {
+                  haslo=rs.getString("haslo");;
+                  break;
+              }
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return haslo;
+    }
    
        public boolean sprawdzHaslo (String haslo)
     {

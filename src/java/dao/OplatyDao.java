@@ -87,6 +87,14 @@ public class OplatyDao {
     } 
         
     
+           
+    public static long ileDoKonca(Date d1, Date d2)
+    {
+      return Math.round((d2.getTime() - d1.getTime()) / 86400000.0);
+    }
+           
+           
+           
                public void deleteFee(int feeId) {
         try {
             PreparedStatement preparedStatement = connection

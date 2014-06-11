@@ -18,12 +18,12 @@
                 <input type="text" name="login" />
             </div>
             <div>
-                <label>Haslo: <a href="forgot_password.html" rel="forgot_password" class="zapomnianeHaslo"> Zapomniałeś hasła? </a> </label>
+                <label>Haslo: <a href="zapomnialemHasla.jsp" rel="forgot_password" class="zapomnianeHaslo"> Zapomniałeś hasła? </a> </label>
                 <input type="password" name="haslo" />
             </div>
             <div class="bottom">
                 <input type="SUBMIT" name="Logowanie" value="ZALOGUJ">
-                <a href="register.html" rel="register" class="linkform"> Nie masz jeszcze konta? Zarejestruj się</a>
+                <a href="Rej.jsp" rel="register" class="linkform"> Nie masz jeszcze konta? Zarejestruj się</a>
                 <div class="clear"></div>
             </div>
         </fieldset>

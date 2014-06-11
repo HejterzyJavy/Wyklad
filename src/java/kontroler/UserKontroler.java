@@ -1,6 +1,7 @@
 package kontroler;
 
 import dao.UserDao;
+import email.Email;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -194,6 +195,34 @@ public class UserKontroler extends HttpServlet {
         }
           
           
+           String powrotLogowanie=request.getParameter("powrotLogowanie");
+        if(powrotLogowanie!=null)
+        {
+            view = request.getRequestDispatcher(LOGOWANIE);
+        }
+          
+          
+        String zapomnialemHasla=request.getParameter("zapomnialemHasla");
+        if(zapomnialemHasla!=null)
+        {
+            Email email=new Email();
+            String hasloWysylka=new String();
+            String podanyLogin=new String();
+            String podanyEmail=new String();
+            podanyLogin=request.getParameter("podanyLogin");
+            podanyEmail=request.getParameter("podanyEmail");
+            if(dao.sprawdzLogin(podanyLogin) && dao.sprawdzEmail(podanyEmail))
+            {
+                hasloWysylka=dao.getPasswordByLogin(podanyLogin);
+                email.przypomnijHaslo(podanyEmail, hasloWysylka);
+                request.setAttribute("komunikatPrzypomnienie", "Haslo zostało wysłane na adres e-mail");
+            }
+            else
+            {
+             request.setAttribute("komunikatPrzypomnienie", "Błędny login lub e-mail");   
+            }
+            view = request.getRequestDispatcher("zapomnialemHasla.jsp");
+        }
           
         
         String Rejestruj=request.getParameter("Rejestruj");

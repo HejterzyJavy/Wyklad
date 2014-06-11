@@ -658,19 +658,21 @@ public class CarKontroler extends HttpServlet {
         }
         
         
+ 
+        
+        
              String koniecUbezpieczen = request.getParameter("koniecUbezpieczen");
         if(koniecUbezpieczen!=null)
         {
-            GregorianCalendar calendar= new GregorianCalendar();
+            Calendar calendar = Calendar.getInstance();
        
             DateFormat dateFrm = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date myDate = new java.util.Date();
             java.sql.Date dataWypozyczenia;
-            java.sql.Date aktualnaData=null;
-            /*aktualnaData.setYear(calendar.get(Calendar.YEAR));
-            aktualnaData.setMonth(calendar.get(Calendar.MONTH));
-            aktualnaData.setDate(calendar.get(Calendar.DATE));
-            */
+            Date aktualnaData=new Date();
+      
+            aktualnaData=calendar.getTime();
+            
             long roznica=0;
             
             List<Oplaty> listaOplat = new ArrayList<Oplaty>();
@@ -694,9 +696,12 @@ public class CarKontroler extends HttpServlet {
                 listaOplat.get(i).setTmpMarkaSamochodu(listaSamochodow.get(i).getMarka());
                 listaOplat.get(i).setTmpModelSamochodu(listaSamochodow.get(i).getModel());
                 listaOplat.get(i).setTmpRejestracjaSamochodu(listaSamochodow.get(i).getRejestracja());
-                //listaOplat.get(i).setTmpRejestracjaSamochodu("asd");
-                roznica=Math.abs(listaOplat.get(i).getZakonczenieOc().getTime() - (listaOplat.get(i).getRozpoczecieOc().getTime()));
+               roznica=oplatydao.ileDoKonca(aktualnaData,listaOplat.get(i).getZakonczenieOc());
+               roznica++;
                listaOplat.get(i).setDoKoncaOc(roznica);
+               roznica=oplatydao.ileDoKonca(aktualnaData,listaOplat.get(i).getZakonczenieAc());
+               roznica++;
+               listaOplat.get(i).setDoKoncaAc(roznica);
             }
        
             

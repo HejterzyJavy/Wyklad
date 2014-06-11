@@ -193,6 +193,10 @@ margin: 0 auto;
  padding-left: 510px; 
 }
 
+.formularzPrzypomnienia { 
+ padding-left: 510px; 
+}
+
 .zakonczRejestracje { 
  padding-top:  1cm;
  padding-left: 80px; 
@@ -224,4 +228,20 @@ padding-left: 150px;
 .infoKlient { 
  padding-top:  4cm;
  padding-left: 100px;
+}
+
+
+.zatwierdzPrzypomnienieHasla { 
+ padding-top:  1cm;
+ padding-left: 50px;
+}
+
+.komunikatPrzypomnienie { 
+ padding-left: 10px;
+}
+
+
+.powrotLogowanie { 
+ padding-top:  4cm;
+ padding-left: 55px;
 }

@@ -344,9 +344,34 @@
                                             <td>&nbsp &nbsp${listaUbezpieczen.getTmpMarkaSamochodu()}</td>
                                             <td>&nbsp &nbsp${listaUbezpieczen.getTmpModelSamochodu()}</td>
                                             <td>&nbsp &nbsp${listaUbezpieczen.getTmpRejestracjaSamochodu()}</td>
-                                            <td>&nbsp &nbsp${listaUbezpieczen.getDoKoncaOc()}
-
-                                            </td>
+                                            
+                                              <c:choose>
+                                            <c:when test="${listaUbezpieczen.getDoKoncaOc() >= 0}">
+                                            <td>&nbsp &nbsp${listaUbezpieczen.getDoKoncaOc()} dni</td>    
+                                            </c:when>
+                                            </c:choose>
+                                            
+                                            <c:choose>
+                                            <c:when test="${listaUbezpieczen.getDoKoncaOc() < 0}">
+                                            <td>&nbsp &nbsp Auto nieubezpieczone od ${listaUbezpieczen.getDoKoncaOc() * -1} dni</td>    
+                                            </c:when>
+                                            </c:choose>
+                                            
+                                            
+                                            
+                                            
+                                            <c:choose>
+                                            <c:when test="${listaUbezpieczen.getDoKoncaAc() >= 0}">
+                                            <td>&nbsp &nbsp${listaUbezpieczen.getDoKoncaAc()} dni</td>    
+                                            </c:when>
+                                            </c:choose>
+                                            
+                                            <c:choose>
+                                            <c:when test="${listaUbezpieczen.getDoKoncaAc() < 0}">
+                                            <td>&nbsp &nbsp Auto nieubezpieczone od ${listaUbezpieczen.getDoKoncaAc() * -1} dni</td>    
+                                            </c:when>
+                                            </c:choose>
+                                            
                                         </tr>
                                     </c:when>
                                 </c:choose>
