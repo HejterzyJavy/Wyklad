@@ -63,20 +63,20 @@
                 <div align="center" id="srodekTresc"> 
                 <div class="panelPracownik">
                     <form action="RentKontroler" method="POST">
-                        <input type="submit" value="akceptuj wypozyczenia" name="akceptujWypozyczenia"  >   
-                        <input type="submit" value="Historia firmy"  name="nieZwrocone"  >
+                        <input type="submit" value="Akceptuj Wypożyczenia" name="akceptujWypozyczenia"  >   
+                        <input type="submit" value="Historia Firmy"  name="nieZwrocone"  >
                     </form>
                     
                     <c:set var="ilosc" scope="session" value="${0}"/>   
                     <form action="CarKontroler" method="POST">    
                         
-                        <input type="submit" value="dodaj samochod" name="dodaj"   >
-                        <input type="submit" value="usun samochod"  name="usun"  >
-                        <input type="submit" value="edytuj przebieg samochodu"  name="edit"  >
-                        <input type="submit" value="przyjmij samochody"  name="przyjmijSamochody"  >
-                        <input type="submit" value="przedluz OC"  name="przedluzenieOC"  >
-                        <input type="submit" value="przedluz AC"  name="przedluzenieAC"  >
-                        <input type="submit" value="konczace ubezpieczenia"  name="koniecUbezpieczen"  >
+                        <input type="submit" value="Dodaj Samochód" name="dodaj"   >
+                        <input type="submit" value="Usuń Samochód"  name="usun"  >
+                        <input type="submit" value="Edytuj Przebieg Samochodu"  name="edit"  >
+                        <input type="submit" value="Przyjmij Samochody"  name="przyjmijSamochody"  >
+                        <input type="submit" value="Przedłuż OC"  name="przedluzenieOC"  >
+                        <input type="submit" value="Przedłuż AC"  name="przedluzenieAC"  >
+                        <input type="submit" value="Kończące Ubezpieczenia"  name="koniecUbezpieczen"  >
                         
                     </form>
                     </div>
@@ -91,7 +91,7 @@
                             <c:forEach var="rents" items="${Rents}" >           
                                     <c:choose>
                                         <c:when test="${wyswietlNaglowkiAkceptacja<1}">
-                                            <tr> <td>Numer  &nbsp &nbsp</td><td>Imie &nbsp &nbsp</td><td>&nbsp &nbsp Nazwisko</td><td>&nbsp &nbsp Marka</td><td>&nbsp &nbsp Model</td><td>&nbsp &nbsp Do zaplaty</td>
+                                            <tr> <td>Id &nbsp &nbsp</td><td>Imie &nbsp &nbsp</td><td>&nbsp &nbsp Nazwisko</td><td>&nbsp &nbsp Marka</td><td>&nbsp &nbsp Model</td><td>&nbsp &nbsp Do zaplaty</td>
                                                </tr>
                                                 <c:set var="wyswietlNaglowkiAkceptacja" scope="session" value="${1}"/>
                                     </c:when>
@@ -109,7 +109,7 @@
                         <c:choose>
                             <c:when test="${wyswietlanieAkceptacja >0}">
                                  <div class='zatwierdzPracownik'>
-                                    <input  type="submit" value="zatwierdz"  name="akceptuj">
+                                    <input  type="submit" value="zatwierdź"  name="akceptuj">
                                 </div>
                             </c:when>
                         </c:choose>
@@ -188,7 +188,7 @@
                         <c:choose>
                             <c:when test="${wyswietlEdycje > 0}">
                                 <div class ='zatwierdzPracownik'>
-                                    <input type="submit" value="zatwierdz"  name="zatwierdzEdytuj">
+                                    <input type="submit" value="zatwierdź"  name="zatwierdzEdytuj">
                                 </div>  
                             </c:when>
                         </c:choose>
@@ -262,7 +262,7 @@
                             <c:choose>
                                 <c:when test="${wyswietlZmianaOC > 0}">
                                     <div class ='zatwierdzPracownik'>
-                                        <input type="submit" value="zatwierdz"  name="zatwierdzZmianaOC">
+                                        <input type="submit" value="zatwierdź"  name="zatwierdzZmianaOC">
                                     </div>  
                                 </c:when>
                             </c:choose>
@@ -307,7 +307,7 @@
                             <c:choose>
                                 <c:when test="${wyswietlZmianaAC > 0}">
                                     <div class ='zatwierdzPracownik'>
-                                        <input type="submit" value="zatwierdz"  name="zatwierdzZmianaAC">
+                                        <input type="submit" value="zatwierdź"  name="zatwierdzZmianaAC">
                                     </div>  
                                 </c:when>
                             </c:choose>
@@ -406,7 +406,7 @@
                         <c:choose>
                             <c:when test="${wyswietlUsun > 0}">
                                 <div class ='zatwierdzPracownik'>
-                                    <input type="submit" value="zatwierdz"  name="zatwierdzUsun">
+                                    <input type="submit" value="zatwierdź"  name="zatwierdzUsun">
                                 </div>
                             </c:when>
                         </c:choose>        
@@ -441,7 +441,7 @@
                         <c:choose>
                             <c:when test="${wyswietlPrzyjmij > 0}">
                                 <div class ='zatwierdzPracownik'>
-                                    <input type="submit" value="zatwierdz"  name="zatwierdzPrzyjmij">
+                                    <input type="submit" value="zatwierdź"  name="zatwierdzPrzyjmij">
                                 </div>  
                             </c:when>
                         </c:choose>

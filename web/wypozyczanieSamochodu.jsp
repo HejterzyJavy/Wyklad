@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>AutoRent - Wypo?yczalnia Samochodów</title>
+        <title>AutoRent - Wypozyczalnia Samochodów</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -37,7 +37,9 @@
     <body>
         <div id = 'container'>
             <div id='header'>
-                <div id= 'logo'> </div>
+                <div id= 'logo'> 
+                
+                </div>
                 <div id='pasekLogowania'>
                 </div>
                 <div id="panelLogowania">
@@ -49,12 +51,12 @@
                                 <input type="text" name="login" />
                             </div>
                             <div>
-                                <label>Haslo: <a href="forgot_password.html" rel="forgot_password" class="zapomnianeHaslo"> Zapomnia?e? has?a? </a> </label>
+                                <label>Haslo: <a href="forgot_password.html" rel="forgot_password" class="zapomnianeHaslo"> Zapomniales hasla? </a> </label>
                                 <input type="password" name="haslo" />
                             </div>
                             <div class="bottom">
                                 <input type="SUBMIT" name="Logowanie" value="ZALOGUJ">
-                                <a href="register.html" rel="register" class="linkform"> Nie masz jeszcze konta? Zarejestruj si?</a>
+                                <a href="register.html" rel="register" class="linkform"> Nie masz jeszcze konta? Zarejestruj sie</a>
                                 <div class="clear"></div>
                             </div>
                         </fieldset>
@@ -67,7 +69,7 @@
                 <div class='przyciskMenu'> <a href="Samochody.jsp"><p>SAMOCHODY</p></a> </div>
                 <div class='przyciskMenu'>  <a href="Samochody.jsp"><p>OFERTA</p></a> </div>
                 <div class='przyciskMenu'> <p>LOKALIZACJA</p> </div>
-                <div class='przyciskMenu'> <p>US?UGI</p> </div>
+                <div class='przyciskMenu'> <p>USLUGI</p> </div>
                 <div class='przyciskMenu'> <p>NAGRODY</p> </div>
                 <div class='przyciskMenu'> <p>DLA FIRM</p> </div>
             </div>

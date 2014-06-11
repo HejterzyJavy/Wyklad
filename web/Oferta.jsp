@@ -49,13 +49,11 @@
                                    </c:when>
                                     </c:choose> 
    
-                             <c:choose>
-                              <c:when test="${czyZalogowany==1}">  
+                        
                                 <form action="UserKontroler" method="POST">
                                     <input class="przyciskWyloguj" type="submit"  name="wylogowanie" value="WYLOGUJ"> 
                                 </form>
-                                  </c:when>
-                                    </c:choose> 
+                           
                                               
         		</div>
         	
